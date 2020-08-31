@@ -2,7 +2,7 @@
   "name": "ronin",
   "version": "1.0.0",
   "description": "## Team Bulbasaur: Amelia Waggoner, Matthew Petersen, Marchael Acode and John Ramirez",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -19,9 +19,11 @@
   "homepage": "https://github.com/Team-Bulbasaur-MMA/Ronin#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
     "express": "^4.17.1",
     "method-override": "^3.0.0",
     "pg": "^8.3.3",
     "superagent": "^6.1.0"
-  }
+  },
+  "devDependencies": {}
 }
