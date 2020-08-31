@@ -67,7 +67,6 @@
 ## Data Entity Relationship Diagram
 
 <img src='img/wwrc.PNG'>
-<img src='img/dataEntityDiagramRonin.PNG'>
+<img src='img/dataEntityDiagramRonin.png'>
 
 ## Credits and Collaborations
-
