@@ -15,8 +15,34 @@ body {
   /* Link for the custom google font: <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet"> */
 }
 
+/* login page */
 h1 {
   background-color: rgb(98, 172, 117);
   color: rgb(121, 22, 15);
+  font-size: 75px;
+  font-weight: bold;
 }
 
+ul {
+  background-color: rgb(40, 99, 98);
+  font-size: 60px;
+}
+
+form {
+  background-color: rgb(40, 99, 98);
+}
+
+input {
+  background-color: rgb(121, 22, 15);
+  color: lightgray;
+  border: groove rgb(121, 22, 15) 10px;
+  font-family: fantasy;
+  font-size: 20px;
+}
+
+#templeimg {
+ height: 400px;
+ width: 400px;
+ border-radius: 10px;
+ border-color: rgb(121, 22, 15);
+}
