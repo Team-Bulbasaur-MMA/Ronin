@@ -1,0 +1,22 @@
+/* Bulbasaur colors
+ light blue green color - rgb(126, 213, 197)
+ darker blue spots color - rgb(40, 99, 98)
+ green plant color - rgb(98, 172, 117)
+ red eye color - rgb(121, 22, 15);
+ */
+ * {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(126, 213, 197);
+  color: rgb(40, 99, 98);
+  font-family: 'Ma Shan Zheng', cursive;
+  /* Link for the custom google font: <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet"> */
+}
+
+h1 {
+  background-color: rgb(98, 172, 117);
+  color: rgb(121, 22, 15);
+}
+
