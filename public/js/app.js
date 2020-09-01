@@ -1,57 +1,94 @@
 function initMap() {
   const latLng = { lat: 38.9048, lng: 137.2529 };
-  const myLatlng = { lat: 35.6762, lng: 139.6503 };
-  const myLatlng1 = { lat: 34.6413, lng: 135.5629 };
-  const myLatlng2 = { lat: 35.0116, lng: 135.5629 };
-  const myLatlng3 = { lat: 34.3853, lng: 132.4553 };
-  const myLatlng4 = { lat: 43.0618, lng: 141.3545 };
+  const tokyo = { lat: 35.6762, lng: 139.6503 };
+  const osako = { lat: 34.6413, lng: 135.5629 };
+  const kyoto = { lat: 35.0116, lng: 135.5629 };
+  const hiroshima = { lat: 34.3853, lng: 132.4553 };
+  const sapporo = { lat: 43.0618, lng: 141.3545 };
   const map = new google.maps.Map(document.getElementById('map'), {
     zoom: 6,
     center: latLng
   });
   const marker = new google.maps.Marker({
-    position: myLatlng,
+    position: tokyo,
     map,
-    title: 'Click to zoom'
+    title: 'Tokyo'
   });
   const marker1 = new google.maps.Marker({
-    position: myLatlng1,
+    position: osako,
     map,
-    title: 'Click to zoom'
+    title: 'Osako'
   });
   const marker2 = new google.maps.Marker({
-    position: myLatlng2,
+    position: kyoto,
     map,
-    title: 'Click to zoom'
+    title: 'Kyoto'
   });
   const marker3 = new google.maps.Marker({
-    position: myLatlng3,
+    position: hiroshima,
     map,
-    title: 'Click to zoom'
+    title: 'Hiroshima'
   });
   const marker4 = new google.maps.Marker({
-    position: myLatlng4,
+    position: sapporo,
     map,
-    title: 'Click to zoom'
+    title: 'Sapporo'
   });
   marker.addListener('click', () => {
     map.setZoom(10.5);
     map.setCenter(marker.getPosition());
+    console.log(marker);
+    const title = marker.title;
+    const lat = marker.getPosition().lat();
+    const lng = marker.getPosition().lng();
+    $.get(`/location/${title}/${lat}/${lng}`)
+      .then(data => {
+        console.log(data);
+      });
   });
   marker1.addListener('click', () => {
     map.setZoom(10.5);
     map.setCenter(marker1.getPosition());
+    const title = marker1.title;
+    const lat = marker1.getPosition().lat();
+    const lng = marker1.getPosition().lng();
+    $.get(`/location/${title}/${lat}/${lng}`)
+      .then(data => {
+        console.log(data);
+      });
   });
   marker2.addListener('click', () => {
     map.setZoom(10.5);
     map.setCenter(marker2.getPosition());
+    const title = marker2.title;
+    const lat = marker2.getPosition().lat();
+    const lng = marker2.getPosition().lng();
+    $.get(`/location/${title}/${lat}/${lng}`)
+      .then(data => {
+        console.log(data);
+      });
   });
   marker3.addListener('click', () => {
     map.setZoom(10.5);
     map.setCenter(marker3.getPosition());
+    const title = marker3.title;
+    const lat = marker3.getPosition().lat();
+    const lng = marker3.getPosition().lng();
+    $.get(`/location/${title}/${lat}/${lng}`)
+      .then(data => {
+        console.log(data);
+      });
   });
   marker4.addListener('click', () => {
     map.setZoom(10.5);
     map.setCenter(marker4.getPosition());
+    const title = marker4.title;
+    const lat = marker4.getPosition().lat();
+    const lng = marker4.getPosition().lng();
+    $.get(`/location/${title}/${lat}/${lng}`)
+      .then(data => {
+        console.log(data);
+      });
   });
 }
+
