@@ -18,12 +18,16 @@ app.use(methodOverride('_method'));
 const client = new pg.Client(process.env.DATABASE_URL);
 client.on('error', console.error);
 
+const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
+
 //===================================================== Routes =====================================================================
 
 app.get('/', getUserName);
 app.post('/user', insertUserFromSQL);
 
 app.post('/show', getMapData);
+// app.post('/citySearch', searchForCityInJapan);
+// app.get('/index', renderWeatherData);
 
 app.get('/index', renderHomePage);
 app.get('/collection', renderCollectionPage);
@@ -34,7 +38,7 @@ function getUserName(req, res){
   const SQL = 'SELECT * FROM user_table;';
   client.query(SQL)
     .then(result =>{
-      res.render('pages/login', );// dont need to send users
+      res.render('pages/login');
     });
 }
 
@@ -45,12 +49,22 @@ function insertUserFromSQL(req, res){
   client.query(SQL, value)
     .then(result =>{
       res.redirect(`/index`);
+      // I want the index page to say "Hello user_name"
     });
 }
 
 function renderHomePage(req, res){
   const mapKey = process.env.MAP_API_KEY;
   res.render('pages/index', {key : mapKey});
+}
+
+function renderCollectionPage(req, res){
+  // how can i get the username to be entered here? Each obj saved will need to reference user_name
+  res.render(`pages/collection`)
+}
+
+function renderAboutUsPage(req, res){
+  res.render(`pages/aboutUs`)
 }
 
 function getMapData(req, res){
@@ -66,15 +80,46 @@ function getMapData(req, res){
     });
 }
 
-function renderCollectionPage(req, res){
-  const user_name = req.body.username;
-  res.render(`pages/collection`)
-}
+// this function relies on the coordinates from the MAP
+// function renderWeatherData(req, res){
+//   let latitude = req.query.latitude;
+//   let longitude = req.query.longitude;
+//   const urlToSearchWeather = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${latitude}&lon=${longitude}&key=${WEATHER_API_KEY}`;
 
-function renderAboutUsPage(req, res){
-  res.render(`pages/aboutUs`)
-}
+//   superagent.get(urlToSearchWeather)
+//   .then(results => {
+//     const weather = results.body.data;
+//     const weatherArr = weather.map(index => new Weather(index));
+//     res.render('/index', {weatherTime : weatherArr})
+//   })
+//   .catch(error => {
+//     console.log(error.message);
+//     res.status(500).send(error.message);
+//   });
+// }
 
+// this function relies on information from the MAP + resturants + anime
+// function searchForCityInJapan(req, res){
+//   const inputText = req.body.userSearch;
+//   console.log('here is the selector:', inputText[1])
+//   console.log('here is the city:', inputText[0])
+//   let radioButton = inputText[1]; //this is the radio button
+//   let citySearched = inputText[0]; // this is the city
+// }
+
+//   if(radioButton === 'Restaurants'){
+  // start the superagent for resturants here.
+//   }else{
+  // start the superagent for anime here.
+//   }
+// }
+
+
+//===================================================== Constructor ================================================================
+function Weather(weatherObj){
+  this.forecast = weatherObj.weather.description;
+  this.time = weatherObj.valid_date;
+}
 
 
 
