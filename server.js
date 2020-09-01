@@ -22,6 +22,7 @@ client.on('error', console.error);
 app.get('/', getUserName)
 app.post('/user', insertUserFromSQL)
 app.get('/index', renderHomePage)
+app.get('/collection', renderCollectionPage)
 
 //===================================================== Functions ==================================================================
 function getUserName(req, res){
@@ -35,14 +36,20 @@ function getUserName(req, res){
 function insertUserFromSQL(req, res){
   const SQL = `INSERT INTO user_table (username) VALUES ($1)`
   const value = [req.body.username]
+  console.log(value)
   client.query(SQL, value)
     .then(result =>{
+      console.log(result)
       res.redirect('/index')
     })
 }
 
 function renderHomePage(req, res){
   res.render('pages/index')
+}
+
+function renderCollectionPage(req, res){
+  res.render('pages/collection')
 }
 
 //===================================================== Constructor ================================================================

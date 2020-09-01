@@ -8,7 +8,6 @@
 <body>
   <h1>Please Login</h1>
 
-  <% console.log('front end', users) %> 
   <form action="/user" method="POST">
     <fieldset>
       <input type="text" name="username" value="name">
@@ -16,9 +15,9 @@
     </fieldset>
   </form>
 
-<% users.forEach(theUser =>{ %>
-  <h2><% theUser.username %></h2>
-<% }) %>
+  <% users.forEach(theUser =>{ %>
+    <h2><% theUser.username %></h2>
+  <% }) %>
 
 </body>
 </html>
