@@ -24,7 +24,7 @@ const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
 
 app.get('/', getUserName);
 app.post('/user', insertUserFromSQL);
-
+app.get('/location/:title/:lat/:lng', renderRestaurants);
 app.post('/show', getMapData);
 // app.post('/citySearch', searchForCityInJapan);
 // app.get('/index', renderWeatherData);
@@ -34,6 +34,18 @@ app.get('/collection', renderCollectionPage);
 app.get('/aboutUs', renderAboutUsPage)
 
 //===================================================== Functions ==================================================================
+
+function renderRestaurants(req, res){
+  const title = req.params.title;
+  const lat = req.params.lat;
+  const lng = req.params.lng;
+
+  console.log(title);
+  console.log(lat);
+  console.log(lng);
+  res.send('Hello World');
+}
+
 function getUserName(req, res){
   const SQL = 'SELECT * FROM user_table;';
   client.query(SQL)
