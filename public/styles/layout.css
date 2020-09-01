@@ -14,7 +14,7 @@ body {
   font-family: 'Ma Shan Zheng', cursive;
   /* Link for the custom google font: <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet"> */
 }
-
+@media only screen and (min-width: 600px) {
 /* login page */
 h1 {
   background-color: rgb(98, 172, 117);
@@ -40,9 +40,31 @@ input {
   font-size: 20px;
 }
 
+.loginimgdiv {
+  display: block;
+  margin-top: 25px;
+  text-align: center;
+}
+
 #templeimg {
- height: 400px;
+ height: 300px;
+ width: 300px;
+ border: groove rgb(98, 172, 117) 15px;
+
+}
+
+#mascotimg {
+ height: 300px;
  width: 400px;
- border-radius: 10px;
- border-color: rgb(121, 22, 15);
+ border: groove rgb(98, 172, 117) 15px;
+ 
+ 
+}
+
+#tokyotowerimg {
+ height: 300px;
+ width: 300px;
+ border: groove rgb(98, 172, 117) 15px;
+ 
+}
 }
