@@ -67,4 +67,9 @@ input {
  border: groove rgb(98, 172, 117) 15px;
  
 }
+
+.ameliainfo {
+  background-color: rgb(98, 172, 117);
+  font-size: 18px;
+}
 }
