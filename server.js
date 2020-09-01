@@ -114,14 +114,93 @@ function getMapData(req, res){
 //   }
 // }
 
+
 //===================================================== Constructor ================================================================
 function Weather(weatherObj){
   this.forecast = weatherObj.weather.description;
   this.time = weatherObj.valid_date;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//================Restaurant Route & Function======
+// app.get('/show', getRestaurantData);
+// 
+// function getRestaurantData (req, res) {
+//   let yelpQuery = request.query.formatted_query;
+//   console.log('yelp req.query : ', request.query);
+
+// const yelpKey = process.env.YELP_API_KEY;
+// let yelpUrl = `https://api.yelp.com/v3/businesses/search?location=${yelpQuery}&limit=5&offset=5`;
+
+// superagent.get(yelpUrl)
+// .set('Authorization',`Bearer ${yelpKey}`)
+//   .then(result => {
+//     const jsonYelpObj = yelpComeBack.body.businesses;
+//     const newYelpArr = jsonYelpObj.map(yelp => {
+//       return new Yelp(yelp);
+//     })
+//     console.log(result);
+//     res.render('/index', {yelpItem, newYelpArr});
+// }
+
+// function renderRestaurantData (req, res) {
+//  res.render();
+// }
+
+//===================================================== Constructor ================================================================
+// function Yelp(jsonYelpObj){
+//   //console.log(jsonYelpObj);
+//   this.name = jsonYelpObj.name;
+//   this.image_url = jsonYelpObj.image_url;
+//   this.price = jsonYelpObj.price;
+//   this.rating = jsonYelpObj.rating;
+//   this.url = jsonYelpObj.url;
+// }
+
 //===================================================== Start Server ===============================================================
 client.connect()
   .then(() => {
     app.listen(PORT, () => console.log(`This is running the server on PORT : ${PORT} working`));
   });
+
+
+
+
+
+
