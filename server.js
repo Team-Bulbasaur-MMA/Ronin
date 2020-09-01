@@ -22,25 +22,29 @@ client.on('error', console.error);
 
 app.get('/', getUserName);
 app.post('/user', insertUserFromSQL);
-app.get('/index', renderHomePage);
+
 app.post('/show', getMapData);
+
+app.get('/index', renderHomePage);
+app.get('/collection', renderCollectionPage);
+app.get('/aboutUs', renderAboutUsPage)
 
 //===================================================== Functions ==================================================================
 function getUserName(req, res){
   const SQL = 'SELECT * FROM user_table;';
   client.query(SQL)
     .then(result =>{
-      res.render('pages/login', {users : result.rows});
+      res.render('pages/login', );// dont need to send users
     });
 }
 
 function insertUserFromSQL(req, res){
-
   const SQL = `INSERT INTO user_table (username) VALUES ($1)`;
   const value = [req.body.username];
+  const user_name = req.body.username;
   client.query(SQL, value)
     .then(result =>{
-      res.redirect('/index');
+      res.redirect(`/index`);
     });
 }
 
@@ -63,7 +67,12 @@ function getMapData(req, res){
 }
 
 function renderCollectionPage(req, res){
-  res.render('pages/collection')
+  const user_name = req.body.username;
+  res.render(`pages/collection`)
+}
+
+function renderAboutUsPage(req, res){
+  res.render(`pages/aboutUs`)
 }
 
 //===================================================== Constructor ================================================================
