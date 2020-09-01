@@ -70,3 +70,5 @@
 <img src='img/dataEntityDiagramRonin.png'>
 
 ## Credits and Collaborations
+
+- Shoutout to Skyler for helping with rendering Google Maps on to your homepage.

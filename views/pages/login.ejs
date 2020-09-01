@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create A User</title>
-</head>
+
+  <%- include('../layout/head') %>
+
 <body>
+
+  <%- include('../layout/header') %>
+
   <h1>Please Login</h1>
 
   <% console.log('front end', users) %> 
@@ -19,6 +20,8 @@
 <% users.forEach(theUser =>{ %>
   <h2><% theUser.username %></h2>
 <% }) %>
+
+<%- include('../layout/footer') %>
 
 </body>
 </html>
