@@ -19,6 +19,7 @@ const client = new pg.Client(process.env.DATABASE_URL);
 client.on('error', console.error);
 
 //===================================================== Routes =====================================================================
+
 app.get('/', getUserName);
 app.post('/user', insertUserFromSQL);
 app.get('/index', renderHomePage);
@@ -34,6 +35,7 @@ function getUserName(req, res){
 }
 
 function insertUserFromSQL(req, res){
+
   const SQL = `INSERT INTO user_table (username) VALUES ($1)`;
   const value = [req.body.username];
   client.query(SQL, value)
@@ -58,6 +60,10 @@ function getMapData(req, res){
       res.redirect('/');
       // const googleMapData = results.body
     });
+}
+
+function renderCollectionPage(req, res){
+  res.render('pages/collection')
 }
 
 //===================================================== Constructor ================================================================
