@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include('../layout/head') %>
+
+<body>
+
+  <%- include('../layout/header') %>
+
+  <h1 class='title'>Anime</h1>
+  
+  <form action="/anime" method="POST">
+    <fieldset>
+      <input type="text" name="animeName" value="animeName">
+      <input type="submit" value="Find anime now">
+    </fieldset>
+  </form>
+
+  <%- include('../layout/footer') %>
+
+</body>
+</html>

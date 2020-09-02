@@ -34,6 +34,7 @@ app.post('/show', getMapData);
 app.get('/index', renderHomePage);
 app.get('/collection', renderCollectionPage);
 app.get('/aboutUs', renderAboutUsPage)
+app.get('/anime', renderAnime);
 app.post('/anime', getmyAnime)
 
 //===================================================== Functions ==================================================================
@@ -165,13 +166,18 @@ function getMapData(req, res){
     });
 }
 
+function renderAnime (req, res){
+  res.render('pages/anime');
+}
+
 function getmyAnime(req, res){ //genre_id
   const id = req.body.animeName;
   console.log(id) 
-  const animeURL = `https://api.jikan.moe/v3/search/character/?q=${id}`;
+  const animeURL = `https://api.jikan.moe/v3/search/character/?q=${id}&limit=10`;
   superagent.get(animeURL)
-    .then(results =>{ 
-      res.render('pages/collection', {animeList : results.body});
+    .then(results =>{
+      console.log(results.body.results);
+      res.render('pages/index3', {animeList : results.body.results});
     })
     .catch(error => console.error(error));
 }
