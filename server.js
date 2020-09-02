@@ -34,6 +34,7 @@ app.post('/show', getMapData);
 app.get('/index', renderHomePage);
 app.get('/collection', renderCollectionPage);
 app.get('/aboutUs', renderAboutUsPage)
+app.post('/anime', getmyAnime)
 
 //===================================================== Functions ==================================================================
 
@@ -164,6 +165,16 @@ function getMapData(req, res){
     });
 }
 
+function getmyAnime(req, res){ //genre_id
+  const id = req.body.animeName;
+  console.log(id) 
+  const animeURL = `https://api.jikan.moe/v3/search/character/?q=${id}`;
+  superagent.get(animeURL)
+    .then(results =>{ 
+      res.render('pages/collection', {animeList : results.body});
+    })
+    .catch(error => console.error(error));
+}
 
 //===================================================== Constructor ================================================================
 function Weather(weatherObj){
@@ -179,6 +190,7 @@ function Yelp(jsonYelpObj){
   this.rating = jsonYelpObj.rating;
   this.url = jsonYelpObj.url;
 }
+
 
 //===================================================== Start Server ===============================================================
 client.connect()

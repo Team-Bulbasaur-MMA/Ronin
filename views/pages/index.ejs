@@ -8,6 +8,13 @@
   <%- include('../layout/header') %>
 
   <h1 class='title'>Welcome to our site </h1>
+  
+  <form action="/anime" method="POST">
+    <fieldset>
+      <input type="text" name="animeName" value="animeName">
+      <input type="submit" value="Find anime now">
+    </fieldset>
+  </form>
 
   <div id='map'></div>
 
