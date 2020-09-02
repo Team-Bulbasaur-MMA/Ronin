@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include('../layout/head') %>
+
+<body>
+
+  <%- include('../layout/header') %>
+
+  <h1 class='title'>Welcome to our site </h1>
+
+  <div>
+      <% animeList.forEach(baka => { %>
+        <%= baka.name %>
+        <img src='<%= baka.image_url %>' alt=''>
+      <% }) %>
+  </div>
+
+  <%- include('../layout/footer') %>
+
+</body>
+</html>
