@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <%- include('../layout/head') %>
+  <%- include('../layout/head', {users : users}) %>
 
 <body>
 
-  <%- include('../layout/header') %>
+  <%- include('../layout/header', {users : users}) %>
 
   <h1 class='title'>Welcome to our site </h1>
 
   <!-- <div id='map'></div> -->
+  <!-- // use a foreign key with postgres -->
   
   <div id='bigKahunaDiv'>
     <div id='bigWeatherDiv'>
@@ -38,13 +39,28 @@
             <h3><%= food.phone %></h3>
             <h3><a><%= food.url %></a></h3>
           </li>
+          
+          <form action="/collection" method="POST">
+           <fieldset>
+            <label for="addfood">Save this restaurant for later:</label>
+            <input type="hidden" name="name" value="<%= food.name %>"></input>
+            <input type="hidden" name="image_url" value="<%= food.image_url %>"></input>
+            <input type="hidden" name="price" value="<%= food.price %>"></input>
+            <input type="hidden" name="rating" value="<%= food.rating %>"></input>
+            <input type="hidden" name="address" value="<%= food.address %>"></input>
+            <input type="hidden" name="phone" value="<%= food.phone %>"></input>
+            <input type="hidden" name="url" value="<%= food.url %>"></input>
+            <input type="submit" value="Save this restaurant">
+           </fieldset>
+          </form>
+
         </div>
       <% }) %>
       </ul>
     </div>
   </div>
 
-  <%- include('../layout/footer') %>
+  <%- include('../layout/footer', {users : users}) %>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>

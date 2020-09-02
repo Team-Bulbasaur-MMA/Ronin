@@ -25,16 +25,23 @@ const mapKey = process.env.MAP_API_KEY;
 
 app.get('/', getUserName);
 app.post('/user', insertUserFromSQL);
-app.get('/location/:title/:lat/:lng', dataFunction);
-// app.post('/show', getMapData);
+
+app.post('/show', getMapData);
+
+app.get('/location/:title/:lat/:lng', renderIndex2);
 app.get('/index', renderHomePage);
 app.get('/collection', renderCollectionPage);
-app.get('/aboutUs', renderAboutUsPage);
+app.get('/aboutUs', renderAboutUsPage)
 app.get('/anime', renderAnime);
-app.post('/anime', getmyAnime);
+app.post('/animeForm', renderIndex3)
+
 app.post('/collection', saveFavorites);
 // app.get('/collection', getFavorites);
 app.delete('/collection/:id', deleteItem);
+
+app.post('/collection',saveUserInfoRestuarant);
+app.delete('/collection/:id', deleteRestaurants);
+
 
 //===================================================== Functions ==================================================================
 
@@ -89,7 +96,30 @@ function insertUserFromSQL(req, res){
     });
 }
 
-function dataFunction (req, res){
+function saveUserInfoRestuarant(req, res){
+  const {name, image_url, price, rating, address, phone} = req.body;
+  const SQL = `INSERT INTO food_table (name, image_url, price, rating, address, phone) VALUES ($1, $2, $3, $4, $5, $6)`
+  const foodArr = [name, image_url, price, rating, address, phone];
+
+  client.query(SQL, foodArr)
+  .then(() => {
+      res.redirect('/collection');
+  })
+}
+
+function deleteRestaurants(req, res){
+  const id = req.params.id;
+  console.log(req.params.id);
+  const SQL = 'DELETE FROM food_table WHERE id=$1';
+  client.query(SQL, [id])
+   .then( () => {
+     res.redirect('/collection');
+});
+
+}
+
+//===================================================== Functions ==================================================================
+function renderIndex2 (req, res){
   const lat = req.params.lat;
   const lng = req.params.lng;
   const mapKey = process.env.MAP_API_KEY;
@@ -98,6 +128,7 @@ function dataFunction (req, res){
   let yelpUrl = `https://api.yelp.com/v3/businesses/search?latitude=${lat}&longitude=${lng}&limit=10`;
 
   let monsterObj = {};
+  const user_name = req.query.user_name;
 
   superagent.get(urlToSearchWeather)
     .then(results => {
@@ -123,7 +154,7 @@ function dataFunction (req, res){
             }
           });
           monsterObj.yelpData = yelpArrSort;
-          res.render('pages/index2', {data : monsterObj, key : mapKey});
+          res.render('pages/index2', {data : monsterObj, key : mapKey, users : user_name});
         })
         .catch(error => {
           console.log('Yelp Call', error);
@@ -135,32 +166,73 @@ function dataFunction (req, res){
       res.status(500).send(error.message);
     });
 }
-
-
-function renderHomePage(req, res){
+//======================== Map stuff
+function getMapData(req, res){
   const mapKey = process.env.MAP_API_KEY;
-  res.render('pages/index', {key : mapKey});
+
+  let mapsUrl = `https://maps.googleapis.com/maps/api/js?key=${mapKey}&callback=initMap&libraries=&v=weekly`;
+
+  superagent.get(mapsUrl)
+    .then(results => {
+      console.log(results);
+      res.redirect('/');
+    });
 }
 
-function renderCollectionPage(req, res){
-  // how can i get the username to be entered here? Each obj saved will need to reference user_name
-  client.query('SELECT * FROM anime_table')
-    .then(result => {
-      res.render('pages/collection', {anime: result.rows});
+//==================== get username + insert into sql
+function getUserName(req, res){
+  const SQL = 'SELECT * FROM user_table;';
+  client.query(SQL)
+    .then(result =>{
+      console.log(result.rows)
+      res.render('pages/login', {users : result.rows[0]});
     })
     .catch(error => console.error(error));
 }
 
+function insertUserFromSQL(req, res){
+  const SQL = `INSERT INTO user_table (username) VALUES ($1)`;
+  const value = [req.body.username];
+  client.query(SQL, value)
+    .then(result =>{
+      res.redirect(`/index?user_name=${req.body.username}`);
+    })
+  .catch(error => console.error(error));
+}
+
+//============================================== render pages
+function renderHomePage(req, res){
+  const mapKey = process.env.MAP_API_KEY;
+  const user_name = req.query.user_name;
+  res.render(`pages/index`, {key : mapKey, users : user_name});
+}
+
+function renderCollectionPage(req, res){
+  const user_name = req.query.user_name;
+  // how can i get the username to be entered here? Each obj saved will need to reference user_name
+
+    client.query('SELECT * FROM food_table')
+  .then(result => {
+    res.render(`pages/collection`, {food : result.rows, users : user_name, anime: result.rows});
+//   client.query('SELECT * FROM anime_table')
+//     .then(result => {
+}
+
 function renderAboutUsPage(req, res){
-  res.render(`pages/aboutUs`);
+  const user_name = req.query.user_name;
+  res.render(`pages/aboutUs`, {users : user_name});
 }
 
 function renderAnime (req, res){
-  res.render('pages/anime');
+  const user_name = req.query.user_name;
+  res.render('pages/anime', {users : user_name});
 }
 
-function getmyAnime(req, res){ //genre_id
+//======================================================== anime + index3
+function renderIndex3(req, res){ //genre_id
   const id = req.body.animeName;
+  const user_name = req.body.user_name;
+
   const animeURL = `https://api.jikan.moe/v3/search/character/?q=${id}&limit=10`;
   superagent.get(animeURL)
     .then(data =>{
@@ -175,7 +247,7 @@ function getmyAnime(req, res){ //genre_id
           return 0;
         }
       });
-      res.render('pages/index3', {animeList : animeArrSort});
+      res.render('pages/index3', {animeList : animeArrSort, users : user_name});
     })
     .catch(error => console.error(error));
 }
@@ -200,6 +272,8 @@ function Yelp(jsonYelpObj){
 function Anime(animeObj){
   this.name = animeObj.name;
   this.image_url = animeObj.image_url;
+  this.url = animeObj.url;
+  this.anime = animeObj.anime;
 }
 
 //===================================================== Start Server ===============================================================
@@ -207,9 +281,3 @@ client.connect()
   .then(() => {
     app.listen(PORT, () => console.log(`This is running the server on PORT : ${PORT} working`));
   });
-
-
-
-
-
-

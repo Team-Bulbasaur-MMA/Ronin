@@ -56,18 +56,18 @@
 
 ## Wireframes
 
-<img src='img/wireframe-about-us-page.PNG'>
-<img src='img/Wireframe-collection-page.PNG'>
-<img src='img/wireframe-home-page.PNG'>
+<img src='public/img/wireframe-about-us-page.PNG'>
+<img src='public/img/Wireframe-collection-page.PNG'>
+<img src='public/img/wireframe-home-page.PNG'>
 
 ## Domain Modeling Diagram
 
-<img src='img/domain-model.PNG'>
+<img src='public/img/domain-model.PNG'>
 
 ## Data Entity Relationship Diagram
 
-<img src='img/wwrc.PNG'>
-<img src='img/dataEntityDiagramRonin.png'>
+<img src='public/img/wwrc.PNG'>
+<img src='public/img/dataEntityDiagramRonin.png'>
 
 ## Credits and Collaborations
 
