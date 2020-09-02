@@ -26,39 +26,16 @@ const mapKey = process.env.MAP_API_KEY;
 app.get('/', getUserName);
 app.post('/user', insertUserFromSQL);
 app.get('/location/:title/:lat/:lng', dataFunction);
-// app.get('/location/:title/:lat/:lng', renderRestaurant);
 app.post('/show', getMapData);
-// app.post('/citySearch', searchForCityInJapan);
-// app.get('/index', renderWeatherData);
 
 app.get('/index', renderHomePage);
 app.get('/collection', renderCollectionPage);
 app.get('/aboutUs', renderAboutUsPage)
+
 app.get('/anime', renderAnime);
 app.post('/anime', getmyAnime)
 
 //===================================================== Functions ==================================================================
-
-// function renderWeather(req, res){
-//   // const title = req.params.title;
-//   const lat = req.params.lat;
-//   const lng = req.params.lng;
-//   const mapKey = process.env.MAP_API_KEY;
-
-
-//   const urlToSearchWeather = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${lat}&lon=${lng}&key=${WEATHER_API_KEY}`;
-
-//   superagent.get(urlToSearchWeather)
-//     .then(results => {
-//       const weather = results.body.data;
-//       const weatherArr = weather.map(index => new Weather(index));
-//       res.render('pages/index2', {weatherTime : weatherArr, key : mapKey});
-//     })
-//     .catch(error => {
-//       console.log(error.message);
-//       res.status(500).send(error.message);
-//     });
-// }
 
 function dataFunction (req, res){
   const lat = req.params.lat;
@@ -97,29 +74,6 @@ function dataFunction (req, res){
     });
 }
 
-// function renderRestaurant (req, res){
-//   console.log('Hello');
-//   // const title = req.params.title;
-//   const lat = req.params.lat;
-//   const lng = req.params.lng;
-
-//   const yelpKey = process.env.YELP_API_KEY;
-//   let yelpUrl = `https://api.yelp.com/v3/businesses/search?latitude=${lat}&longitude=${lng}limit=5&offset=5`;
-
-//   superagent.get(yelpUrl)
-//     .set('Authorization',`Bearer ${yelpKey}`)
-//     .then(result => {
-//       const jsonYelpObj = result.body.businesses;
-//       const newYelpArr = jsonYelpObj.map(yelp => new Yelp(yelp));
-//       console.log(newYelpArr);
-//       res.send(newYelpArr);
-//     })
-//     .catch(error => {
-//       console.log(error.message);
-//       res.status(500).send(error.message);
-//     });
-// }
-
 function getUserName(req, res){
   const SQL = 'SELECT * FROM user_table;';
   client.query(SQL)
@@ -153,6 +107,10 @@ function renderAboutUsPage(req, res){
   res.render(`pages/aboutUs`)
 }
 
+function renderAnime (req, res){
+  res.render('pages/anime');
+}
+
 function getMapData(req, res){
   const mapKey = process.env.MAP_API_KEY;
 
@@ -162,12 +120,7 @@ function getMapData(req, res){
     .then(results => {
       console.log(results);
       res.redirect('/');
-      // const googleMapData = results.body
     });
-}
-
-function renderAnime (req, res){
-  res.render('pages/anime');
 }
 
 function getmyAnime(req, res){ //genre_id
@@ -189,7 +142,6 @@ function Weather(weatherObj){
 }
 
 function Yelp(jsonYelpObj){
-  //console.log(jsonYelpObj);
   this.name = jsonYelpObj.name;
   this.image_url = jsonYelpObj.image_url;
   this.price = jsonYelpObj.price;
