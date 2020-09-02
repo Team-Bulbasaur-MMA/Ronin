@@ -26,99 +26,14 @@ const mapKey = process.env.MAP_API_KEY;
 app.get('/', getUserName);
 app.post('/user', insertUserFromSQL);
 app.get('/location/:title/:lat/:lng', dataFunction);
-// app.get('/location/:title/:lat/:lng', renderRestaurant);
-app.post('/show', getMapData);
-// app.post('/citySearch', searchForCityInJapan);
-// app.get('/index', renderWeatherData);
-
+// app.post('/show', getMapData);
 app.get('/index', renderHomePage);
 app.get('/collection', renderCollectionPage);
-app.get('/aboutUs', renderAboutUsPage)
+app.get('/aboutUs', renderAboutUsPage);
 app.get('/anime', renderAnime);
-app.post('/anime', getmyAnime)
+app.post('/anime', getmyAnime);
 
 //===================================================== Functions ==================================================================
-
-// function renderWeather(req, res){
-//   // const title = req.params.title;
-//   const lat = req.params.lat;
-//   const lng = req.params.lng;
-//   const mapKey = process.env.MAP_API_KEY;
-
-
-//   const urlToSearchWeather = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${lat}&lon=${lng}&key=${WEATHER_API_KEY}`;
-
-//   superagent.get(urlToSearchWeather)
-//     .then(results => {
-//       const weather = results.body.data;
-//       const weatherArr = weather.map(index => new Weather(index));
-//       res.render('pages/index2', {weatherTime : weatherArr, key : mapKey});
-//     })
-//     .catch(error => {
-//       console.log(error.message);
-//       res.status(500).send(error.message);
-//     });
-// }
-
-function dataFunction (req, res){
-  const lat = req.params.lat;
-  const lng = req.params.lng;
-  const mapKey = process.env.MAP_API_KEY;
-  const yelpKey = process.env.YELP_API_KEY;
-  const urlToSearchWeather = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${lat}&lon=${lng}&key=${WEATHER_API_KEY}`;
-  let yelpUrl = `https://api.yelp.com/v3/businesses/search?latitude=${lat}&longitude=${lng}&limit=5&offset=5`;
-
-  let monsterObj = {};
-
-  superagent.get(urlToSearchWeather)
-    .then(results => {
-      const weather = results.body.data;
-      const weatherArr = weather.map(index => new Weather(index));
-      monsterObj.weatherData = weatherArr;
-    })
-
-    .then(() => {
-      superagent.get(yelpUrl)
-        .set('Authorization',`Bearer ${yelpKey}`)
-        .then(result => {
-          const jsonYelpObj = result.body.businesses;
-          const newYelpArr = jsonYelpObj.map(yelp => new Yelp(yelp));
-          monsterObj.yelpData = newYelpArr;
-          res.render('pages/index2', {data : monsterObj, key : mapKey});
-        })
-        .catch(error => {
-          console.log('Yelp Call', error);
-          res.status(500).send(error.message);
-        });
-    })
-    .catch(error => {
-      console.log('Weather Call', error);
-      res.status(500).send(error.message);
-    });
-}
-
-// function renderRestaurant (req, res){
-//   console.log('Hello');
-//   // const title = req.params.title;
-//   const lat = req.params.lat;
-//   const lng = req.params.lng;
-
-//   const yelpKey = process.env.YELP_API_KEY;
-//   let yelpUrl = `https://api.yelp.com/v3/businesses/search?latitude=${lat}&longitude=${lng}limit=5&offset=5`;
-
-//   superagent.get(yelpUrl)
-//     .set('Authorization',`Bearer ${yelpKey}`)
-//     .then(result => {
-//       const jsonYelpObj = result.body.businesses;
-//       const newYelpArr = jsonYelpObj.map(yelp => new Yelp(yelp));
-//       console.log(newYelpArr);
-//       res.send(newYelpArr);
-//     })
-//     .catch(error => {
-//       console.log(error.message);
-//       res.status(500).send(error.message);
-//     });
-// }
 
 function getUserName(req, res){
   const SQL = 'SELECT * FROM user_table;';
@@ -139,6 +54,55 @@ function insertUserFromSQL(req, res){
     });
 }
 
+function dataFunction (req, res){
+  const lat = req.params.lat;
+  const lng = req.params.lng;
+  const mapKey = process.env.MAP_API_KEY;
+  const yelpKey = process.env.YELP_API_KEY;
+  const urlToSearchWeather = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${lat}&lon=${lng}&key=${WEATHER_API_KEY}`;
+  let yelpUrl = `https://api.yelp.com/v3/businesses/search?latitude=${lat}&longitude=${lng}&limit=10`;
+
+  let monsterObj = {};
+
+  superagent.get(urlToSearchWeather)
+    .then(results => {
+      const weather = results.body.data;
+      const weatherArr = weather.map(index => new Weather(index));
+      const limitedWeatherArr = weatherArr.slice(0, 7);
+      monsterObj.weatherData = limitedWeatherArr;
+    })
+
+    .then(() => {
+      superagent.get(yelpUrl)
+        .set('Authorization',`Bearer ${yelpKey}`)
+        .then(result => {
+          const jsonYelpObj = result.body.businesses;
+          console.log(jsonYelpObj);
+          const newYelpArr = jsonYelpObj.map(yelp => new Yelp(yelp));
+          let yelpArrSort = newYelpArr.sort ((a, b) => {
+            if (a.rating < b.rating) {
+              return 1;
+            } else if (a.rating > b.rating) {
+              return -1;
+            } else {
+              return 0;
+            }
+          });
+          monsterObj.yelpData = yelpArrSort;
+          res.render('pages/index2', {data : monsterObj, key : mapKey});
+        })
+        .catch(error => {
+          console.log('Yelp Call', error);
+          res.status(500).send(error.message);
+        });
+    })
+    .catch(error => {
+      console.log('Weather Call', error);
+      res.status(500).send(error.message);
+    });
+}
+
+
 function renderHomePage(req, res){
   const mapKey = process.env.MAP_API_KEY;
   res.render('pages/index', {key : mapKey});
@@ -146,25 +110,25 @@ function renderHomePage(req, res){
 
 function renderCollectionPage(req, res){
   // how can i get the username to be entered here? Each obj saved will need to reference user_name
-  res.render(`pages/collection`)
+  res.render(`pages/collection`);
 }
 
 function renderAboutUsPage(req, res){
-  res.render(`pages/aboutUs`)
+  res.render(`pages/aboutUs`);
 }
 
-function getMapData(req, res){
-  const mapKey = process.env.MAP_API_KEY;
+// function getMapData(req, res){
+//   const mapKey = process.env.MAP_API_KEY;
 
-  let mapsUrl = `https://maps.googleapis.com/maps/api/js?key=${mapKey}&callback=initMap&libraries=&v=weekly`;
+//   let mapsUrl = `https://maps.googleapis.com/maps/api/js?key=${mapKey}&callback=initMap&libraries=&v=weekly`;
 
-  superagent.get(mapsUrl)
-    .then(results => {
-      console.log(results);
-      res.redirect('/');
-      // const googleMapData = results.body
-    });
-}
+//   superagent.get(mapsUrl)
+//     .then(results => {
+//       console.log(results);
+//       res.redirect('/');
+//       // const googleMapData = results.body
+//     });
+// }
 
 function renderAnime (req, res){
   res.render('pages/anime');
@@ -172,12 +136,22 @@ function renderAnime (req, res){
 
 function getmyAnime(req, res){ //genre_id
   const id = req.body.animeName;
-  console.log(id) 
   const animeURL = `https://api.jikan.moe/v3/search/character/?q=${id}&limit=10`;
   superagent.get(animeURL)
-    .then(results =>{
-      console.log(results.body.results);
-      res.render('pages/index3', {animeList : results.body.results});
+    .then(data =>{
+      console.log(data.body.results);
+      const animeObj = data.body.results;
+      const animeArr = animeObj.map(anime => new Anime(anime));
+      let animeArrSort = animeArr.sort ((a, b) => {
+        if (a.name > b.name) {
+          return 1;
+        } else if (a.name < b.name) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
+      res.render('pages/index3', {animeList : animeArrSort});
     })
     .catch(error => console.error(error));
 }
@@ -189,14 +163,20 @@ function Weather(weatherObj){
 }
 
 function Yelp(jsonYelpObj){
-  //console.log(jsonYelpObj);
   this.name = jsonYelpObj.name;
   this.image_url = jsonYelpObj.image_url;
   this.price = jsonYelpObj.price;
   this.rating = jsonYelpObj.rating;
+  const street = jsonYelpObj.location;
+  this.address = `${street.address1}, ${street.city}, ${street.zip_code}`;
+  this.phone = jsonYelpObj.phone;
   this.url = jsonYelpObj.url;
 }
 
+function Anime(animeObj){
+  this.name = animeObj.name;
+  this.image_url = animeObj.image_url;
+}
 
 //===================================================== Start Server ===============================================================
 client.connect()
