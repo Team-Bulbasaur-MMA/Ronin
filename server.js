@@ -32,6 +32,7 @@ app.post('/show', getMapData);
 app.get('/index', renderHomePage);
 app.get('/collection', renderCollectionPage);
 app.get('/aboutUs', renderAboutUsPage)
+app.post('/anime', getmyAnime)
 
 //===================================================== Functions ==================================================================
 
@@ -92,48 +93,22 @@ function getMapData(req, res){
     });
 }
 
-// this function relies on the coordinates from the MAP
-// function renderWeatherData(req, res){
-//   let latitude = req.query.latitude;
-//   let longitude = req.query.longitude;
-//   const urlToSearchWeather = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${latitude}&lon=${longitude}&key=${WEATHER_API_KEY}`;
-
-//   superagent.get(urlToSearchWeather)
-//   .then(results => {
-//     const weather = results.body.data;
-//     const weatherArr = weather.map(index => new Weather(index));
-//     res.render('/index', {weatherTime : weatherArr})
-//   })
-//   .catch(error => {
-//     console.log(error.message);
-//     res.status(500).send(error.message);
-//   });
-// }
-
-// this function relies on information from the MAP + resturants + anime
-// function searchForCityInJapan(req, res){
-//   const inputText = req.body.userSearch;
-//   console.log('here is the selector:', inputText[1])
-//   console.log('here is the city:', inputText[0])
-//   let radioButton = inputText[1]; //this is the radio button
-//   let citySearched = inputText[0]; // this is the city
-// }
-
-//   if(radioButton === 'Restaurants'){
-  // start the superagent for resturants here.
-//   }else{
-  // start the superagent for anime here.
-//   }
-// }
-
+function getmyAnime(req, res){ //genre_id
+  const id = req.body.animeName;
+  console.log(id) 
+  const animeURL = `https://api.jikan.moe/v3/search/character/?q=${id}`;
+  superagent.get(animeURL)
+    .then(results =>{ 
+      res.render('pages/collection', {animeList : results.body});
+    })
+    .catch(error => console.error(error));
+}
 
 //===================================================== Constructor ================================================================
 function Weather(weatherObj){
   this.forecast = weatherObj.weather.description;
   this.time = weatherObj.valid_date;
 }
-
-
 
 
 
