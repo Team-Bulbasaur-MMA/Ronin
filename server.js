@@ -32,8 +32,43 @@ app.get('/collection', renderCollectionPage);
 app.get('/aboutUs', renderAboutUsPage);
 app.get('/anime', renderAnime);
 app.post('/anime', getmyAnime);
+app.post('/collection', saveFavorites);
+// app.get('/collection', getFavorites);
+app.delete('/collection/:id', deleteItem);
 
 //===================================================== Functions ==================================================================
+
+function deleteItem (req, res){
+  const id = req.params.id;
+  const sql = 'DELETE FROM anime_table WHERE id=$1';
+  client.query(sql, [id])
+    .then(() => {
+      res.redirect('/collection');
+    });
+}
+
+function saveFavorites(req, res){
+  const {name, image_url} = req.body;
+
+  const sql =`INSERT INTO anime_table (name, image_url) VALUES ($1, $2)`;
+  const animeArray = [name, image_url];
+
+  client.query(sql, animeArray)
+    .then(() => {
+      res.redirect('/collection');
+    })
+    .catch(error => console.error(error));
+}
+
+// function getFavorites(req, res){
+//   client.query('SELECT * FROM anime_table')
+//     .then(result => {
+//       console.log(result);
+//       res.render('/collection', {anime: result.rows});
+//     })
+//     .catch(error => console.error(error));
+// }
+
 
 function getUserName(req, res){
   const SQL = 'SELECT * FROM user_table;';
@@ -77,7 +112,6 @@ function dataFunction (req, res){
         .set('Authorization',`Bearer ${yelpKey}`)
         .then(result => {
           const jsonYelpObj = result.body.businesses;
-          console.log(jsonYelpObj);
           const newYelpArr = jsonYelpObj.map(yelp => new Yelp(yelp));
           let yelpArrSort = newYelpArr.sort ((a, b) => {
             if (a.rating < b.rating) {
@@ -110,25 +144,16 @@ function renderHomePage(req, res){
 
 function renderCollectionPage(req, res){
   // how can i get the username to be entered here? Each obj saved will need to reference user_name
-  res.render(`pages/collection`);
+  client.query('SELECT * FROM anime_table')
+    .then(result => {
+      res.render('pages/collection', {anime: result.rows});
+    })
+    .catch(error => console.error(error));
 }
 
 function renderAboutUsPage(req, res){
   res.render(`pages/aboutUs`);
 }
-
-// function getMapData(req, res){
-//   const mapKey = process.env.MAP_API_KEY;
-
-//   let mapsUrl = `https://maps.googleapis.com/maps/api/js?key=${mapKey}&callback=initMap&libraries=&v=weekly`;
-
-//   superagent.get(mapsUrl)
-//     .then(results => {
-//       console.log(results);
-//       res.redirect('/');
-//       // const googleMapData = results.body
-//     });
-// }
 
 function renderAnime (req, res){
   res.render('pages/anime');
@@ -139,7 +164,6 @@ function getmyAnime(req, res){ //genre_id
   const animeURL = `https://api.jikan.moe/v3/search/character/?q=${id}&limit=10`;
   superagent.get(animeURL)
     .then(data =>{
-      console.log(data.body.results);
       const animeObj = data.body.results;
       const animeArr = animeObj.map(anime => new Anime(anime));
       let animeArrSort = animeArr.sort ((a, b) => {
