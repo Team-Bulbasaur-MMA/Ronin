@@ -19,7 +19,6 @@
             <h3><%= food.phone %></h3>
           </li>
           <form action="/collection/<%= food.id %>?_method=DELETE" method="POST">
-            <% console.log(food) %>
            <input type="submit" value="delete">
           </form>
         </div>
