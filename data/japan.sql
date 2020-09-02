@@ -17,3 +17,10 @@ CREATE TABLE food_table(
   phone VARCHAR(255)
 );
 
+DROP TABLE IF EXISTS anime_table;
+
+CREATE TABLE anime_table (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255),
+  image_url VARCHAR(255)
+);

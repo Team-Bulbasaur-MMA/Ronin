@@ -25,9 +25,24 @@
       <% }) %>
     </ul>
 
+
     <br>
     <h1><%= users %>'s watch-list: </h1>
       
+    <ul>
+      <% anime.forEach(baka => { %>
+        <div>
+          <li>
+            <h2><%= baka.name %></h2>
+            <img src='<%= baka.image_url %>' alt=''>
+          </li>
+          <form action='/collection/<%= baka.id %>?_method=DELETE' method='POST'>
+            <input type='submit' value='Delete Character'>
+          </form>
+        </div>
+      <% }) %>
+    </ul>
+
     <div class="collectiondiv">
       <img id="kinkakujiimg" src="img/kinkakuji.jpeg" alt="Kinkakuji Temple, Kyoto, Japan" title="Kinkakuji Temple by Amelia Waggoner">
       <img id="landscapeimg" src="img/landscape.JPG" alt=" Saitama, Japan" title="View by Train by Amelia Waggoner">

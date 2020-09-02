@@ -25,20 +25,57 @@ const mapKey = process.env.MAP_API_KEY;
 
 app.get('/', getUserName);
 app.post('/user', insertUserFromSQL);
-app.get('/location/:title/:lat/:lng', renderIndex2);
+
 app.post('/show', getMapData);
 
+app.get('/location/:title/:lat/:lng', renderIndex2);
 app.get('/index', renderHomePage);
 app.get('/collection', renderCollectionPage);
 app.get('/aboutUs', renderAboutUsPage)
-
 app.get('/anime', renderAnime);
-
 app.post('/animeForm', renderIndex3)
+
+app.post('/collection', saveFavorites);
+// app.get('/collection', getFavorites);
+app.delete('/collection/:id', deleteItem);
+
 app.post('/collection',saveUserInfoRestuarant);
 app.delete('/collection/:id', deleteRestaurants);
 
+
 //===================================================== Functions ==================================================================
+
+function deleteItem (req, res){
+  const id = req.params.id;
+  const sql = 'DELETE FROM anime_table WHERE id=$1';
+  client.query(sql, [id])
+    .then(() => {
+      res.redirect('/collection');
+    });
+}
+
+function saveFavorites(req, res){
+  const {name, image_url} = req.body;
+
+  const sql =`INSERT INTO anime_table (name, image_url) VALUES ($1, $2)`;
+  const animeArray = [name, image_url];
+
+  client.query(sql, animeArray)
+    .then(() => {
+      res.redirect('/collection');
+    })
+    .catch(error => console.error(error));
+}
+
+// function getFavorites(req, res){
+//   client.query('SELECT * FROM anime_table')
+//     .then(result => {
+//       console.log(result);
+//       res.render('/collection', {anime: result.rows});
+//     })
+//     .catch(error => console.error(error));
+// }
+
 
 function getUserName(req, res){
   const SQL = 'SELECT * FROM user_table;';
@@ -106,7 +143,6 @@ function renderIndex2 (req, res){
         .set('Authorization',`Bearer ${yelpKey}`)
         .then(result => {
           const jsonYelpObj = result.body.businesses;
-          console.log(jsonYelpObj);
           const newYelpArr = jsonYelpObj.map(yelp => new Yelp(yelp));
           let yelpArrSort = newYelpArr.sort ((a, b) => {
             if (a.rating < b.rating) {
@@ -172,13 +208,15 @@ function renderHomePage(req, res){
 }
 
 function renderCollectionPage(req, res){
-
   const user_name = req.query.user_name;
   // how can i get the username to be entered here? Each obj saved will need to reference user_name
-  client.query('SELECT * FROM food_table')
+
+    client.query('SELECT * FROM food_table')
   .then(result => {
-    res.render(`pages/collection`, {food : result.rows, users : user_name});
-    
+    res.render(`pages/collection`, {food : result.rows, users : user_name, anime: result.rows});
+//   client.query('SELECT * FROM anime_table')
+//     .then(result => {
+}
 
 function renderAboutUsPage(req, res){
   const user_name = req.query.user_name;

@@ -13,10 +13,16 @@
     <% animeList.forEach(baka => { %>
       <div>
         <li class='animeList'>
-          <h2><%= baka.name %></h2>
-          <img src='<%= baka.image_url %>' alt=''>
-          <a><h2><%= baka.url %></h2></a>
-          <h2><%= baka.name %></h2>
+
+
+          <form action='/collection' method='POST'>
+            <h2><%= baka.name %></h2>
+            <img src='<%= baka.image_url %>' alt=''>
+            <input name='name' type='hidden' value='<%= baka.name %>'>
+            <input name='image_url' type='hidden' value='<%= baka.image_url %>'>
+            <button type='submit' value='Add to Collections'>Add to Collections</button>
+          </form>
+          
         </li>
       </div>
       <% }) %>
