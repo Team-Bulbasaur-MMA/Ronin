@@ -25,7 +25,7 @@ const mapKey = process.env.MAP_API_KEY;
 
 app.get('/', getUserName);
 app.post('/user', insertUserFromSQL);
-app.get('/location/:title/:lat/:lng', dataFunction);
+app.get('/location/:title/:lat/:lng', renderIndex2);
 app.post('/show', getMapData);
 
 app.get('/index', renderHomePage);
@@ -33,25 +33,27 @@ app.get('/collection', renderCollectionPage);
 app.get('/aboutUs', renderAboutUsPage)
 
 app.get('/anime', renderAnime);
-app.post('/anime', getmyAnime)
+app.post('/animeForm', renderIndex3)
 
 //===================================================== Functions ==================================================================
 
-function dataFunction (req, res){
+function renderIndex2 (req, res){
   const lat = req.params.lat;
   const lng = req.params.lng;
   const mapKey = process.env.MAP_API_KEY;
   const yelpKey = process.env.YELP_API_KEY;
   const urlToSearchWeather = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${lat}&lon=${lng}&key=${WEATHER_API_KEY}`;
-  let yelpUrl = `https://api.yelp.com/v3/businesses/search?latitude=${lat}&longitude=${lng}&limit=5&offset=5`;
+  let yelpUrl = `https://api.yelp.com/v3/businesses/search?latitude=${lat}&longitude=${lng}&limit=10`;
 
   let monsterObj = {};
+  const user_name = req.query.user_name;
 
   superagent.get(urlToSearchWeather)
     .then(results => {
       const weather = results.body.data;
       const weatherArr = weather.map(index => new Weather(index));
-      monsterObj.weatherData = weatherArr;
+      const limitedWeatherArr = weatherArr.slice(0, 7);
+      monsterObj.weatherData = limitedWeatherArr;
     })
 
     .then(() => {
@@ -59,9 +61,19 @@ function dataFunction (req, res){
         .set('Authorization',`Bearer ${yelpKey}`)
         .then(result => {
           const jsonYelpObj = result.body.businesses;
+          console.log(jsonYelpObj);
           const newYelpArr = jsonYelpObj.map(yelp => new Yelp(yelp));
-          monsterObj.yelpData = newYelpArr;
-          res.render('pages/index2', {data : monsterObj, key : mapKey});
+          let yelpArrSort = newYelpArr.sort ((a, b) => {
+            if (a.rating < b.rating) {
+              return 1;
+            } else if (a.rating > b.rating) {
+              return -1;
+            } else {
+              return 0;
+            }
+          });
+          monsterObj.yelpData = yelpArrSort;
+          res.render('pages/index2', {data : monsterObj, key : mapKey, users : user_name});
         })
         .catch(error => {
           console.log('Yelp Call', error);
@@ -73,44 +85,7 @@ function dataFunction (req, res){
       res.status(500).send(error.message);
     });
 }
-
-function getUserName(req, res){
-  const SQL = 'SELECT * FROM user_table;';
-  client.query(SQL)
-    .then(result =>{
-      res.render('pages/login');
-    });
-}
-
-function insertUserFromSQL(req, res){
-  const SQL = `INSERT INTO user_table (username) VALUES ($1)`;
-  const value = [req.body.username];
-  const user_name = req.body.username;
-  client.query(SQL, value)
-    .then(result =>{
-      res.redirect(`/index`);
-      // I want the index page to say "Hello user_name"
-    });
-}
-
-function renderHomePage(req, res){
-  const mapKey = process.env.MAP_API_KEY;
-  res.render('pages/index', {key : mapKey});
-}
-
-function renderCollectionPage(req, res){
-  // how can i get the username to be entered here? Each obj saved will need to reference user_name
-  res.render(`pages/collection`)
-}
-
-function renderAboutUsPage(req, res){
-  res.render(`pages/aboutUs`)
-}
-
-function renderAnime (req, res){
-  res.render('pages/anime');
-}
-
+//======================== Map stuff
 function getMapData(req, res){
   const mapKey = process.env.MAP_API_KEY;
 
@@ -123,14 +98,69 @@ function getMapData(req, res){
     });
 }
 
-function getmyAnime(req, res){ //genre_id
+//==================== get username + insert into sql
+function getUserName(req, res){
+  const SQL = 'SELECT * FROM user_table;';
+  client.query(SQL)
+    .then(result =>{
+      console.log(result.rows)
+      res.render('pages/login', {users : result.rows[0]});
+    })
+    .catch(error => console.error(error));
+}
+
+function insertUserFromSQL(req, res){
+  const SQL = `INSERT INTO user_table (username) VALUES ($1)`;
+  const value = [req.body.username];
+  client.query(SQL, value)
+    .then(result =>{
+      res.redirect(`/index?user_name=${req.body.username}`);
+    })
+  .catch(error => console.error(error));
+}
+
+//============================================== render pages
+function renderHomePage(req, res){
+  const mapKey = process.env.MAP_API_KEY;
+  const user_name = req.query.user_name;
+  res.render(`pages/index`, {key : mapKey, users : user_name});
+}
+
+function renderCollectionPage(req, res){
+  const user_name = req.query.user_name;
+  res.render(`pages/collection`, {users : user_name});
+}
+
+function renderAboutUsPage(req, res){
+  const user_name = req.query.user_name;
+  res.render(`pages/aboutUs`, {users : user_name});
+}
+
+function renderAnime (req, res){
+  const user_name = req.query.user_name;
+  res.render('pages/anime', {users : user_name});
+}
+
+//======================================================== anime + index3
+function renderIndex3(req, res){ //genre_id
   const id = req.body.animeName;
-  console.log(id) 
+  const user_name = req.body.user_name;
+
   const animeURL = `https://api.jikan.moe/v3/search/character/?q=${id}&limit=10`;
   superagent.get(animeURL)
-    .then(results =>{
-      console.log(results.body.results);
-      res.render('pages/index3', {animeList : results.body.results});
+    .then(data =>{
+      const animeObj = data.body.results;
+      const animeArr = animeObj.map(anime => new Anime(anime));
+      let animeArrSort = animeArr.sort ((a, b) => {
+        if (a.name > b.name) {
+          return 1;
+        } else if (a.name < b.name) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
+      res.render('pages/index3', {animeList : animeArrSort, users : user_name});
     })
     .catch(error => console.error(error));
 }
@@ -146,9 +176,18 @@ function Yelp(jsonYelpObj){
   this.image_url = jsonYelpObj.image_url;
   this.price = jsonYelpObj.price;
   this.rating = jsonYelpObj.rating;
+  const street = jsonYelpObj.location;
+  this.address = `${street.address1}, ${street.city}, ${street.zip_code}`;
+  this.phone = jsonYelpObj.phone;
   this.url = jsonYelpObj.url;
 }
 
+function Anime(animeObj){
+  this.name = animeObj.name;
+  this.image_url = animeObj.image_url;
+  this.url = animeObj.url;
+  this.anime = animeObj.anime;
+}
 
 //===================================================== Start Server ===============================================================
 client.connect()

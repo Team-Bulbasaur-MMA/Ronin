@@ -18,16 +18,15 @@ body {
 
 /* ==========Login page=========== */
 h1 {
-  background-color: rgb(98, 172, 117);
   color: rgb(121, 22, 15);
   font-size: 75px;
   font-weight: bold;
 }
 
-ul {
+/* ul {
   background-color: rgb(225, 226, 226);
   font-size: 60px;
-}
+} */
 
 form {
   background-color: rgb(40, 99, 98);

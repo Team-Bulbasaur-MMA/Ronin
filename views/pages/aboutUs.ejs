@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <%- include('../layout/head') %>
-  <%- include('../layout/header') %>
+  <%- include('../layout/head', {users : users}) %>
+  <%- include('../layout/header', {users : users}) %>
   <body>
     <img src="https://via.placeholder.com/468x60?text=Visit+Blogging.com+Now">
     <h1 class='title'>About Us</h1>
@@ -22,7 +22,7 @@
 
 
 
-  <%- include('../layout/footer') %>
+  <%- include('../layout/footer', {users : users}) %>
 
 </body>
 </html>

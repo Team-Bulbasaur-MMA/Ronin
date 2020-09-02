@@ -1,52 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <%- include('../layout/head') %>
+  <%- include('../layout/head', {users : users}) %>
 
 <body>
 
-  <%- include('../layout/header') %>
+  <%- include('../layout/header', {users : users}) %>
 
   <h1 class='title'>Welcome to our site </h1>
 
-  <div id='map'></div>
-
-  <div>
-    <ul>
-      <% data.weatherData.forEach(weather => { %>
-      <div>
-        <li>
-          <h2><%= weather.forecast %></h2>
-          <h2><%= weather.time %></h2>
-        </li>
-      </div>
-    <% }) %>
-    </ul>
-  </div>
-  <div>
-    <ul>
-      <% data.yelpData.forEach(food => { %>
-      <div>
-        <li>
-          <h2><%= food.name %> </h2>
-          <img src='<%= food.image_url %>' alt=''>
-          <h3><%= food.price %></h3>
-          <h3><%= food.rating %></h3>
-          <h3><a><%= food.url %></a></h3>
-        </li>
-      </div>
-    <% }) %>
-    </ul>
-  </div>
-
-  <div>
-      <% animeList.forEach(baka => { %>
-        <%= baka %>
+  <!-- <div id='map'></div> -->
+  <!-- // use a foreign key with postgres -->
+  
+  <div id='bigKahunaDiv'>
+    <div id='bigWeatherDiv'>
+      <ul class='ul'>
+        <% data.weatherData.forEach(weather => { %>
+        <div class='weatherDiv'>
+          <li class='weatherList'>
+            <h2><%= weather.time %></h2>
+            <h2><%= weather.forecast %></h2>
+          </li>
+        </div>
       <% }) %>
+      </ul>
+    </div>
+  
+    <div id='bigFoodDiv'>
+      <ul class='ul'>
+        <% data.yelpData.forEach(food => { %>
+        <div class='foodDiv'>
+          <li class='foodList'>
+            <h2><%= food.name %> </h2>
+            <img src='<%= food.image_url %>' alt=''>
+            <h3><%= food.price %></h3>
+            <h3><%= food.rating %></h3>
+            <h3><%= food.address %></h3>
+            <h3><%= food.phone %></h3>
+            <h3><a><%= food.url %></a></h3>
+          </li>
+        </div>
+      <% }) %>
+      </ul>
+    </div>
   </div>
 
-
-  <%- include('../layout/footer') %>
+  <%- include('../layout/footer', {users : users}) %>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>

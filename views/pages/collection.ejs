@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <%- include('../layout/head') %>
-    <%- include('../layout/header') %>
+    <%- include('../layout/head', {users : users}) %>
+    <%- include('../layout/header', {users : users}) %>
 
   <body>
     <h1 class='title'>My collections: </h1>
@@ -10,7 +10,7 @@
 
 
     <br>
-    <h1>My watch-list: </h1>
+    <h1><%= users %>'s watch-list: </h1>
       
     <div class="collectiondiv">
       <img id="kinkakujiimg" src="img/kinkakuji.jpeg" alt="Kinkakuji Temple, Kyoto, Japan" title="Kinkakuji Temple by Amelia Waggoner">
@@ -19,6 +19,6 @@
       <img id="uenoimg" src="img/ueno.jpeg" alt="Ueno Park, Tokyo, Japan" title="Ueno Park by Amelia Waggoner">
       <img id="tokyoimg" src="img/tokyo.JPG" alt="Tokyo, Japan" title="Tokyo Skyline by Amelia Waggoner">
     </div>
-    <%- include('../layout/footer') %>
+    <%- include('../layout/footer', {users : users}) %>
   </body>
 </html>
