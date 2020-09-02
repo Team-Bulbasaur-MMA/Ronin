@@ -17,7 +17,7 @@ function initMap() {
   const marker1 = new google.maps.Marker({
     position: osako,
     map,
-    title: 'Osako'
+    title: 'Osaka'
   });
   const marker2 = new google.maps.Marker({
     position: kyoto,
@@ -41,21 +41,23 @@ function initMap() {
     const title = marker.title;
     const lat = marker.getPosition().lat();
     const lng = marker.getPosition().lng();
-    $.get(`/location/${title}/${lat}/${lng}`)
-      .then(data => {
-        console.log(data);
-      });
+    //If we have time and decide to go the DOM manipulation route to make transition look cleaner
+    // $.get(`/location/${title}/${lat}/${lng}`)
+    //   .then(data => {
+    //     console.log(data);
+    //   });
+    let url = `http://localhost:3000/location/${title}/${lat}/${lng}`;
+    window.location=url;
   });
   marker1.addListener('click', () => {
+    console.log('CLicked Osaka');
     map.setZoom(10.5);
     map.setCenter(marker1.getPosition());
     const title = marker1.title;
     const lat = marker1.getPosition().lat();
     const lng = marker1.getPosition().lng();
-    $.get(`/location/${title}/${lat}/${lng}`)
-      .then(data => {
-        console.log(data);
-      });
+    let url = `http://localhost:3000/location/${title}/${lat}/${lng}`;
+    window.location=url;
   });
   marker2.addListener('click', () => {
     map.setZoom(10.5);
@@ -63,10 +65,8 @@ function initMap() {
     const title = marker2.title;
     const lat = marker2.getPosition().lat();
     const lng = marker2.getPosition().lng();
-    $.get(`/location/${title}/${lat}/${lng}`)
-      .then(data => {
-        console.log(data);
-      });
+    let url = `http://localhost:3000/location/${title}/${lat}/${lng}`;
+    window.location=url;
   });
   marker3.addListener('click', () => {
     map.setZoom(10.5);
@@ -74,10 +74,8 @@ function initMap() {
     const title = marker3.title;
     const lat = marker3.getPosition().lat();
     const lng = marker3.getPosition().lng();
-    $.get(`/location/${title}/${lat}/${lng}`)
-      .then(data => {
-        console.log(data);
-      });
+    let url = `http://localhost:3000/location/${title}/${lat}/${lng}`;
+    window.location=url;
   });
   marker4.addListener('click', () => {
     map.setZoom(10.5);
@@ -85,10 +83,8 @@ function initMap() {
     const title = marker4.title;
     const lat = marker4.getPosition().lat();
     const lng = marker4.getPosition().lng();
-    $.get(`/location/${title}/${lat}/${lng}`)
-      .then(data => {
-        console.log(data);
-      });
+    let url = `http://localhost:3000/location/${title}/${lat}/${lng}`;
+    window.location=url;
   });
 }
 
