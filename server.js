@@ -69,11 +69,13 @@ function saveUserInfoRestuarant(req, res){
 
 function deleteRestaurants(req, res){
   const id = req.params.id;
+  console.log(req.params.id);
   const SQL = 'DELETE FROM food_table WHERE id=$1';
   client.query(SQL, [id])
    .then( () => {
      res.redirect('/collection');
 });
+
 }
 
 function dataFunction (req, res){

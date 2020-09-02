@@ -8,6 +8,7 @@ CREATE TABLE user_table (
 DROP TABLE IF EXISTS food_table;
 
 CREATE TABLE food_table(
+  id SERIAL PRIMARY KEY,
   name VARCHAR(255),
   image_url VARCHAR(255),
   price VARCHAR(255),
