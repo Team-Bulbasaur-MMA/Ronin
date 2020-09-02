@@ -1,5 +1,6 @@
 * {
-  outline: dashed red 2px;
+  /* outline: dashed red 2px; */
+  box-sizing: border-box;
 }
 
 nav {
@@ -39,7 +40,7 @@ nav {
 
 nav > ul {
   background-color: rgb(40, 99, 98);
-  margin-right: 25px;
+  margin-bottom: 10px;
   font-size: 28px;
   width: 475px;
   display: flex;
@@ -64,8 +65,26 @@ nav > ul {
   border: groove rgb(121, 22, 15) 10px;
 }
 
-#weatherUL {
+.ul {
   background-color: rgb(126, 213, 197);
+}
+
+#bigWeatherDiv {
+  grid-area: weather;
+}
+
+#bigFoodDiv {
+  grid-area: food;
+}
+
+#bigKahunaDiv {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-rows: auto;
+  grid-template-areas:
+    '. weather . food .'
+    '. weather . food .'
+    '. weather . food .'
 }
 
 .weatherDiv {
@@ -84,6 +103,29 @@ nav > ul {
   margin: 20px;
   color:  rgb(121, 22, 15);
   text-align: center;
+}
+
+.foodDiv {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(98, 172, 117);
+  width: 500px;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  border: groove  rgb(121, 22, 15) 10px;
+
+}
+
+.foodList {
+  margin: 20px;
+  color:  rgb(121, 22, 15);
+  text-align: center;
+  width: 500px;
+}
+
+.foodList > img {
+  width: 250px;
 }
 
 html,

@@ -78,7 +78,16 @@ function dataFunction (req, res){
           const jsonYelpObj = result.body.businesses;
           console.log(jsonYelpObj);
           const newYelpArr = jsonYelpObj.map(yelp => new Yelp(yelp));
-          monsterObj.yelpData = newYelpArr;
+          let yelpArrSort = newYelpArr.sort ((a, b) => {
+            if (a.rating < b.rating) {
+              return 1;
+            } else if (a.rating > b.rating) {
+              return -1;
+            } else {
+              return 0;
+            }
+          });
+          monsterObj.yelpData = yelpArrSort;
           res.render('pages/index2', {data : monsterObj, key : mapKey});
         })
         .catch(error => {
