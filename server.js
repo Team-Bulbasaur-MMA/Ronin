@@ -33,7 +33,7 @@ app.get('/aboutUs', renderAboutUsPage);
 app.get('/anime', renderAnime);
 app.post('/anime', getmyAnime);
 app.post('/collection',saveUserInfoRestuarant);
-//app.delete('/collection', deleteRestaurants);
+app.delete('/collection/:id', deleteRestaurants);
 
 //===================================================== Functions ==================================================================
 
@@ -67,14 +67,14 @@ function saveUserInfoRestuarant(req, res){
   })
 }
 
-// function deleteRestaurants(req, res){
-//   const {id} = request.params;
-//   const SQL = 'DELETE FROM food_table ';
-//   client.query(SQL, [id])
-//    .then( () => {
-//      response.redirect('/collection');
-// });
-// }
+function deleteRestaurants(req, res){
+  const id = req.params.id;
+  const SQL = 'DELETE FROM food_table WHERE id=$1';
+  client.query(SQL, [id])
+   .then( () => {
+     res.redirect('/collection');
+});
+}
 
 function dataFunction (req, res){
   const lat = req.params.lat;
