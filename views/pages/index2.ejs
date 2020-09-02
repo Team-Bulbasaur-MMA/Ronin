@@ -9,15 +9,15 @@
 
   <h1 class='title'>Welcome to our site </h1>
 
-  <div id='map'></div>
+  <!-- <div id='map'></div> -->
 
   <div>
-    <ul>
+    <ul id='weatherUL'>
       <% data.weatherData.forEach(weather => { %>
-      <div>
-        <li>
-          <h2><%= weather.forecast %></h2>
+      <div class='weatherDiv'>
+        <li class='weatherList'>
           <h2><%= weather.time %></h2>
+          <h2><%= weather.forecast %></h2>
         </li>
       </div>
     <% }) %>
@@ -32,19 +32,14 @@
           <img src='<%= food.image_url %>' alt=''>
           <h3><%= food.price %></h3>
           <h3><%= food.rating %></h3>
+          <h3><%= food.address %></h3>
+          <h3><%= food.phone %></h3>
           <h3><a><%= food.url %></a></h3>
         </li>
       </div>
     <% }) %>
     </ul>
   </div>
-
-  <div>
-      <% animeList.forEach(baka => { %>
-        <%= baka %>
-      <% }) %>
-  </div>
-
 
   <%- include('../layout/footer') %>
 

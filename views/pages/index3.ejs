@@ -7,14 +7,18 @@
 
   <%- include('../layout/header') %>
 
-  <h1 class='title'>Welcome to our site </h1>
+  <h1 class='title'>List of Characters</h1>
 
-  <div>
-      <% animeList.forEach(baka => { %>
-        <%= baka.name %>
-        <img src='<%= baka.image_url %>' alt=''>
-      <% }) %>
-  </div>
+  <ul>
+    <% animeList.forEach(baka => { %>
+      <div>
+        <li>
+          <h2><%= baka.name %></h2>
+          <img src='<%= baka.image_url %>' alt=''>
+        </li>
+      </div>
+  <% }) %>
+  </ul>
 
   <%- include('../layout/footer') %>
 
