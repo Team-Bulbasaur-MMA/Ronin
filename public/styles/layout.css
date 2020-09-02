@@ -15,7 +15,8 @@ body {
   /* Link for the custom google font: <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet"> */
 }
 @media only screen and (min-width: 600px) {
-/* login page */
+
+/* ==========Login page=========== */
 h1 {
   background-color: rgb(98, 172, 117);
   color: rgb(121, 22, 15);
@@ -67,4 +68,64 @@ input {
  border: groove rgb(98, 172, 117) 15px;
  
 }
+/* =============My Collection Page=========== */
+.collectiondiv {
+  display: block;
+  margin-left: 100px;
+}
+
+#kinkakujiimg {
+ height: 200px;
+ width: 200px;
+ border: groove rgb(121, 22, 15) 15px;
+ border-radius: 15px;
+ margin-top: 150px;
+
+}
+
+#foodimg {
+ height: 200px;
+ width: 200px;
+ border: groove rgb(121, 22, 15) 15px;
+ border-radius: 15px;
+ margin-top: 150px;
+
+}
+
+#uenoimg {
+  height: 200px;
+  width: 200px;
+  border: groove rgb(121, 22, 15) 15px;
+  border-radius: 15px;
+  margin-top: 150px;
+
+}
+
+#landscapeimg {
+  height: 200px;
+  width: 200px;
+  border: groove rgb(121, 22, 15) 15px;
+  border-radius: 15px;
+  margin-top: 150px;
+
+}
+
+#tokyoimg {
+  height: 200px;
+  width: 200px;
+  border: groove rgb(121, 22, 15) 15px;
+  border-radius: 15px;
+  margin-top: 150px;
+
+}
+
+/* =============About Us Page=============== */
+.ameliainfo {
+  background-color: rgb(98, 172, 117);
+  font-size: 18px;
+}
+}
+
+@media only screen and (min-width: 1000px) {
+  
 }
