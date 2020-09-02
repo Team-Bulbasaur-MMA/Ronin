@@ -1,3 +1,9 @@
+//global var
+const users = document.getElementById('users')
+let string = users.textContent;
+
+// use jquery
+
 function initMap() {
   const latLng = { lat: 38.9048, lng: 137.2529 };
   const tokyo = { lat: 35.6762, lng: 139.6503 };
@@ -46,7 +52,7 @@ function initMap() {
     //   .then(data => {
     //     console.log(data);
     //   });
-    let url = `http://localhost:3000/location/${title}/${lat}/${lng}`;
+    let url = `http://localhost:3000/location/${title}/${lat}/${lng}?user_name=${string}`;
     window.location=url;
   });
   marker1.addListener('click', () => {
@@ -56,7 +62,7 @@ function initMap() {
     const title = marker1.title;
     const lat = marker1.getPosition().lat();
     const lng = marker1.getPosition().lng();
-    let url = `http://localhost:3000/location/${title}/${lat}/${lng}`;
+    let url = `http://localhost:3000/location/${title}/${lat}/${lng}?user_name=${string}`;
     window.location=url;
   });
   marker2.addListener('click', () => {
@@ -65,7 +71,7 @@ function initMap() {
     const title = marker2.title;
     const lat = marker2.getPosition().lat();
     const lng = marker2.getPosition().lng();
-    let url = `http://localhost:3000/location/${title}/${lat}/${lng}`;
+    let url = `http://localhost:3000/location/${title}/${lat}/${lng}?user_name=${string}`;
     window.location=url;
   });
   marker3.addListener('click', () => {
@@ -74,7 +80,7 @@ function initMap() {
     const title = marker3.title;
     const lat = marker3.getPosition().lat();
     const lng = marker3.getPosition().lng();
-    let url = `http://localhost:3000/location/${title}/${lat}/${lng}`;
+    let url = `http://localhost:3000/location/${title}/${lat}/${lng}?user_name=${string}`;
     window.location=url;
   });
   marker4.addListener('click', () => {
@@ -83,7 +89,7 @@ function initMap() {
     const title = marker4.title;
     const lat = marker4.getPosition().lat();
     const lng = marker4.getPosition().lng();
-    let url = `http://localhost:3000/location/${title}/${lat}/${lng}`;
+    let url = `http://localhost:3000/location/${title}/${lat}/${lng}?user_name=${string}`;
     window.location=url;
   });
 }

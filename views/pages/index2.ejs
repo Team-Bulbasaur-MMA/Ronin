@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <%- include('../layout/head') %>
+  <%- include('../layout/head', {users : users}) %>
 
 <body>
 
-  <%- include('../layout/header') %>
+  <%- include('../layout/header', {users : users}) %>
 
   <h1 class='title'>Welcome to our site </h1>
 
   <!-- <div id='map'></div> -->
+  <!-- // use a foreign key with postgres -->
   
   <div id='bigKahunaDiv'>
     <div id='bigWeatherDiv'>
@@ -59,7 +60,7 @@
     </div>
   </div>
 
-  <%- include('../layout/footer') %>
+  <%- include('../layout/footer', {users : users}) %>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>

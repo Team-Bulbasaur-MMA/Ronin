@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <%- include('../layout/head') %>
+  <%- include('../layout/head', {users : users}) %>
 
 <body>
 
-  <%- include('../layout/header') %>
+  <%- include('../layout/header', {users : users}) %>
 
   <h1 class='title'>Anime</h1>
   
-  <form action="/anime" method="POST">
+  <form action="/animeForm" method="POST">
     <fieldset>
       <input type="text" name="animeName" value="animeName">
+
+      <input type="text" name="user_name" value="<%= users %>">
+      
       <input type="submit" value="Find anime now">
     </fieldset>
   </form>
 
-  <%- include('../layout/footer') %>
+  <%- include('../layout/footer', {users : users}) %>
 
 </body>
 </html>
+
+<!-- function getmyAnime(req, res){
+  const user_name = req.query.user_name;
+  res.redirect(`index3?user_name=${user_name}`)
+} -->
