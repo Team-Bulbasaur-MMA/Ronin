@@ -9,10 +9,10 @@
 
   <h1 class='title'>List of Characters</h1>
 
-  <ul>
+  <ul id='animeUL'>
     <% animeList.forEach(baka => { %>
       <div>
-        <li>
+        <li class='animeList'>
           <h2><%= baka.name %></h2>
           <img src='<%= baka.image_url %>' alt=''>
         </li>

@@ -68,7 +68,8 @@ function dataFunction (req, res){
     .then(results => {
       const weather = results.body.data;
       const weatherArr = weather.map(index => new Weather(index));
-      monsterObj.weatherData = weatherArr;
+      const limitedWeatherArr = weatherArr.slice(0, 7);
+      monsterObj.weatherData = limitedWeatherArr;
     })
 
     .then(() => {
