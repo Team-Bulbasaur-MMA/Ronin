@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <%- include('../layout/head') %>
+  <%- include('../layout/head', {users : users}) %>
 
 <body>
 
-  <%- include('../layout/header') %>
+  <%- include('../layout/header', {users : users}) %>
 
-  <h1 class='title'>List of Characters</h1>
-
+  <h1 class='title'>List of Characters <%= users %></h1>
+  <% console.log('you hit it', users) %>
   <ul id='animeUL'>
     <% animeList.forEach(baka => { %>
       <div>
         <li class='animeList'>
           <h2><%= baka.name %></h2>
           <img src='<%= baka.image_url %>' alt=''>
+          <a><h2><%= baka.url %></h2></a>
+          <h2><%= baka.name %></h2>
         </li>
       </div>
-  <% }) %>
+      <% }) %>
   </ul>
 
-  <%- include('../layout/footer') %>
+  <%- include('../layout/footer', {users : users}) %>
 
 </body>
 </html>
