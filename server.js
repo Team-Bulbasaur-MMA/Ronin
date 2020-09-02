@@ -33,10 +33,55 @@ app.get('/collection', renderCollectionPage);
 app.get('/aboutUs', renderAboutUsPage)
 
 app.get('/anime', renderAnime);
+
 app.post('/animeForm', renderIndex3)
+app.post('/collection',saveUserInfoRestuarant);
+app.delete('/collection/:id', deleteRestaurants);
 
 //===================================================== Functions ==================================================================
 
+function getUserName(req, res){
+  const SQL = 'SELECT * FROM user_table;';
+  client.query(SQL)
+    .then(result =>{
+      res.render('pages/login');
+    });
+}
+
+function insertUserFromSQL(req, res){
+  const SQL = `INSERT INTO user_table (username) VALUES ($1)`;
+  const value = [req.body.username];
+  const user_name = req.body.username;
+  client.query(SQL, value)
+    .then(result =>{
+      res.redirect(`/index`);
+      // I want the index page to say "Hello user_name"
+    });
+}
+
+function saveUserInfoRestuarant(req, res){
+  const {name, image_url, price, rating, address, phone} = req.body;
+  const SQL = `INSERT INTO food_table (name, image_url, price, rating, address, phone) VALUES ($1, $2, $3, $4, $5, $6)`
+  const foodArr = [name, image_url, price, rating, address, phone];
+
+  client.query(SQL, foodArr)
+  .then(() => {
+      res.redirect('/collection');
+  })
+}
+
+function deleteRestaurants(req, res){
+  const id = req.params.id;
+  console.log(req.params.id);
+  const SQL = 'DELETE FROM food_table WHERE id=$1';
+  client.query(SQL, [id])
+   .then( () => {
+     res.redirect('/collection');
+});
+
+}
+
+//===================================================== Functions ==================================================================
 function renderIndex2 (req, res){
   const lat = req.params.lat;
   const lng = req.params.lng;
@@ -127,9 +172,13 @@ function renderHomePage(req, res){
 }
 
 function renderCollectionPage(req, res){
+
   const user_name = req.query.user_name;
-  res.render(`pages/collection`, {users : user_name});
-}
+  // how can i get the username to be entered here? Each obj saved will need to reference user_name
+  client.query('SELECT * FROM food_table')
+  .then(result => {
+    res.render(`pages/collection`, {food : result.rows, users : user_name});
+    
 
 function renderAboutUsPage(req, res){
   const user_name = req.query.user_name;
@@ -194,9 +243,3 @@ client.connect()
   .then(() => {
     app.listen(PORT, () => console.log(`This is running the server on PORT : ${PORT} working`));
   });
-
-
-
-
-
-
