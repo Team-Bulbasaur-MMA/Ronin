@@ -36,7 +36,6 @@ app.get('/anime', renderAnime);
 app.post('/animeForm', renderIndex3)
 
 app.post('/collection', saveFavorites);
-// app.get('/collection', getFavorites);
 app.delete('/collection/:id', deleteItem);
 
 app.post('/collection',saveUserInfoRestuarant);
@@ -50,7 +49,7 @@ function deleteItem (req, res){
   const sql = 'DELETE FROM anime_table WHERE id=$1';
   client.query(sql, [id])
     .then(() => {
-      res.redirect('/collection');
+      res.redirect(`/collection?user_name=${req.query.username}`);
     });
 }
 
@@ -62,7 +61,7 @@ function saveFavorites(req, res){
 
   client.query(sql, animeArray)
     .then(() => {
-      res.redirect('/collection');
+      res.redirect(`/collection?user_name=${req.query.username}`);
     })
     .catch(error => console.error(error));
 }
@@ -76,26 +75,6 @@ function saveFavorites(req, res){
 //     .catch(error => console.error(error));
 // }
 
-
-function getUserName(req, res){
-  const SQL = 'SELECT * FROM user_table;';
-  client.query(SQL)
-    .then(result =>{
-      res.render('pages/login');
-    });
-}
-
-function insertUserFromSQL(req, res){
-  const SQL = `INSERT INTO user_table (username) VALUES ($1)`;
-  const value = [req.body.username];
-  const user_name = req.body.username;
-  client.query(SQL, value)
-    .then(result =>{
-      res.redirect(`/index`);
-      // I want the index page to say "Hello user_name"
-    });
-}
-
 function saveUserInfoRestuarant(req, res){
   const {name, image_url, price, rating, address, phone} = req.body;
   const SQL = `INSERT INTO food_table (name, image_url, price, rating, address, phone) VALUES ($1, $2, $3, $4, $5, $6)`
@@ -103,7 +82,7 @@ function saveUserInfoRestuarant(req, res){
 
   client.query(SQL, foodArr)
   .then(() => {
-      res.redirect('/collection');
+      res.redirect(`/collection?user_name=${req.body.username}`);
   })
 }
 
@@ -113,7 +92,7 @@ function deleteRestaurants(req, res){
   const SQL = 'DELETE FROM food_table WHERE id=$1';
   client.query(SQL, [id])
    .then( () => {
-     res.redirect('/collection');
+     res.redirect(`/collection?user_name=${req.query.username}`);
 });
 
 }
@@ -166,7 +145,7 @@ function renderIndex2 (req, res){
       res.status(500).send(error.message);
     });
 }
-//======================== Map stuff
+
 function getMapData(req, res){
   const mapKey = process.env.MAP_API_KEY;
 
@@ -179,7 +158,6 @@ function getMapData(req, res){
     });
 }
 
-//==================== get username + insert into sql
 function getUserName(req, res){
   const SQL = 'SELECT * FROM user_table;';
   client.query(SQL)
@@ -200,7 +178,6 @@ function insertUserFromSQL(req, res){
   .catch(error => console.error(error));
 }
 
-//============================================== render pages
 function renderHomePage(req, res){
   const mapKey = process.env.MAP_API_KEY;
   const user_name = req.query.user_name;
@@ -216,6 +193,7 @@ function renderCollectionPage(req, res){
     res.render(`pages/collection`, {food : result.rows, users : user_name, anime: result.rows});
 //   client.query('SELECT * FROM anime_table')
 //     .then(result => {
+  })
 }
 
 function renderAboutUsPage(req, res){
