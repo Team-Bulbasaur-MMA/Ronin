@@ -216,6 +216,7 @@ function renderCollectionPage(req, res){
     res.render(`pages/collection`, {food : result.rows, users : user_name, anime: result.rows});
 //   client.query('SELECT * FROM anime_table')
 //     .then(result => {
+})
 }
 
 function renderAboutUsPage(req, res){
