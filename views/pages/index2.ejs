@@ -38,6 +38,21 @@
             <h3><%= food.phone %></h3>
             <h3><a><%= food.url %></a></h3>
           </li>
+          
+          <form action="/collection" method="POST">
+           <fieldset>
+            <label for="addfood">Save this restaurant for later:</label>
+            <input type="hidden" name="name" value="<%= food.name %>"></input>
+            <input type="hidden" name="image_url" value="<%= food.image_url %>"></input>
+            <input type="hidden" name="price" value="<%= food.price %>"></input>
+            <input type="hidden" name="rating" value="<%= food.rating %>"></input>
+            <input type="hidden" name="address" value="<%= food.address %>"></input>
+            <input type="hidden" name="phone" value="<%= food.phone %>"></input>
+            <input type="hidden" name="url" value="<%= food.url %>"></input>
+            <input type="submit" value="Save this restaurant">
+           </fieldset>
+          </form>
+
         </div>
       <% }) %>
       </ul>

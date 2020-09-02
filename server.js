@@ -32,6 +32,8 @@ app.get('/collection', renderCollectionPage);
 app.get('/aboutUs', renderAboutUsPage);
 app.get('/anime', renderAnime);
 app.post('/anime', getmyAnime);
+app.post('/collection',saveUserInfoRestuarant);
+app.delete('/collection', deleteRestaurants);
 
 //===================================================== Functions ==================================================================
 
@@ -52,6 +54,22 @@ function insertUserFromSQL(req, res){
       res.redirect(`/index`);
       // I want the index page to say "Hello user_name"
     });
+}
+
+function saveUserInfoRestuarant(req, res){
+  client.query('SELECT * FROM food_table WHERE id=$1', [req.params.id])
+  .then(result => {
+      res.redirect('/collection', {restuarant: food_table.rows});
+  })
+}
+
+function deleteRestaurants(req, res){
+  const {id} = request.params;
+  const SQL = 'DELETE FROM food_table WHERE id=$1';
+  client.query(SQL, [id])
+   .then( () => {
+     response.redirect('/collection');
+});
 }
 
 function dataFunction (req, res){
@@ -183,9 +201,3 @@ client.connect()
   .then(() => {
     app.listen(PORT, () => console.log(`This is running the server on PORT : ${PORT} working`));
   });
-
-
-
-
-
-
