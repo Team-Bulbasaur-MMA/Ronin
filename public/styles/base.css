@@ -1,3 +1,43 @@
+
+nav {
+  background-color: rgb(40, 99, 98);
+  height: 100px;
+  color: rgb(121, 22, 15);
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+}
+
+.link {
+  background-color: rgb(126, 213, 197);
+  border: outset rgb(126, 213, 197) 10px;
+}
+
+nav > h1 {
+  margin-left: 25px;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+nav > ul {
+  background-color: rgb(40, 99, 98);
+  margin-right: 25px;
+  font-size: 25px;
+  width: 1000px;
+  display: flex;
+  justify-content: center;
+
+}
+
+.title {
+  text-align: center;
+  margin: 0px 0px 50px 0px;
+  font-weight: bold;
+  font-size: 50px;
+  text-decoration: underline;
+  color: rgb(121, 22, 15);
+}
+
 #map {
   width: 420px;
   height: 420px;

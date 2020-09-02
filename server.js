@@ -19,12 +19,14 @@ const client = new pg.Client(process.env.DATABASE_URL);
 client.on('error', console.error);
 
 const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
+const mapKey = process.env.MAP_API_KEY;
 
 //===================================================== Routes =====================================================================
 
 app.get('/', getUserName);
 app.post('/user', insertUserFromSQL);
-app.get('/location/:title/:lat/:lng', renderRestaurants);
+app.get('/location/:title/:lat/:lng', dataFunction);
+// app.get('/location/:title/:lat/:lng', renderRestaurant);
 app.post('/show', getMapData);
 // app.post('/citySearch', searchForCityInJapan);
 // app.get('/index', renderWeatherData);
@@ -35,16 +37,86 @@ app.get('/aboutUs', renderAboutUsPage)
 
 //===================================================== Functions ==================================================================
 
-function renderRestaurants(req, res){
-  const title = req.params.title;
+// function renderWeather(req, res){
+//   // const title = req.params.title;
+//   const lat = req.params.lat;
+//   const lng = req.params.lng;
+//   const mapKey = process.env.MAP_API_KEY;
+
+
+//   const urlToSearchWeather = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${lat}&lon=${lng}&key=${WEATHER_API_KEY}`;
+
+//   superagent.get(urlToSearchWeather)
+//     .then(results => {
+//       const weather = results.body.data;
+//       const weatherArr = weather.map(index => new Weather(index));
+//       res.render('pages/index2', {weatherTime : weatherArr, key : mapKey});
+//     })
+//     .catch(error => {
+//       console.log(error.message);
+//       res.status(500).send(error.message);
+//     });
+// }
+
+function dataFunction (req, res){
   const lat = req.params.lat;
   const lng = req.params.lng;
+  const mapKey = process.env.MAP_API_KEY;
+  const yelpKey = process.env.YELP_API_KEY;
+  const urlToSearchWeather = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${lat}&lon=${lng}&key=${WEATHER_API_KEY}`;
+  let yelpUrl = `https://api.yelp.com/v3/businesses/search?latitude=${lat}&longitude=${lng}&limit=5&offset=5`;
 
-  console.log(title);
-  console.log(lat);
-  console.log(lng);
-  res.send('Hello World');
+  let monsterObj = {};
+
+  superagent.get(urlToSearchWeather)
+    .then(results => {
+      const weather = results.body.data;
+      const weatherArr = weather.map(index => new Weather(index));
+      monsterObj.weatherData = weatherArr;
+    })
+
+    .then(() => {
+      superagent.get(yelpUrl)
+        .set('Authorization',`Bearer ${yelpKey}`)
+        .then(result => {
+          const jsonYelpObj = result.body.businesses;
+          const newYelpArr = jsonYelpObj.map(yelp => new Yelp(yelp));
+          monsterObj.yelpData = newYelpArr;
+          res.render('pages/index2', {data : monsterObj, key : mapKey});
+        })
+        .catch(error => {
+          console.log('Yelp Call', error);
+          res.status(500).send(error.message);
+        });
+    })
+    .catch(error => {
+      console.log('Weather Call', error);
+      res.status(500).send(error.message);
+    });
 }
+
+// function renderRestaurant (req, res){
+//   console.log('Hello');
+//   // const title = req.params.title;
+//   const lat = req.params.lat;
+//   const lng = req.params.lng;
+
+//   const yelpKey = process.env.YELP_API_KEY;
+//   let yelpUrl = `https://api.yelp.com/v3/businesses/search?latitude=${lat}&longitude=${lng}limit=5&offset=5`;
+
+//   superagent.get(yelpUrl)
+//     .set('Authorization',`Bearer ${yelpKey}`)
+//     .then(result => {
+//       const jsonYelpObj = result.body.businesses;
+//       const newYelpArr = jsonYelpObj.map(yelp => new Yelp(yelp));
+//       console.log(newYelpArr);
+//       res.send(newYelpArr);
+//     })
+//     .catch(error => {
+//       console.log(error.message);
+//       res.status(500).send(error.message);
+//     });
+// }
 
 function getUserName(req, res){
   const SQL = 'SELECT * FROM user_table;';
@@ -92,40 +164,6 @@ function getMapData(req, res){
     });
 }
 
-// this function relies on the coordinates from the MAP
-// function renderWeatherData(req, res){
-//   let latitude = req.query.latitude;
-//   let longitude = req.query.longitude;
-//   const urlToSearchWeather = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${latitude}&lon=${longitude}&key=${WEATHER_API_KEY}`;
-
-//   superagent.get(urlToSearchWeather)
-//   .then(results => {
-//     const weather = results.body.data;
-//     const weatherArr = weather.map(index => new Weather(index));
-//     res.render('/index', {weatherTime : weatherArr})
-//   })
-//   .catch(error => {
-//     console.log(error.message);
-//     res.status(500).send(error.message);
-//   });
-// }
-
-// this function relies on information from the MAP + resturants + anime
-// function searchForCityInJapan(req, res){
-//   const inputText = req.body.userSearch;
-//   console.log('here is the selector:', inputText[1])
-//   console.log('here is the city:', inputText[0])
-//   let radioButton = inputText[1]; //this is the radio button
-//   let citySearched = inputText[0]; // this is the city
-// }
-
-//   if(radioButton === 'Restaurants'){
-  // start the superagent for resturants here.
-//   }else{
-  // start the superagent for anime here.
-//   }
-// }
-
 
 //===================================================== Constructor ================================================================
 function Weather(weatherObj){
@@ -133,77 +171,14 @@ function Weather(weatherObj){
   this.time = weatherObj.valid_date;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//================Restaurant Route & Function======
-// app.get('/show', getRestaurantData);
-// 
-// function getRestaurantData (req, res) {
-//   let yelpQuery = request.query.formatted_query;
-//   console.log('yelp req.query : ', request.query);
-
-// const yelpKey = process.env.YELP_API_KEY;
-// let yelpUrl = `https://api.yelp.com/v3/businesses/search?location=${yelpQuery}&limit=5&offset=5`;
-
-// superagent.get(yelpUrl)
-// .set('Authorization',`Bearer ${yelpKey}`)
-//   .then(result => {
-//     const jsonYelpObj = yelpComeBack.body.businesses;
-//     const newYelpArr = jsonYelpObj.map(yelp => {
-//       return new Yelp(yelp);
-//     })
-//     console.log(result);
-//     res.render('/index', {yelpItem, newYelpArr});
-// }
-
-// function renderRestaurantData (req, res) {
-//  res.render();
-// }
-
-//===================================================== Constructor ================================================================
-// function Yelp(jsonYelpObj){
-//   //console.log(jsonYelpObj);
-//   this.name = jsonYelpObj.name;
-//   this.image_url = jsonYelpObj.image_url;
-//   this.price = jsonYelpObj.price;
-//   this.rating = jsonYelpObj.rating;
-//   this.url = jsonYelpObj.url;
-// }
+function Yelp(jsonYelpObj){
+  //console.log(jsonYelpObj);
+  this.name = jsonYelpObj.name;
+  this.image_url = jsonYelpObj.image_url;
+  this.price = jsonYelpObj.price;
+  this.rating = jsonYelpObj.rating;
+  this.url = jsonYelpObj.url;
+}
 
 //===================================================== Start Server ===============================================================
 client.connect()

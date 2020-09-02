@@ -72,3 +72,5 @@
 ## Credits and Collaborations
 
 - Shoutout to Skyler for helping with rendering Google Maps on to your homepage.
+- Shoutout to Skyler for helping with sending info from front end to server to use in APIs.
+- Shoutout to Chance for helping with rendering multiple data from APIs through single route.
