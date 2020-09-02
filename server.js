@@ -61,7 +61,7 @@ function saveFavorites(req, res){
 
   client.query(sql, animeArray)
     .then(() => {
-      res.redirect(`/collection?user_name=${req.query.username}`);
+      res.redirect(`/collection?user_name=${req.body.user_name}`);
     })
     .catch(error => console.error(error));
 }
@@ -82,7 +82,7 @@ function saveUserInfoRestuarant(req, res){
 
   client.query(SQL, foodArr)
   .then(() => {
-      res.redirect(`/collection?user_name=${req.body.username}`);
+      res.redirect(`/collection?user_name=${req.body.user_name}`);
   })
 }
 
