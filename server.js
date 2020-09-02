@@ -33,7 +33,7 @@ app.get('/aboutUs', renderAboutUsPage);
 app.get('/anime', renderAnime);
 app.post('/anime', getmyAnime);
 app.post('/collection',saveUserInfoRestuarant);
-app.delete('/collection', deleteRestaurants);
+//app.delete('/collection', deleteRestaurants);
 
 //===================================================== Functions ==================================================================
 
@@ -57,20 +57,24 @@ function insertUserFromSQL(req, res){
 }
 
 function saveUserInfoRestuarant(req, res){
-  client.query('SELECT * FROM food_table WHERE id=$1', [req.params.id])
-  .then(result => {
-      res.redirect('/collection', {restuarant: food_table.rows});
+  const {name, image_url, price, rating, address, phone} = req.body;
+  const SQL = `INSERT INTO food_table (name, image_url, price, rating, address, phone) VALUES ($1, $2, $3, $4, $5, $6)`
+  const foodArr = [name, image_url, price, rating, address, phone];
+
+  client.query(SQL, foodArr)
+  .then(() => {
+      res.redirect('/collection');
   })
 }
 
-function deleteRestaurants(req, res){
-  const {id} = request.params;
-  const SQL = 'DELETE FROM food_table WHERE id=$1';
-  client.query(SQL, [id])
-   .then( () => {
-     response.redirect('/collection');
-});
-}
+// function deleteRestaurants(req, res){
+//   const {id} = request.params;
+//   const SQL = 'DELETE FROM food_table ';
+//   client.query(SQL, [id])
+//    .then( () => {
+//      response.redirect('/collection');
+// });
+// }
 
 function dataFunction (req, res){
   const lat = req.params.lat;
@@ -128,7 +132,11 @@ function renderHomePage(req, res){
 
 function renderCollectionPage(req, res){
   // how can i get the username to be entered here? Each obj saved will need to reference user_name
-  res.render(`pages/collection`);
+  client.query('SELECT * FROM food_table')
+  .then(result => {
+    res.render(`pages/collection`, {food : result.rows});
+    
+  })
 }
 
 function renderAboutUsPage(req, res){

@@ -7,7 +7,20 @@
   <body>
     <h1 class='title'>My collections: </h1>
     
-
+    <ul>
+      <% food.forEach(food => { %>
+        <div>
+          <li>
+            <h2><%= food.name %> </h2>
+            <img src='<%= food.image_url %>' alt=''>
+            <h3><%= food.price %></h3>
+            <h3><%= food.rating %></h3>
+            <h3><%= food.address %></h3>
+            <h3><%= food.phone %></h3>
+          </li>
+        </div>
+      <% }) %>
+    </ul>
 
     <br>
     <h1>My watch-list: </h1>
