@@ -13,7 +13,7 @@
     <% animeList.forEach(baka => { %>
       <div>
         <li class='animeList'>
-        <form action="collection" method="POST">
+        <form action="/anime" method="POST">
             <h2><%= baka.name %></h2>
             <img src='<%= baka.image_url %>' alt=''>
             <input name='name' type='hidden' value='<%= baka.name %>'>

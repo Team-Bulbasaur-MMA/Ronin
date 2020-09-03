@@ -8,7 +8,7 @@
     <h1 class='title'>My collections: </h1>
     
     <ul>
-      <% food.forEach(food => { %>
+      <% data.foodData.forEach(food => { %>
         <div>
           <li>
             <h2><%= food.name %> </h2>
@@ -18,7 +18,7 @@
             <h3><%= food.address %></h3>
             <h3><%= food.phone %></h3>
           </li>
-          <form action="/collection/<%= food.id %>?_method=DELETE" method="POST">
+          <form action="/restaurants/<%= food.id %>?_method=DELETE" method="POST">
            <input type="submit" value="delete">
           </form>
         </div>
@@ -28,15 +28,15 @@
 
     <br>
     <h1><%= users %>'s watch-list: </h1>
-      
+
     <ul>
-      <% anime.forEach(baka => { %>
+      <% data.animeData.forEach(baka => { %>
         <div>
           <li>
             <h2><%= baka.name %></h2>
             <img src='<%= baka.image_url %>' alt=''>
           </li>
-          <form action='/collection/<%= baka.id %>?_method=DELETE' method='POST'>
+          <form action='anime/<%= baka.id %>?_method=DELETE' method='POST'>
             <input type='submit' value='Delete Character'>
           </form>
         </div>
