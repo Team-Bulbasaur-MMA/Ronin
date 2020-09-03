@@ -2,10 +2,15 @@
 <html lang="en">
 
   <%- include('../layout/head', {users : users}) %>
-
-<body>
-
-  <%- include('../layout/header', {users : users}) %>
+  <body>
+  <header>
+    <nav>
+      <div id='logo'>
+        <h1>Ronin</h1>
+        <img src='/img/roninLogo.png'>
+      </div>
+    </nav>
+</header>
 
   <h1 class='title'>Please Login</h1>
 
@@ -21,6 +26,37 @@
     <img id="mascotimg" src="img/mascot.jpeg" alt="Japanese Daruma Mascot" title="Japanese Daruma Mascot by Amelia Waggoner">
     <img id="tokyotowerimg" src="img/tokyotower.jpeg" alt="Tokyo Tower, Tokyo, Japan" title="Tokyo Tower by Amelia Waggoner">
   </div>
+  <!-- Samurai Animation code that I used for our site https://www.codeseek.co/2xsamurai/css-samurai-animation-GvQpOj -->
+  <div id="wrapper">
+    <div class="stage stage--full stage--first">
+        <div class="stage-wrapper">
+        <div class="samurai">
+            <div class="hat">
+            </div>
+            <div class="head">
+            </div>
+            <div class="body">
+            </div>
+            <div class="sword">
+            </div>
+        </div>
+        <div class="slash">
+        </div>
+        <div class="peices">
+            <div class="peice-one">
+            </div>
+            <div class="peice-two">
+            </div>
+            <div class="peice-three">
+            </div>
+            <div class="peice-four">
+            </div>
+        </div>
+    </div>
+</div>
+  
+  
+
 
   <%- include('../layout/footer') %>
 

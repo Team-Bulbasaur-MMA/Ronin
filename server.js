@@ -22,7 +22,6 @@ const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
 const mapKey = process.env.MAP_API_KEY;
 
 //===================================================== Routes =====================================================================
-
 app.get('/', getUserName);
 app.post('/user', insertUserFromSQL);
 
@@ -41,9 +40,7 @@ app.delete('/anime/:id', deleteAnime);
 app.post('/restaurants', saveRestuarants);
 app.delete('/restaurants/:id', deleteRestaurants);
 
-
 //===================================================== Functions ==================================================================
-
 function deleteAnime (req, res){
   const id = req.params.id;
   const sql = 'DELETE FROM anime_table WHERE id=$1';
@@ -88,7 +85,6 @@ function deleteRestaurants(req, res){
 
 }
 
-//===================================================== Functions ==================================================================
 function renderIndex2 (req, res){
   const title = req.params.title;
   const lat = req.params.lat;
@@ -154,7 +150,6 @@ function getUserName(req, res){
   const SQL = 'SELECT * FROM user_table;';
   client.query(SQL)
     .then(result =>{
-      console.log(result.rows);
       res.render('pages/login', {users : result.rows[0]});
     })
     .catch(error => console.error(error));
@@ -184,7 +179,7 @@ function renderCollectionPage(req, res){
     .then((results) => {
       dataObj.foodData = results.rows;
     });
-  client.query('SELECT * FROM anime_table')
+  client.query('SELECT * FROM anime_table WHERE owner=$1', [user_name])
     .then(results => {
       dataObj.animeData = results.rows;
       res.render(`pages/collection`, {data : dataObj, users : user_name });
@@ -201,8 +196,7 @@ function renderAnime (req, res){
   res.render('pages/anime', {users : user_name});
 }
 
-//======================================================== anime + index3
-function renderIndex3(req, res){ //genre_id
+function renderIndex3(req, res){
   const id = req.body.animeName;
   const user_name = req.body.user_name;
 
