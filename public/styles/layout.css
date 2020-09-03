@@ -193,6 +193,18 @@ body {
 
 
 
+footer {
+  text-align: center;
+  background-color: rgb(40, 99, 98);;
+  animation: mymove 15s;
+}
+
+@keyframes mymove {
+  from {background-color: rgb(40, 99, 98);}
+  to {background-color: rgb(98, 172, 117);}
+}
+
+
 /* Animated Weather Icons - https://codepen.io/joshbader/pen/EjXgqr */
 /* Put it on the home page */
 .icon {
@@ -479,6 +491,159 @@ body {
   }
 }
 
+
+@media only screen and (min-width: 1000px) {
+
+/* ==========Login page=========== */
+h1 {
+  color: rgb(121, 22, 15);
+  font-size: 75px;
+  font-weight: bold;
+}
+
+/* ul {
+  background-color: rgb(225, 226, 226);
+  font-size: 60px;
+} */
+
+form {
+  background-color: rgb(40, 99, 98);
+}
+
+input {
+  background-color: rgb(121, 22, 15);
+  color: lightgray;
+  border: groove rgb(121, 22, 15) 10px;
+  font-family: fantasy;
+  font-size: 20px;
+}
+
+.loginimgdiv {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+#templeimg {
+ height: 300px;
+ width: 300px;
+ border: groove rgb(98, 172, 117) 15px;
+
+}
+
+#mascotimg {
+ height: 300px;
+ width: 400px;
+ border: groove rgb(98, 172, 117) 15px;
+ 
+ 
+}
+
+#tokyotowerimg {
+ height: 300px;
+ width: 300px;
+ border: groove rgb(98, 172, 117) 15px;
+ 
+}
+/* =============My Collection Page=========== */
+.collectiondiv {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+#kinkakujiimg {
+ height: 200px;
+ width: 200px;
+ border: groove rgb(121, 22, 15) 15px;
+ border-radius: 15px;
+ margin-top: 150px;
+
+}
+
+#foodimg {
+ height: 200px;
+ width: 200px;
+ border: groove rgb(121, 22, 15) 15px;
+ border-radius: 15px;
+ margin-top: 150px;
+
+}
+
+#uenoimg {
+  height: 200px;
+  width: 200px;
+  border: groove rgb(121, 22, 15) 15px;
+  border-radius: 15px;
+  margin-top: 150px;
+
+}
+
+#landscapeimg {
+  height: 200px;
+  width: 200px;
+  border: groove rgb(121, 22, 15) 15px;
+  border-radius: 15px;
+  margin-top: 150px;
+
+}
+
+#tokyoimg {
+  height: 200px;
+  width: 200px;
+  border: groove rgb(121, 22, 15) 15px;
+  border-radius: 15px;
+  margin-top: 150px;
+
+}
+
+/* =============About Us Page=============== */
+p {
+  font-size: 35px;
+  /* background-color: rgb(98, 172, 117); */
+}
+
+.ameliainfo {
+  /* background-color: rgb(98, 172, 117); */
+  font-size: 25px;
+}
+
+#ameliapic {
+  border-radius: 50%;
+}
+
+#aboutdiv {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.liondogimg {
+  height: 200px;
+  width: 200px;
+  border: groove rgb(98, 172, 117) 15px;
+}
+
+.trainstationimg {
+  height: 200px;
+  width: 200px;
+  border: groove rgb(98, 172, 117) 15px;
+}
+
+.maskimg {
+  height: 200px;
+  width: 200px;
+  border: groove rgb(98, 172, 117) 15px;
+}
+
+.ramenimg {
+  height: 200px;
+  width: 200px;
+  border: groove rgb(98, 172, 117) 15px;
+}
 
 /* Samurai Animation code that I used for our site https://www.codeseek.co/2xsamurai/css-samurai-animation-GvQpOj */
 
