@@ -1,5 +1,5 @@
 * {
-  outline: dashed red 2px;
+  /* outline: dashed red 2px; */
   box-sizing: border-box;
 }
 
@@ -114,10 +114,6 @@ nav > ul {
   font-size: 50px;
   text-decoration: underline;
   color: rgb(228, 38, 25);
-}
-
-#users {
-  visibility: hidden;
 }
 
 #map {
@@ -255,28 +251,10 @@ nav > ul {
   margin: auto;
 }
 
-#naruto {
-  grid-area: n;
-}
-
-#goku {
-  grid-area: g;
-}
-
-#luffy {
-  grid-area: l;
-}
-
 #heroes {
-  display: grid;
-  grid-auto-rows: auto;
-  grid-template-areas:
-    '. . . . g g . . . .'
-    '. . . . g g . . . .'
-    '. . . . g g . . . .'
-    '. . n n n l l l . .'
-    '. . n n n l l l . .'
-    '. . n n n l l l . .';
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap-reverse
 }
 
 /* ==================== End of Anime.ejs ==================== */
@@ -408,52 +386,83 @@ footer {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ==================== Other breakpoints ==================== */
 
 @media only screen and (min-width: 515px) {
 
+  /* ==================== Beginning of Login.ejs ==================== */
+
+  .mainSearchButton {
+    width: 300px;
+    text-align: center;
+    display: block;
+    margin: auto;
+    margin-bottom: 15px;
+    border: inset rgb(40, 99, 98) 5px;
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 25px;
+  }
+
+  .mainButton {
+    width: 300px;
+    text-align: center;
+    display: block;
+    margin: auto;
+    margin-bottom: 30px;
+    border: outset rgb(40, 99, 98) 10px;
+    background-color: rgb(40, 99, 98);
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 25px;
+    color:  rgb(166, 247, 186);
+  }
+
+  .loginimgdiv {
+    visibility: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 300px;
+  }
+  
+  #templeimg {
+    height: 300px;
+    width: 300px;
+    border: groove rgb(98, 172, 117) 15px;
+    margin-bottom: 30px;
+  }
+  
+  #mascotimg {
+    height: 300px;
+    width: 300px;
+    border: groove rgb(98, 172, 117) 15px;
+    margin-bottom: 30px;
+  }
+  
+  #tokyotowerimg {
+    height: 300px;
+    width: 300px;
+    border: groove rgb(98, 172, 117) 15px;
+    margin-bottom: 30px;
+  }
+
+/* ==================== End of Login.ejs ==================== */
+
+
+
   /* ==================== Beginning of Index.ejs ==================== */
+  
+  #users {
+    visibility: hidden; 
+  }
 
   .title {
     text-align: center;
     margin: 30px 0px 50px 0px;
-    font-weight: bold;
-    font-size: 50px;
+    font-size: 60px;
     text-decoration: underline;
     color: rgb(228, 38, 25);
     text-align: center;
-  }
-
-  #users {
-    visibility: hidden; 
   }
 
   #map {
@@ -464,10 +473,6 @@ footer {
   }
 
   /* ==================== Beginning of Index2.ejs ==================== */
-
-  .ul {
-    background-color: rgb(126, 213, 197);
-  }
 
   #bigWeatherDiv {
     grid-area: weather;
@@ -482,44 +487,37 @@ footer {
     grid-template-columns: 20% 20% 20% 20% 20%;
     grid-template-rows: auto;
     grid-template-areas:
-      '. weather . food .'
-      '. weather . food .'
-      '. weather . food .';
+      'weather weather weather weather weather'
+      'weather weather weather weather weather'
+      'weather weather weather weather weather'
+      'food food food food food'
+      'food food food food food'
+      'food food food food food';
   }
 
-.weatherDiv {
-  display: flex;
-  justify-content: center;
-  background-color: rgb(98, 172, 117);
-  width: 300px;
-  margin: auto;
-  margin-top: 25px;
-  margin-bottom: 25px;
-  border: groove  rgb(228, 38, 25) 10px;
+  #weatherUl {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
 
-}
+  .weatherList {
+    margin: 20px;
+    color:  rgb(166, 247, 186);
+    text-align: center;
+  }
 
-.weatherList {
-  margin: 20px;
-  color:  rgb(228, 38, 25);
-  text-align: center;
-}
-
-.foodDiv {
-  display: flex;
-  justify-content: center;
-  background-color: rgb(98, 172, 117);
-  width: 500px;
-  margin: auto;
-  margin-top: 25px;
-  margin-bottom: 25px;
-  border: groove  rgb(228, 38, 25) 10px;
-
-}
+  #foodUl {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
 
   .foodList {
     margin: 20px;
-    color:  rgb(228, 38, 25);
+    color:  rgb(166, 247, 186);
     text-align: center;
     width: 500px;
   }
@@ -527,6 +525,45 @@ footer {
   .foodList > img {
     width: 250px;
   }
+
+  /* ==================== End of Index2.ejs ==================== */
+
+  /* ==================== Beginning of Index3.ejs ==================== */
+
+  #animeUL {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .animeListDiv {
+    margin: auto;
+  }
+
+  .animeList {
+    margin: 30px;
+  }
+  
+  /* ==================== End of Index3.ejs ==================== */
+
+  /* ==================== Beginning of Collection.ejs ==================== */
+
+  #favFoodUl {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  #favAnimeUl {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  /* ==================== End of Collection.ejs ==================== */
 
   /* ==================== Base Rules ==================== */
 
