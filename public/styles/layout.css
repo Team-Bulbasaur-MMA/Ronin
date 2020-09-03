@@ -421,12 +421,12 @@ input {
 
 /* =============About Us Page=============== */
 p {
-  font-size: 25px;
-  background-color: rgb(98, 172, 117);
+  font-size: 35px;
+  /* background-color: rgb(98, 172, 117); */
 }
 
 .ameliainfo {
-  background-color: rgb(98, 172, 117);
+  /* background-color: rgb(98, 172, 117); */
   font-size: 25px;
 }
 

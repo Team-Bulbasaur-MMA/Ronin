@@ -1,0 +1,33 @@
+p{
+  font-size: 25px;
+}
+
+#aboutmepic{
+  margin: 25px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#aboutme{
+  width: 900px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: none;
+}
+
+#contact-us{
+  margin-top: 30px;
+  margin-left: 30px;
+  background-color: rgb(126, 213, 197);
+}
+
+#center{
+  text-align: center;
+  font-size: 45px;
+}
+
+#form{
+  background-color: rgb(126, 213, 197);
+}
