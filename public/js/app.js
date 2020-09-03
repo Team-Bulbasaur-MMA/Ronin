@@ -53,6 +53,7 @@ function initMap() {
     //     console.log(data);
     //   });
     let url = `http://localhost:3000/location/${title}/${lat}/${lng}?user_name=${string}`;
+    // let url = `http://www.ronin-travelez.xyz/location/${title}/${lat}/${lng}?user_name=${string}`;
     window.location=url;
   });
   marker1.addListener('click', () => {
@@ -63,6 +64,7 @@ function initMap() {
     const lat = marker1.getPosition().lat();
     const lng = marker1.getPosition().lng();
     let url = `http://localhost:3000/location/${title}/${lat}/${lng}?user_name=${string}`;
+    // let url = `http://www.ronin-travelez.xyz/location/${title}/${lat}/${lng}?user_name=${string}`;
     window.location=url;
   });
   marker2.addListener('click', () => {
@@ -72,6 +74,7 @@ function initMap() {
     const lat = marker2.getPosition().lat();
     const lng = marker2.getPosition().lng();
     let url = `http://localhost:3000/location/${title}/${lat}/${lng}?user_name=${string}`;
+    // let url = `http://www.ronin-travelez.xyz/location/${title}/${lat}/${lng}?user_name=${string}`;
     window.location=url;
   });
   marker3.addListener('click', () => {
@@ -81,6 +84,7 @@ function initMap() {
     const lat = marker3.getPosition().lat();
     const lng = marker3.getPosition().lng();
     let url = `http://localhost:3000/location/${title}/${lat}/${lng}?user_name=${string}`;
+    // let url = `http://www.ronin-travelez.xyz/location/${title}/${lat}/${lng}?user_name=${string}`;
     window.location=url;
   });
   marker4.addListener('click', () => {
@@ -90,6 +94,7 @@ function initMap() {
     const lat = marker4.getPosition().lat();
     const lng = marker4.getPosition().lng();
     let url = `http://localhost:3000/location/${title}/${lat}/${lng}?user_name=${string}`;
+    // let url = `http://www.ronin-travelez.xyz/location/${title}/${lat}/${lng}?user_name=${string}`;
     window.location=url;
   });
 }
