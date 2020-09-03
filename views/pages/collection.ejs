@@ -7,7 +7,7 @@
   <body class='dataBody'>
     <h1 class='title2'>My collections: </h1>
     
-    <ul>
+    <ul id='favFoodUl'>
       <% data.foodData.forEach(food => { %>
         <div class='foodDiv'>
           <li class='foodList'>
@@ -28,9 +28,9 @@
 
 
     <br>
-    <h1 class='title2'><%= users %>'s watch-list: </h1>
+    <h1 class='title2'><%= users %>'s Character List: </h1>
 
-    <ul>
+    <ul id='favAnimeUl'>
       <% data.animeData.forEach(baka => { %>
         <div>
           <li class='favAnimeList'>

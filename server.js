@@ -135,7 +135,6 @@ function renderIndex2 (req, res){
 }
 
 function getMapData(req, res){
-  const mapKey = process.env.MAP_API_KEY;
 
   let mapsUrl = `https://maps.googleapis.com/maps/api/js?key=${mapKey}&callback=initMap&libraries=&v=weekly`;
 
@@ -159,7 +158,7 @@ function insertUserFromSQL(req, res){
   const SQL = `INSERT INTO user_table (username) VALUES ($1)`;
   const value = [req.body.username];
   client.query(SQL, value)
-    .then(result =>{
+    .then(() =>{
       res.redirect(`/index?user_name=${req.body.username}`);
     })
     .catch(error => console.error(error));
