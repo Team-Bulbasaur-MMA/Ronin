@@ -19,7 +19,8 @@
             <h3><%= food.phone %></h3>
           </li>
           <form action="/restaurants/<%= food.id %>?_method=DELETE" method="POST">
-           <input type="submit" value="delete">
+            <input name='user_name' type='hidden' value='<%= users %>'>
+            <input type="submit" value="delete">
           </form>
         </div>
       <% }) %>
@@ -37,6 +38,7 @@
             <img src='<%= baka.image_url %>' alt=''>
           </li>
           <form action='anime/<%= baka.id %>?_method=DELETE' method='POST'>
+            <input name='user_name' type='hidden' value='<%= users %>'>
             <input type='submit' value='Delete Character'>
           </form>
         </div>
