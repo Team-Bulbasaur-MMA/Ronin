@@ -49,15 +49,15 @@ function deleteAnime (req, res){
   const sql = 'DELETE FROM anime_table WHERE id=$1';
   client.query(sql, [id])
     .then(() => {
-      res.redirect(`/collection?user_name=${req.query.username}`);
+      res.redirect(`/collection?user_name=${req.body.user_name}`);
     });
 }
 
 function saveAnime(req, res){
-  const {name, image_url} = req.body;
+  const {name, image_url, user_name} = req.body;
 
-  const sql =`INSERT INTO anime_table (name, image_url) VALUES ($1, $2)`;
-  const animeArray = [name, image_url];
+  const sql =`INSERT INTO anime_table (name, image_url, owner) VALUES ($1, $2, $3)`;
+  const animeArray = [name, image_url, user_name];
 
   client.query(sql, animeArray)
     .then(() => {
@@ -76,9 +76,9 @@ function saveAnime(req, res){
 // }
 
 function saveRestuarants(req, res){
-  const {name, image_url, price, rating, address, phone} = req.body;
-  const SQL = `INSERT INTO food_table (name, image_url, price, rating, address, phone) VALUES ($1, $2, $3, $4, $5, $6)`;
-  const foodArr = [name, image_url, price, rating, address, phone];
+  const {name, image_url, price, rating, address, phone, user_name} = req.body;
+  const SQL = `INSERT INTO food_table (name, image_url, price, rating, address, phone, owner) VALUES ($1, $2, $3, $4, $5, $6, $7)`;
+  const foodArr = [name, image_url, price, rating, address, phone, user_name];
 
   client.query(SQL, foodArr)
     .then(() => {
@@ -92,7 +92,7 @@ function deleteRestaurants(req, res){
   const SQL = 'DELETE FROM food_table WHERE id=$1';
   client.query(SQL, [id])
     .then( () => {
-      res.redirect(`/collection?user_name=${req.query.username}`);
+      res.redirect(`/collection?user_name=${req.body.user_name}`);
     });
 
 }
@@ -188,7 +188,7 @@ function renderCollectionPage(req, res){
   const user_name = req.query.user_name;
   
   let dataObj = {};
-  client.query('SELECT * FROM food_table')
+  client.query('SELECT * FROM food_table WHERE owner=$1', [user_name]) 
     .then((results) => {
       dataObj.foodData = results.rows;
     });
