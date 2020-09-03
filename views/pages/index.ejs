@@ -7,7 +7,7 @@
 
   <%- include('../layout/header', {users : users}) %>
 
-  <h1 class='title'>Welcome to our site <%= users %><br>Click on a City</h1>
+  <h1 class='title'>Welcome to our site -<%= users %>-<br>Click on a City below to explore Japan</h1>
 
   <div id='users'><%= users %></div>
 
@@ -19,5 +19,6 @@
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
   <script src='https://maps.googleapis.com/maps/api/js?key=<%= key %>&callback=initMap&libraries=&v=weekly' defer></script>
   <script src='js/app.js'></script>
+  
 </body>
 </html>
