@@ -5,29 +5,64 @@
   <%- include('../layout/header', {users : users}) %>
   <body>
     <div id="aboutdiv">
+      <h1 class='title'></h1>
       <img class="liondogimg" src="img/liondog.jpeg" alt="Shishi Statue, Ueno Park, Tokyo, Japan" title="Shishi Statue by Amelia Waggoner">
       <img class="trainstationimg" src="img/trainstation.jpeg" alt="Kanazawa, Japan" title="Kanazawa Station by Amelia Waggoner">
       <img class="maskimg" src="img/mask.jpeg" alt="Noh Mask, Tokyo, Japan" title="Noh Mask by Amelia Waggoner">
       <img class="ramenimg" src="img/ramen.JPG" alt="Tokyo, Japan" title="Ramen by Amelia Waggoner">
       <h1 class='title'>About Us</h1>
+      <p>At Ronin, our mission is to provide our users a way to explore Japan based on what they want without the need of a guide. We are providing our users with a free online guide where they can search what they want and get more information about it. Please feel free to fill out our form at the bottom of the page to give us any feedback or ask any questions!</p>
     </div>
 
+    <div>
+      <img id="aboutmepic" src="img/circle-cropped (1).png" height="250px" width="250px">
+      <div id="aboutme">
+        <p id="center"><a href="https://www.linkedin.com/in/marchaelacode/">-Marchael Acode-</a></p>
+        <br>
+        <p>Hello everyone, thank you for joining us during our project today. My name is Marchael Acode. I'm currently a student at Code Fellows working to become a full stack software developer. Before joining Code Fellows, I worked in the hospitality industry as a restaurant server. I decided to learn Software Development because I needed a career change and also thought coding was intriguing. Learning how to code is a dynamic skill to have and can benefit an individual in any aspect of their life. I am hoping through this experience I will be one step closer to achieving my career goal of becoming a video game developer or video game designer. I'm inspired by the joy and feeling that video games brought me while I was growing up. I want to pay it forward by creating a video game that brings the same joy to another person.</p>
+      </div>
+    </div>
 
-    <img src="https://via.placeholder.com/150"><p>Marchael</p>
+    <div>
+      <img id="aboutmepic" src="img/circle-cropped (2).png" height="250px" width="250px">
+      <ul class="ameliainfo">
+        <div id="aboutme">
+          <p id="center"><a href="https://www.linkedin.com/in/amelia-waggoner-7b03a0133/">-Amelia Waggoner-</a></p> 
+          <br>
+          <li>B.A. Japanese language & culture, and I am a Pacific Nothwest software programmer.</li>
+          <li>Always had a interest in software programming & technology.</li>
+          <li>I picked this skill because it will get me into a career where I can constantly grow & learn.</li>
+          <li>Goal: work at a Japanese tech company or at a company that partners with Japanese company.</li>
+          <li>Currently working at a veterinary hospital.</li>
+          <li>Experience in customer service, time management, & team work.</li>
+        </div>
+      </ul>
+    </div>
 
-    <img id="ameliapic" src="img/ameliaprofilepic.jpeg" height="150px" width="150px"><p>Amelia Waggoner</p> 
-    <ul class="ameliainfo">
-      <li>B.A. Japanese language & culture, and I am a Pacific Nothwest software programmer.</li>
-      <li>Always had a interest in software programming & technology.</li>
-      <li>I picked this skill because it will get me into a career where I can constantly grow & learn.</li>
-      <li>Goal: work at a Japanese tech company or at a company that partners with Japanese company.</li>
-      <li>Currently working at a veterinary hospital.</li>
-      <li>Experience in customer service, time management, & team work.</li>
-    </ul>
-    <img src="img/matthew.png.png" height="150px" width="150px"><p>Matthew Petersen</p>
-    <p>I’m a Software Developer with a background in military police. I decided to do a shift in careers because I wanted a more challenging but rewarding career and career in which I could make my own path. I chose programming because I knew nothing about it other than it was a skill that could be learned and Seattle has a growing tech industry that I knew I should try to take advantage of. The more I learn and use my skills, the more excited I get about my career and my future to come in tech. The thing that excites me the most about tech is the opportunity it brings and the incredible people that follow it.I’m looking to join a team where we can collaborate, grow and become the best versions of ourselves.</p>
+    <div>
+      <img id="aboutmepic" src="img/matthew.png.png" height="250px" width="250px">
+      <div id="aboutme">
+        <p id="center"><a href="https://www.linkedin.com/in/matthewpetersen1995/">-Matthew Petersen-</a></p>
+        <br>
+          <p>I’m a Software Developer with a background in military police. I decided to do a shift in careers because I wanted a more challenging but rewarding career and career in which I could make my own path. I chose programming because I knew nothing about it other than it was a skill that could be learned and Seattle has a growing tech industry that I knew I should try to take advantage of. The more I learn and use my skills, the more excited I get about my career and my future to come in tech. The thing that excites me the most about tech is the opportunity it brings and the incredible people that follow it.I’m looking to join a team where we can collaborate, grow and become the best versions of ourselves.</p>
+      </div>
+  </div>
 
+  <br>
+  <br>
 
+  <div id="contact-us">
+    <form id="form">
+      <fieldset id="contact-us">
+        <input type="text" name="name" value="Enter name here">
+        <input type="text" name="email" value="Enter email here">
+        <br>
+        <textarea rows="9" cols="90" name="message"></textarea>
+        <br>
+        <input type="submit" value="Submit">
+      </fieldset>
+    </form>
+  </div>
 
   <%- include('../layout/footer', {users : users}) %>
 
