@@ -16,7 +16,7 @@ body {
 }
 
 /* Animated Weather Icons - https://codepen.io/joshbader/pen/EjXgqr */
-
+/* Put it on the home page */
 .icon {
   position: relative;
   display: inline-block;
@@ -215,7 +215,7 @@ body {
   left: 50%;
   margin: -1.025em 0 0 -1.0125em;
   color: #fff;
-  list-height: 1em;
+
   opacity: 0.2;
   animation: spin 8s linear infinite reverse;
 }
@@ -301,7 +301,7 @@ body {
   }
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 1000px) {
 
 /* ==========Login page=========== */
 h1 {
@@ -329,7 +329,7 @@ input {
 
 .loginimgdiv {
   display: block;
-  margin-top: 25px;
+  margin-top: 50px;
   text-align: center;
 }
 
@@ -452,8 +452,276 @@ p {
   border: groove rgb(98, 172, 117) 15px;
 }
 
+
+/* Samurai Animation code that I used for our site https://www.codeseek.co/2xsamurai/css-samurai-animation-GvQpOj */
+
+#wrapper {
+  color: #555;
+  font-size: 100%;
+  overflow: auto;
+  border: 0;
+  box-sizing: border-box;
+  margin: 1px;
+  padding: 1px;
+	background-color:  rgb(121, 22, 15) 15px;
+  top: 50px;
 }
 
-@media only screen and (min-width: 1000px) {
-  
+.stage {
+  background: transparent;
+  font-size: 5em;
+  height: 10em;
+  margin: 1px;
+  position: absolute;
+  width: 10em;
+  background-color: rgb(121, 22, 15) 15px;
+  overflow: hidden;
+  position: absolute;
+}
+.stage-wrapper {
+left: 3.5em;
+top: 3.5em;
+width: 3em;
+height: 3em;
+top: 10px;
+}
+.stage--full  { font-size: 4vw; }
+.stage * {
+  position: absolute;
+}
+.samurai {
+width: 2em;
+height: 2.5em;
+bottom: 0;
+left: 1em;
+border: 1px solid transparent;
+transform-origin: bottom;
+z-index: 2;
+/* margin-bottom: -2px; */
+
+animation-name: samuraiMove, samuraiReturn;
+  animation-duration: 1.1s, 1.1s;
+  animation-delay: 2.5s, 5.2s;
+  animation-fill-mode: forwards, forwards;
+}
+.hat {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 1em 0.35em 1em;
+  border-color: transparent transparent #fff transparent;
+  transform: rotate(22deg);
+  top: 0.2em;
+  left: 0.1em;
+}
+.head {
+  background-color: #fff;
+  width: 0.4em;
+  height: 0.5em;
+  transform: skew(-1deg,-6deg) rotate(14deg);
+  top: 0.3em;
+  left: 0.75em;
+}
+.body {
+width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 1em 2em 0.5em;
+  border-color: transparent transparent #fff transparent;
+  top: 0.47em;
+  left: 0.16em;
+}
+.body:before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: .7em 0 1.5em 0.3em;
+  border-color: transparent transparent transparent #fff;
+  position: absolute;
+  transform: rotate(-26deg);
+  top: -0.2em;
+  left: 0.44em;
+}
+.sword {
+width: 2.7em;
+  height: 0.15em;
+  background: #fff;
+  transform: rotate(-17deg) skewX(37deg);
+  right: 0.15em;
+  bottom: .7em;
+
+  animation-name: swordMove;
+  animation-delay: 2s;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+.slash {
+width: 4em;
+  height: 2em;
+  border-radius: 50%;
+  background: #fff;
+  filter: blur(30px);
+  opacity: 0;
+  z-index: 1;
+  transform: rotate(45deg) scaleY(0.2) translateX(0);
+
+  animation-name: slash1, slash2, slash3, slash4;
+  animation-delay: 3.5s, 3.7s, 3.9s, 4.1s;
+  animation-duration: .1s, .1s, .1s, .1s;
+  animation-fill-mode: forwards, forwards, forwards, forwards;
+}
+.peices {
+width: 10em;
+height: 10em;
+overflow: hidden;
+
+  animation-name: afterHide;
+  animation-duration: 0.1s;
+  animation-delay: 7s;
+  animation-fill-mode: forwards;
+}
+.peice-one {
+width: 8em;
+height: 1.05em;
+background-color: #000;
+
+animation-name: fall;
+animation-duration: 1s;
+animation-delay: 4.7s;
+animation-fill-mode: forwards;
+animation-timing-function: cubic-bezier(0.33333, 0.66667, 0.66667, 1);
+}
+.peice-one:before {
+content: '';
+position: absolute;
+left: 0;
+top: 1em;
+width: 0;
+height: 0;
+border-style: solid;
+border-width: 4em 5em 0 5em;
+border-color: #000 transparent transparent transparent;
+}
+.peice-two {
+  top: 1em;
+  width: 0;
+  height: 0;
+  left: 0;
+  border-style: solid;
+  border-width: 4em 0 4em 5em;
+  border-color: transparent transparent transparent #000;
+  transform-origin: left;
+  transform: scale(1.1);
+
+  animation-name: break, fall;
+  animation-duration: 0.2s, 0.8s;
+  animation-delay: 4.2s, 4.7s;
+  animation-fill-mode: forwards, forwards;
+  animation-timing-function: ease, cubic-bezier(0.310, 0.440, 0.445, 1.650);
+}
+.peice-three {
+width: 10em;
+height: 1.05em;
+bottom: -1px;
+background-color: #000;
+
+animation-name: fall;
+animation-duration: 1s;
+animation-delay: 4.7s;
+animation-fill-mode: forwards;
+animation-timing-function: cubic-bezier(0.310, 0.440, 0.445, 1.650);
+}
+.peice-three:before {
+content: '';
+position: absolute;
+left: 0;
+bottom: 1em;
+width: 0;
+height: 0;
+border-style: solid;
+border-width: 0 5em 4em 5em;
+border-color: transparent transparent #000 transparent;
+}
+.peice-four {
+top: 1em;
+  width: 0;
+  height: 0;
+  right: -1px;
+  border-style: solid;
+  border-width: 4em 5em 4em 0;
+  border-color: transparent #000 transparent transparent;
+  transform-origin: right;
+  transform: scale(1.1);
+
+  animation-name: break, fall;
+  animation-duration: 0.2s, 0.8s;
+  animation-delay: 4.2s, 4.7s;
+  animation-fill-mode: forwards, forwards;
+  animation-timing-function: ease, cubic-bezier(0.33333, 0.66667, 0.66667, 1);
+}
+
+
+@keyframes fall {
+0% { transform: scaleY(1) translateY(0); }
+100% { transform: scaleY(0.7) translateY(20em) skewY(45deg); }
+}
+@keyframes break {
+0% { transform: scaleX(1) rotate(0deg); }
+100% { transform: scaleX(0.96) rotate(1deg); }
+}
+@keyframes slash1 {
+0% { transform: rotate(45deg) scaleY(0.2) translateX(0); top: 1em; left: 0; opacity: 1; }
+80% { transform: rotate(45deg) scaleY(0.2) translateX(8em); opacity: 1; top: 1em; left: 0; opacity: 1; }
+100% { transform: rotate(45deg) scaleY(0.2) translateX(8em); opacity: 0; top: 1em; left: 0; opacity: 0; }
+}
+@keyframes slash2 {
+0% { transform: rotate(-45deg) scaleY(0.2) translateX(0); top: 1em; left: auto; right: 0; opacity: 1; }
+80% { transform: rotate(-45deg) scaleY(0.2) translateX(-8em); opacity: 1; top: 1em; left: auto; right: 0; opacity: 1; }
+100% { transform: rotate(-45deg) scaleY(0.2) translateX(-8em); opacity: 0; top: 1em; left: auto; right: 0; opacity: 0; }
+}
+@keyframes slash3 {
+0% { transform: rotate(-15deg) scaleY(0.2) translateX(0); top: 2em; left: auto; right: 0; opacity: 1; }
+80% { transform: rotate(-15deg) scaleY(0.2) translateX(-8em); opacity: 1; top: 2em; left: auto; right: 0; opacity: 1; }
+100% { transform: rotate(-15deg) scaleY(0.2) translateX(-8em); opacity: 0; top: 2em; left: auto; right: 0; opacity: 0; }
+}
+@keyframes slash4 {
+0% { transform: rotate(15deg) scaleY(0.2) translateX(0); top: 2em; left: 0; opacity: 1; }
+80% { transform: rotate(15deg) scaleY(0.2) translateX(8em); opacity: 1; top: 2em; left: 0; opacity: 1; }
+100% { transform: rotate(15deg) scaleY(0.2) translateX(8em); opacity: 0; top: 2em; left: 0; opacity: 0; }
+}
+@keyframes swordMove {
+0% { transform: rotate(-17deg) skewX(37deg); }
+50% { transform: rotate(-13deg) skewX(37deg); }
+100% { transform: rotate(-13deg) skewX(37deg); }
+}
+@keyframes swordReturn {
+0% { transform: rotate(-13deg) skewX(37deg); }
+50% { transform: rotate(-13deg) skewX(37deg); }
+100% { transform: rotate(-17deg) skewX(37deg); }	
+}
+@keyframes samuraiMove {
+0% { transform: scaleY(1) translateX(0em); opacity: 1; }
+31% { transform: scaleY(0.8) translateX(0em); opacity: 1; }
+50% { transform: scaleY(0.8) translateX(0em); opacity: 1; }
+100% { transform: scaleY(0.8) translateX(7em) scaleX(0.8); opacity: 0; }
+/*100% { transform: scaleY(1);}*/
+}
+@keyframes samuraiReturn {
+0% { transform: scaleY(0.8) scaleX(-0.8) translateX(-7em); opacity: 0; }
+31% { transform: scaleY(0.8) scaleX(-1) translateX(0em); opacity: 1; }
+50% { transform: scaleY(0.8) scaleX(-1) translateX(0em); opacity: 1; }
+100% { transform: scaleY(1) scaleX(-1) translateX(0em); opacity: 1; }
+}
+@keyframes afterHide {
+  0% { opacity: 1;visibility: visible; }
+  100% { opacity: 0;visibility: hidden; }
+}
+
+.stage--full {
+  font-size: 8vw;
+}
+.stage {
+  margin: 0em auto;
+}
 }
