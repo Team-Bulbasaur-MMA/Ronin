@@ -119,9 +119,18 @@ input {
 }
 
 /* =============About Us Page=============== */
+p {
+  font-size: 25px;
+  background-color: rgb(98, 172, 117);
+}
+
 .ameliainfo {
   background-color: rgb(98, 172, 117);
-  font-size: 18px;
+  font-size: 25px;
+}
+
+#ameliapic {
+  border-radius: 50%;
 }
 
 #aboutdiv {
