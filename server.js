@@ -186,7 +186,7 @@ function renderHomePage(req, res){
 
 function renderCollectionPage(req, res){
   const user_name = req.query.user_name;
-  // how can i get the username to be entered here? Each obj saved will need to reference user_name
+  
   let dataObj = {};
   client.query('SELECT * FROM food_table')
     .then((results) => {
