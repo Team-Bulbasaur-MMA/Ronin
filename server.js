@@ -99,6 +99,7 @@ function deleteRestaurants(req, res){
 
 //===================================================== Functions ==================================================================
 function renderIndex2 (req, res){
+  const title = req.params.title;
   const lat = req.params.lat;
   const lng = req.params.lng;
   const mapKey = process.env.MAP_API_KEY;
@@ -107,8 +108,8 @@ function renderIndex2 (req, res){
   let yelpUrl = `https://api.yelp.com/v3/businesses/search?latitude=${lat}&longitude=${lng}&limit=10`;
 
   let monsterObj = {};
+  monsterObj.city = title;
   const user_name = req.query.user_name;
-
   superagent.get(urlToSearchWeather)
     .then(results => {
       const weather = results.body.data;
@@ -186,9 +187,9 @@ function renderHomePage(req, res){
 
 function renderCollectionPage(req, res){
   const user_name = req.query.user_name;
-  
+
   let dataObj = {};
-  client.query('SELECT * FROM food_table WHERE owner=$1', [user_name]) 
+  client.query('SELECT * FROM food_table WHERE owner=$1', [user_name])
     .then((results) => {
       dataObj.foodData = results.rows;
     });

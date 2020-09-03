@@ -8,7 +8,7 @@
 nav {
   background-color: rgb(40, 99, 98);
   height: 200px;
-  color: rgb(121, 22, 15);
+  color: rgb(228, 38, 25);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -29,8 +29,6 @@ nav {
 #logo > h1 {
   margin-left: 25px;
   font-size: 50px;
-  font-weight: bold;
-  /* width: 75px; */
   margin: auto; 
 }
 
@@ -39,7 +37,6 @@ nav {
   margin: auto;
 }
 
-
 nav > ul {
   background-color: rgb(40, 99, 98);
   margin-bottom: 10px;
@@ -47,7 +44,6 @@ nav > ul {
   width: 475px;
   display: flex;
   justify-content: center;
-  /* align-self: flex-end; */
 }
 
 /* ==================== End of Header ==================== */
@@ -56,19 +52,24 @@ nav > ul {
 
 .title {
   text-align: center;
-  margin: 30px 0px 50px 0px;
-  font-weight: bold;
+  margin: 30px 0px 30px 0px;
   font-size: 50px;
   text-decoration: underline;
-  color: rgb(121, 22, 15);
+  color: rgb(228, 38, 25);
   text-align: center;
 }
 
+#users {
+  visibility: hidden;
+}
+
 #map {
+  grid-area: map;
   width: 420px;
   height: 420px;
   margin: auto;
-  border: groove rgb(121, 22, 15) 10px;
+  margin-bottom: 30px;
+  border: groove rgb(228, 38, 25) 10px;
 }
 
 /* ==================== End of Index.ejs ==================== */
@@ -77,6 +78,12 @@ nav > ul {
 
 .ul {
   background-color: rgb(126, 213, 197);
+}
+
+.ul > h2 {
+  text-align: center;
+  color: rgb(228, 38, 25);
+  font-size: 50px;
 }
 
 #bigWeatherDiv {
@@ -89,12 +96,17 @@ nav > ul {
 
 #bigKahunaDiv {
   display: grid;
-  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-template-columns: 6.25% 87.5% 6.25%;
   grid-template-rows: auto;
   grid-template-areas:
-    '. weather . food .'
-    '. weather . food .'
-    '. weather . food .';
+    '. map .'
+    '. map .'
+    '. map .'
+    '. weather .'
+    '. weather .'
+    '. food .'
+    '. food .'
+    '. food .';
 }
 
 .weatherDiv {
@@ -105,40 +117,67 @@ nav > ul {
   margin: auto;
   margin-top: 25px;
   margin-bottom: 25px;
-  border: groove  rgb(121, 22, 15) 10px;
+  border: groove  rgb(228, 38, 25) 10px;
 
 }
 
 .weatherList {
   margin: 20px;
-  color:  rgb(121, 22, 15);
+  color:  rgb(166, 247, 186);
+  font-size: 50px;
   text-align: center;
+}
+
+.weatherList > h2:first-child {
+  margin-bottom: 20px;
 }
 
 .foodDiv {
   display: flex;
   justify-content: center;
   background-color: rgb(98, 172, 117);
-  width: 500px;
+  width: 420px;
   margin: auto;
-  margin-top: 25px;
-  margin-bottom: 25px;
-  border: groove  rgb(121, 22, 15) 10px;
-
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border: groove  rgb(228, 38, 25) 10px;
 }
 
 .foodList {
   margin: 20px;
-  color:  rgb(121, 22, 15);
+  color:  rgb(166, 247, 186);
   text-align: center;
   width: 500px;
 }
 
+.foodList > h2 {
+  font-size: 40px;
+}
+
+.foodList > h3 {
+  font-size: 30px;
+  margin: 10px;
+}
+
 .foodList > img {
-  width: 250px;
+  width: 275px;
+  margin: 10px 0px 10px 0px;
+  border: groove rgb(228, 38, 25) 10px;
+}
+
+.button {
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: 25px;
+  background-color: rgb(40, 99, 98);
+  color:  rgb(166, 247, 186);
+  border: outset rgb(40, 99, 98) 10px;
 }
 
 /* ==================== End of Index2.ejs ==================== */
+
+/* ==================== Beginning of Anime.ejs ==================== */
+
+/* ==================== End of Anime.ejs ==================== */
 
 /* ==================== Beginning of Index3.ejs ==================== */
 
@@ -156,7 +195,7 @@ nav > ul {
 
 .animeList > img {
   margin: auto;
-  border: groove rgb(121, 22, 15) 10px;
+  border: groove rgb(228, 38, 25) 10px;
 }
 
 #animeUL {
@@ -173,8 +212,14 @@ nav > ul {
 
 /* ==================== Base Rules ==================== */
 
-html,
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
+  width: 480px;
   height: 100%;
   margin: 0;
   padding: 0;
@@ -188,36 +233,191 @@ footer {
   margin-top: 50px;
 }
 
-/* ==================== Other breakpoints ==================== */
 
-@media only screen and (min-width: 600px) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* @media only screen and (min-width: 525px) {
   #map {
     width: 700px;
     height: 700px;
     margin: auto;
-    border: groove rgb(121, 22, 15) 10px;
-  }
+    border: groove rgb(228, 38, 25) 10px;
+  } */
   
-  html,
-  body {
+  /* ==================== Base Rules ==================== */
+
+  /* html {
     height: 100%;
     margin: 0;
     padding: 0;
-  }
-}
+    }
 
-@media only screen and (min-width: 1000px) {
+  body {
+    width: 980px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  } */
+
+  /* ==================== Beginning of Footer ==================== */
+
+  /* footer {
+    background-color: rgb(40, 99, 98);
+    height: 200px;
+    margin-top: 50px;
+  } */
+/* } */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==================== Other breakpoints ==================== */
+
+@media only screen and (min-width: 515px) {
+
+  /* ==================== Beginning of Index.ejs ==================== */
+
+  .title {
+    text-align: center;
+    margin: 30px 0px 50px 0px;
+    font-weight: bold;
+    font-size: 50px;
+    text-decoration: underline;
+    color: rgb(228, 38, 25);
+    text-align: center;
+  }
+
+  #users {
+    visibility: hidden; 
+  }
+
   #map {
-    width: 100%;
+    width: 90%;
     height: 75%;
     margin: auto;
-    border: groove rgb(121, 22, 15) 10px;
+    border: groove rgb(228, 38, 25) 10px;
   }
-  
-  html,
-  body {
+
+  /* ==================== Beginning of Index2.ejs ==================== */
+
+  .ul {
+    background-color: rgb(126, 213, 197);
+  }
+
+  #bigWeatherDiv {
+    grid-area: weather;
+  }
+
+  #bigFoodDiv {
+    grid-area: food;
+  }
+
+  #bigKahunaDiv {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: auto;
+    grid-template-areas:
+      '. weather . food .'
+      '. weather . food .'
+      '. weather . food .';
+  }
+
+.weatherDiv {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(98, 172, 117);
+  width: 300px;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  border: groove  rgb(228, 38, 25) 10px;
+
+}
+
+.weatherList {
+  margin: 20px;
+  color:  rgb(228, 38, 25);
+  text-align: center;
+}
+
+.foodDiv {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(98, 172, 117);
+  width: 500px;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  border: groove  rgb(228, 38, 25) 10px;
+
+}
+
+  .foodList {
+    margin: 20px;
+    color:  rgb(228, 38, 25);
+    text-align: center;
+    width: 500px;
+  }
+
+  .foodList > img {
+    width: 250px;
+  }
+
+  /* ==================== Base Rules ==================== */
+
+  html {
     height: 100%;
     margin: 0;
     padding: 0;
+  }
+
+  body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* ==================== Beginning of Footer ==================== */
+
+  footer {
+    background-color: rgb(40, 99, 98);
+    height: 200px;
+    margin-top: 50px;
   }
 }
