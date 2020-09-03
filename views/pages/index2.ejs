@@ -3,18 +3,18 @@
 
   <%- include('../layout/head', {users : users}) %>
 
-<body>
+<body class='dataBody'>
 
   <%- include('../layout/header', {users : users}) %>
 
-  <h1 class='title'>You chose <%= data.city %>!</h1>
+  <h1 class='title2'>You chose <%= data.city %>!</h1>
 
   <div id='map'></div>
   
   <div id='bigKahunaDiv'>
     <div id='bigWeatherDiv'>
       <ul class='ul'>
-        <h2>The weather for the week:</h2> 
+        <h2 class='title2'>The weather for the week:</h2> 
         <% data.weatherData.forEach(weather => { %>
         <div class='weatherDiv'>
           <li class='weatherList'>
@@ -28,10 +28,11 @@
   
     <div id='bigFoodDiv'>
       <ul class='ul'>
+        <h2 class='title2'>Restaurants in the area:</h2>
         <% data.yelpData.forEach(food => { %>
         <div class='foodDiv'>
           <li class='foodList'>
-            <h2><%= food.name %> </h2>
+            <h2> <%= food.name %> </h2>
             <img src='<%= food.image_url %>' alt=''>
             <h3>Price: <%= food.price %></h3>
             <h3><%= food.rating %> &#11088;</h3>

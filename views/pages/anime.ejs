@@ -7,17 +7,23 @@
 
   <%- include('../layout/header', {users : users}) %>
 
-  <h1 class='title'>Anime</h1>
+  <h1 class='title'>Anime characters</h1>
   
   <form action="/animeForm" method="POST">
     <fieldset>
-      <input type="text" name="animeName" value="animeName">
+      <input class='mainSearchButton' type="text" name="animeName" value="">
 
       <input type="hidden" name="user_name" value="<%= users %>">
       
-      <input type="submit" value="Find anime characters">
+      <input class='mainButton' type="submit" value="Search Anime Character">
     </fieldset>
   </form>
+
+  <div id='heroes'>
+    <img id='naruto' src='img/naruto.jpg' alt='Naruto'>
+    <img id='goku' src='img/goku.jpg' alt='Goku'>
+    <img id='luffy' src='img/luffy.jpg' alt='Luffy'>
+  </div>
 
   <%- include('../layout/footer', {users : users}) %>
 

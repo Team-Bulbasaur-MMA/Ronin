@@ -11,8 +11,8 @@
 
   <form action="/user" method="POST">
     <fieldset>
-      <input type="text" name="username" value="name">
-      <input type="submit" value="Enter here">
+      <input class='mainSearchButton' type="text" name="username" value="Type Here">
+      <input class='mainButton' type="submit" value="Submit">
     </fieldset>
   </form>
 
@@ -21,6 +21,8 @@
     <img id="mascotimg" src="img/mascot.jpeg" alt="Japanese Daruma Mascot" title="Japanese Daruma Mascot by Amelia Waggoner">
     <img id="tokyotowerimg" src="img/tokyotower.jpeg" alt="Tokyo Tower, Tokyo, Japan" title="Tokyo Tower by Amelia Waggoner">
   </div>
+
+  <%- include('../layout/footer') %>
 
 </body>
 </html>

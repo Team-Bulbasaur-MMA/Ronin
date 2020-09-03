@@ -66,15 +66,6 @@ function saveAnime(req, res){
     .catch(error => console.error(error));
 }
 
-// function getFavorites(req, res){
-//   client.query('SELECT * FROM anime_table')
-//     .then(result => {
-//       console.log(result);
-//       res.render('/collection', {anime: result.rows});
-//     })
-//     .catch(error => console.error(error));
-// }
-
 function saveRestuarants(req, res){
   const {name, image_url, price, rating, address, phone, user_name} = req.body;
   const SQL = `INSERT INTO food_table (name, image_url, price, rating, address, phone, owner) VALUES ($1, $2, $3, $4, $5, $6, $7)`;

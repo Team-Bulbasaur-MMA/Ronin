@@ -1,5 +1,5 @@
 * {
-  /* outline: dashed red 2px; */
+  outline: dashed red 2px;
   box-sizing: border-box;
 }
 
@@ -48,7 +48,65 @@ nav > ul {
 
 /* ==================== End of Header ==================== */
 
+/* ==================== Beginning of Login.ejs ==================== */
+
+.mainSearchButton {
+  width: 300px;
+  text-align: center;
+  display: block;
+  margin: auto;
+  margin-bottom: 15px;
+  border: inset rgb(40, 99, 98) 5px;
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: 25px;
+}
+
+.mainButton {
+  width: 300px;
+  text-align: center;
+  display: block;
+  margin: auto;
+  margin-bottom: 30px;
+  border: outset rgb(40, 99, 98) 10px;
+  background-color: rgb(40, 99, 98);
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: 25px;
+  color:  rgb(166, 247, 186);
+}
+
+.loginimgdiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#templeimg {
+  height: 300px;
+  width: 300px;
+  border: groove rgb(98, 172, 117) 15px;
+  margin-bottom: 30px;
+ }
+ 
+ #mascotimg {
+  height: 300px;
+  width: 400px;
+  border: groove rgb(98, 172, 117) 15px;
+  margin-bottom: 30px;
+ }
+ 
+ #tokyotowerimg {
+  height: 300px;
+  width: 300px;
+  border: groove rgb(98, 172, 117) 15px;
+ }
+
+/* ==================== End of Login.ejs ==================== */
+
 /* ==================== Beginning of Index.ejs ==================== */
+
+#users {
+  visibility: hidden;
+}
 
 .title {
   text-align: center;
@@ -56,7 +114,6 @@ nav > ul {
   font-size: 50px;
   text-decoration: underline;
   color: rgb(228, 38, 25);
-  text-align: center;
 }
 
 #users {
@@ -75,16 +132,6 @@ nav > ul {
 /* ==================== End of Index.ejs ==================== */
 
 /* ==================== Beginning of Index2.ejs ==================== */
-
-.ul {
-  background-color: rgb(126, 213, 197);
-}
-
-.ul > h2 {
-  text-align: center;
-  color: rgb(228, 38, 25);
-  font-size: 50px;
-}
 
 #bigWeatherDiv {
   grid-area: weather;
@@ -168,8 +215,8 @@ nav > ul {
 .button {
   font-family: 'Ma Shan Zheng', cursive;
   font-size: 25px;
-  background-color: rgb(40, 99, 98);
   color:  rgb(166, 247, 186);
+  background-color: rgb(40, 99, 98);
   border: outset rgb(40, 99, 98) 10px;
 }
 
@@ -177,38 +224,156 @@ nav > ul {
 
 /* ==================== Beginning of Anime.ejs ==================== */
 
+.mainSearchButton {
+  width: 300px;
+  text-align: center;
+  display: block;
+  margin: auto;
+  margin-bottom: 15px;
+  border: inset rgb(40, 99, 98) 5px;
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: 25px;
+}
+
+.mainButton {
+  width: 300px;
+  text-align: center;
+  display: block;
+  margin: auto;
+  margin-bottom: 30px;
+  border: outset rgb(40, 99, 98) 10px;
+  background-color: rgb(40, 99, 98);
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: 25px;
+  color:  rgb(166, 247, 186);
+}
+
+#heroes > img {
+  width: 175px;
+  height: 375px;
+  border: groove rgb(228, 38, 25) 10px;
+  margin: auto;
+}
+
+#naruto {
+  grid-area: n;
+}
+
+#goku {
+  grid-area: g;
+}
+
+#luffy {
+  grid-area: l;
+}
+
+#heroes {
+  display: grid;
+  grid-auto-rows: auto;
+  grid-template-areas:
+    '. . . . g g . . . .'
+    '. . . . g g . . . .'
+    '. . . . g g . . . .'
+    '. . n n n l l l . .'
+    '. . n n n l l l . .'
+    '. . n n n l l l . .';
+}
+
 /* ==================== End of Anime.ejs ==================== */
 
 /* ==================== Beginning of Index3.ejs ==================== */
 
-.animeList {
-  grid-area: anime;
-  display: grid;
-
+.dataBody {
+  background-image: url("../img/mi-min-YGctel-oqYY-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
-.animeList > h2 {
+.title2 {
   text-align: center;
-  font-size: 45px;
-  margin: 30px 0px 15px 0px;
-}
-
-.animeList > img {
   margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 50px;
+  text-decoration: underline;
+  color: rgb(40, 99, 98);
+  background-color: rgb(166, 247, 186);
+  width: 300px;
   border: groove rgb(228, 38, 25) 10px;
+  display: block;
 }
 
 #animeUL {
-  display: grid;
-  grid-template-columns: 33.33% 33.33% 33.33%;
-  grid-template-rows: auto;
-  grid-template-areas: 
-    'anime anime anime'
-    'anime anime anime'
-    'anime anime anime'
+  display: flex;
+  flex-direction: column;
+}
+
+.animeList {
+  margin-bottom: 30px;
+}
+
+#animeForm {
+  display: flex;
+  flex-direction: column;
+}
+
+#animeForm > h2 {
+  text-align: center;
+  font-size: 45px;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  border: groove rgb(228, 38, 25) 10px;
+  background-color: rgb(166, 247, 186);
+  width: 250px;
+  display: block;
+}
+
+#animeForm >  img {
+  margin: auto;
+  border: groove rgb(228, 38, 25) 10px;
+  margin-bottom: 15px;
+}
+
+.button2 {
+  display: block;
+  margin: auto;
+  width: 250px;
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: 25px;
+  color:  rgb(166, 247, 186);
+  background-color: rgb(40, 99, 98);
+  border: outset rgb(40, 99, 98) 10px;
 }
 
 /* ==================== End of Index3.ejs ==================== */
+
+/* ==================== Beginning of Collection.ejs ==================== */
+
+.favAnimeList {
+  display: flex;
+  flex-direction: column;
+}
+
+.favAnimeList > h2 {
+  text-align: center;
+  font-size: 45px;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  border: groove rgb(228, 38, 25) 10px;
+  background-color: rgb(166, 247, 186);
+  width: 250px;
+  display: block;
+}
+
+.favAnimeList >  img {
+  margin: auto;
+  border: groove rgb(228, 38, 25) 10px;
+  margin-bottom: 15px;
+}
+
+/* ==================== End of Collection.ejs ==================== */
 
 /* ==================== Base Rules ==================== */
 
@@ -252,41 +417,6 @@ footer {
 
 
 
-
-
-
-
-/* @media only screen and (min-width: 525px) {
-  #map {
-    width: 700px;
-    height: 700px;
-    margin: auto;
-    border: groove rgb(228, 38, 25) 10px;
-  } */
-  
-  /* ==================== Base Rules ==================== */
-
-  /* html {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    }
-
-  body {
-    width: 980px;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  } */
-
-  /* ==================== Beginning of Footer ==================== */
-
-  /* footer {
-    background-color: rgb(40, 99, 98);
-    height: 200px;
-    margin-top: 50px;
-  } */
-/* } */
 
 
 
