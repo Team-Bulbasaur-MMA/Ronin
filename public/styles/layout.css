@@ -15,6 +15,10 @@ body {
   /* Link for the custom google font: <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet"> */
 }
 
+footer {
+  text-align: center;
+}
+
 /* Animated Weather Icons - https://codepen.io/joshbader/pen/EjXgqr */
 /* Put it on the home page */
 .icon {
