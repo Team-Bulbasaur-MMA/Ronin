@@ -7,17 +7,18 @@
 
   <%- include('../layout/header', {users : users}) %>
 
-  <h1 class='title'>List of Characters <%= users %></h1>
+  <h1 class='title'>List of Characters</h1>
   <% console.log('you hit it', users) %>
   <ul id='animeUL'>
     <% animeList.forEach(baka => { %>
       <div>
         <li class='animeList'>
-        <form action="collection" method="POST">
+        <form action="/anime" method="POST">
             <h2><%= baka.name %></h2>
             <img src='<%= baka.image_url %>' alt=''>
             <input name='name' type='hidden' value='<%= baka.name %>'>
             <input name='image_url' type='hidden' value='<%= baka.image_url %>'>
+            <input name='user_name' type='hidden' value='<%= users %>'>
             <button type='submit' value='Add to Collections'>Add to Collections</button>
           </form>
           

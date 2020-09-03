@@ -31,20 +31,20 @@ app.post('/show', getMapData);
 app.get('/location/:title/:lat/:lng', renderIndex2);
 app.get('/index', renderHomePage);
 app.get('/collection', renderCollectionPage);
-app.get('/aboutUs', renderAboutUsPage)
+app.get('/aboutUs', renderAboutUsPage);
 app.get('/anime', renderAnime);
-app.post('/animeForm', renderIndex3)
+app.post('/animeForm', renderIndex3);
 
-app.post('/collection', saveFavorites);
-app.delete('/collection/:id', deleteItem);
+app.post('/anime', saveAnime);
+app.delete('/anime/:id', deleteAnime);
 
-app.post('/collection',saveUserInfoRestuarant);
-app.delete('/collection/:id', deleteRestaurants);
+app.post('/restaurants', saveRestuarants);
+app.delete('/restaurants/:id', deleteRestaurants);
 
 
 //===================================================== Functions ==================================================================
 
-function deleteItem (req, res){
+function deleteAnime (req, res){
   const id = req.params.id;
   const sql = 'DELETE FROM anime_table WHERE id=$1';
   client.query(sql, [id])
@@ -53,7 +53,7 @@ function deleteItem (req, res){
     });
 }
 
-function saveFavorites(req, res){
+function saveAnime(req, res){
   const {name, image_url} = req.body;
 
   const sql =`INSERT INTO anime_table (name, image_url) VALUES ($1, $2)`;
@@ -61,7 +61,7 @@ function saveFavorites(req, res){
 
   client.query(sql, animeArray)
     .then(() => {
-      res.redirect(`/collection?user_name=${req.query.username}`);
+      res.redirect(`/collection?user_name=${req.body.user_name}`);
     })
     .catch(error => console.error(error));
 }
@@ -75,15 +75,15 @@ function saveFavorites(req, res){
 //     .catch(error => console.error(error));
 // }
 
-function saveUserInfoRestuarant(req, res){
+function saveRestuarants(req, res){
   const {name, image_url, price, rating, address, phone} = req.body;
-  const SQL = `INSERT INTO food_table (name, image_url, price, rating, address, phone) VALUES ($1, $2, $3, $4, $5, $6)`
+  const SQL = `INSERT INTO food_table (name, image_url, price, rating, address, phone) VALUES ($1, $2, $3, $4, $5, $6)`;
   const foodArr = [name, image_url, price, rating, address, phone];
 
   client.query(SQL, foodArr)
-  .then(() => {
-      res.redirect(`/collection?user_name=${req.body.username}`);
-  })
+    .then(() => {
+      res.redirect(`/collection?user_name=${req.body.user_name}`);
+    });
 }
 
 function deleteRestaurants(req, res){
@@ -91,9 +91,9 @@ function deleteRestaurants(req, res){
   console.log(req.params.id);
   const SQL = 'DELETE FROM food_table WHERE id=$1';
   client.query(SQL, [id])
-   .then( () => {
-     res.redirect(`/collection?user_name=${req.query.username}`);
-});
+    .then( () => {
+      res.redirect(`/collection?user_name=${req.query.username}`);
+    });
 
 }
 
@@ -162,7 +162,7 @@ function getUserName(req, res){
   const SQL = 'SELECT * FROM user_table;';
   client.query(SQL)
     .then(result =>{
-      console.log(result.rows)
+      console.log(result.rows);
       res.render('pages/login', {users : result.rows[0]});
     })
     .catch(error => console.error(error));
@@ -175,7 +175,7 @@ function insertUserFromSQL(req, res){
     .then(result =>{
       res.redirect(`/index?user_name=${req.body.username}`);
     })
-  .catch(error => console.error(error));
+    .catch(error => console.error(error));
 }
 
 function renderHomePage(req, res){
@@ -186,14 +186,17 @@ function renderHomePage(req, res){
 
 function renderCollectionPage(req, res){
   const user_name = req.query.user_name;
-  // how can i get the username to be entered here? Each obj saved will need to reference user_name
-
-    client.query('SELECT * FROM food_table')
-  .then(result => {
-    res.render(`pages/collection`, {food : result.rows, users : user_name, anime: result.rows});
-//   client.query('SELECT * FROM anime_table')
-//     .then(result => {
-})
+  
+  let dataObj = {};
+  client.query('SELECT * FROM food_table')
+    .then((results) => {
+      dataObj.foodData = results.rows;
+    });
+  client.query('SELECT * FROM anime_table')
+    .then(results => {
+      dataObj.animeData = results.rows;
+      res.render(`pages/collection`, {data : dataObj, users : user_name });
+    });
 }
 
 function renderAboutUsPage(req, res){
