@@ -63,15 +63,6 @@ function saveAnime(req, res){
     .catch(error => console.error(error));
 }
 
-// function getFavorites(req, res){
-//   client.query('SELECT * FROM anime_table')
-//     .then(result => {
-//       console.log(result);
-//       res.render('/collection', {anime: result.rows});
-//     })
-//     .catch(error => console.error(error));
-// }
-
 function saveRestuarants(req, res){
   const {name, image_url, price, rating, address, phone, user_name} = req.body;
   const SQL = `INSERT INTO food_table (name, image_url, price, rating, address, phone, owner) VALUES ($1, $2, $3, $4, $5, $6, $7)`;
@@ -95,6 +86,7 @@ function deleteRestaurants(req, res){
 }
 
 function renderIndex2 (req, res){
+  const title = req.params.title;
   const lat = req.params.lat;
   const lng = req.params.lng;
   const mapKey = process.env.MAP_API_KEY;
@@ -103,8 +95,8 @@ function renderIndex2 (req, res){
   let yelpUrl = `https://api.yelp.com/v3/businesses/search?latitude=${lat}&longitude=${lng}&limit=10`;
 
   let monsterObj = {};
+  monsterObj.city = title;
   const user_name = req.query.user_name;
-
   superagent.get(urlToSearchWeather)
     .then(results => {
       const weather = results.body.data;
@@ -181,9 +173,9 @@ function renderHomePage(req, res){
 
 function renderCollectionPage(req, res){
   const user_name = req.query.user_name;
-  
+
   let dataObj = {};
-  client.query('SELECT * FROM food_table WHERE owner=$1', [user_name]) 
+  client.query('SELECT * FROM food_table WHERE owner=$1', [user_name])
     .then((results) => {
       dataObj.foodData = results.rows;
     });

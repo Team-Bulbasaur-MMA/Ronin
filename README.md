@@ -74,3 +74,4 @@
 - Shoutout to Skyler for helping with rendering Google Maps on to your homepage.
 - Shoutout to Skyler for helping with sending info from front end to server to use in APIs.
 - Shoutout to Chance for helping with rendering multiple data from APIs through single route.
+-[Making the star for Yelp ratings](https://www.alt-codes.net/star_alt_code.php#:~:text=Press%20and%20hold%20the%20ALT,or%20copy%20paste%20the%20character.)

@@ -3,14 +3,17 @@
 
   <%- include('../layout/head', {users : users}) %>
 
-<body>
+<body class='dataBody'>
 
   <%- include('../layout/header', {users : users}) %>
 
-  <h1 class='title'>Welcome to our site </h1>
+  <h1 class='title2'>You chose <%= data.city %>!</h1>
 
-  <!-- <div id='map'></div> -->
-  <!-- // use a foreign key with postgres -->
+
+  <div id='map'></div>
+  
+
+
   <!-- Animated Weather Icons - https://codepen.io/joshbader/pen/EjXgqr -->
   <h1>Weather</h1>
 
@@ -54,9 +57,11 @@
   <div class="rain"></div>
 </div>
 
+
   <div id='bigKahunaDiv'>
     <div id='bigWeatherDiv'>
       <ul class='ul'>
+        <h2 class='title2'>The weather for the week:</h2> 
         <% data.weatherData.forEach(weather => { %>
         <div class='weatherDiv'>
           <li class='weatherList'>
@@ -70,32 +75,30 @@
   
     <div id='bigFoodDiv'>
       <ul class='ul'>
+        <h2 class='title2'>Restaurants in the area:</h2>
         <% data.yelpData.forEach(food => { %>
         <div class='foodDiv'>
           <li class='foodList'>
-            <h2><%= food.name %> </h2>
+            <h2> <%= food.name %> </h2>
             <img src='<%= food.image_url %>' alt=''>
-            <h3><%= food.price %></h3>
-            <h3><%= food.rating %></h3>
-            <h3><%= food.address %></h3>
-            <h3><%= food.phone %></h3>
-            <h3><a><%= food.url %></a></h3>
+            <h3>Price: <%= food.price %></h3>
+            <h3><%= food.rating %> &#11088;</h3>
+            <h3>Address: <%= food.address %></h3>
+            <h3>Phone Number: <%= food.phone %></h3>
+            <form action="/restaurants" method="POST">
+             <fieldset>
+              <input type="hidden" name="name" value="<%= food.name %>"></input>
+              <input type="hidden" name="image_url" value="<%= food.image_url %>"></input>
+              <input type="hidden" name="price" value="<%= food.price %>"></input>
+              <input type="hidden" name="rating" value="<%= food.rating %>"></input>
+              <input type="hidden" name="address" value="<%= food.address %>"></input>
+              <input type="hidden" name="phone" value="<%= food.phone %>"></input>
+              <input type="hidden" name="user_name" value="<%= users %>"></input>
+              <input class='button' type="submit" value="Save this restaurant">
+             </fieldset>
+            </form>
           </li>
           
-          <form action="/restaurants" method="POST">
-           <fieldset>
-            <label for="addfood">Save this restaurant for later:</label>
-            <input type="hidden" name="name" value="<%= food.name %>"></input>
-            <input type="hidden" name="image_url" value="<%= food.image_url %>"></input>
-            <input type="hidden" name="price" value="<%= food.price %>"></input>
-            <input type="hidden" name="rating" value="<%= food.rating %>"></input>
-            <input type="hidden" name="address" value="<%= food.address %>"></input>
-            <input type="hidden" name="phone" value="<%= food.phone %>"></input>
-            <input type="hidden" name="url" value="<%= food.url %>"></input>
-            <input type="hidden" name="user_name" value="<%= users %>"></input>
-            <input type="submit" value="Save this restaurant">
-           </fieldset>
-          </form>
 
         </div>
       <% }) %>

@@ -3,25 +3,23 @@
 
   <%- include('../layout/head', {users : users}) %>
 
-<body>
+<body class='dataBody'>
 
   <%- include('../layout/header', {users : users}) %>
 
-  <h1 class='title'>List of Characters</h1>
-  <% console.log('you hit it', users) %>
+  <h1 class='title2'>List of Characters</h1>
   <ul id='animeUL'>
     <% animeList.forEach(baka => { %>
-      <div>
+      <div class='animeListDiv'>
         <li class='animeList'>
-        <form action="/anime" method="POST">
+        <form id ='animeForm' action="/anime" method="POST">
             <h2><%= baka.name %></h2>
             <img src='<%= baka.image_url %>' alt=''>
             <input name='name' type='hidden' value='<%= baka.name %>'>
             <input name='image_url' type='hidden' value='<%= baka.image_url %>'>
             <input name='user_name' type='hidden' value='<%= users %>'>
-            <button type='submit' value='Add to Collections'>Add to Collections</button>
-          </form>
-          
+            <button class='button2' type='submit' value='Add to Collections'>Add to Collection</button>
+        </form>
         </li>
       </div>
       <% }) %>
