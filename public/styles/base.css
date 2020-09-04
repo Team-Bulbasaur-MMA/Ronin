@@ -1,4 +1,12 @@
+/* Bulbasaur colors
+ light blue green color - rgb(126, 213, 197)
+ darker blue spots color - rgb(40, 99, 98)
+ green plant color - rgb(98, 172, 117)
+ red eye color - rgb(121, 22, 15);
+ */
+
 * {
+  outline: dashed red 2px;
   box-sizing: border-box;
 }
 
@@ -121,7 +129,7 @@ nav > ul {
   height: 420px;
   margin: auto;
   margin-bottom: 30px;
-  border: groove rgb(228, 38, 25) 10px;
+  border: groove rgb(40, 99, 98) 10px;
 }
 
 /* ==================== End of Index.ejs ==================== */
@@ -350,7 +358,169 @@ nav > ul {
   margin-bottom: 15px;
 }
 
+.collectiondiv {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+#kinkakujiimg {
+ width: 150px;
+ height: 150px;
+ border: groove rgb(40, 99, 98) 10px;
+ border-radius: 30px;
+ margin-top: 25px;
+ margin-bottom: 15px;
+}
+
+#foodimg {
+ width: 150px;
+ height: 150px;
+ border: groove rgb(40, 99, 98) 10px;
+ border-radius: 30px;
+ margin-top: 25px;
+ margin-bottom: 15px;
+}
+
+#uenoimg {
+  width: 150px;
+  height: 150px;
+  border: groove rgb(40, 99, 98) 10px;
+  border-radius: 30px;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+#landscapeimg {
+  width: 150px;
+  height: 150px;
+  border: groove rgb(40, 99, 98) 10px;
+  border-radius: 30px;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+#tokyoimg {
+  width: 150px;
+  height: 150px;
+  border: groove rgb(40, 99, 98) 10px;
+  border-radius: 30px;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
 /* ==================== End of Collection.ejs ==================== */
+
+/* ==================== Beginning of Aboutus.ejs ==================== */
+
+#marc {
+  grid-area: marc;
+}
+
+#amelia {
+  grid-area: amelia;
+}
+
+#matt {
+  grid-area: matt;
+}
+
+#kahunaAboutMe {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-auto-rows: auto;
+  grid-template-areas:
+    '. mission mission mission .'
+    '. mission mission mission .'
+    '. marc marc marc .'
+    '. marc marc marc .'
+    '. amelia amelia amelia .'
+    '. amelia amelia amelia .'
+    '. matt matt matt .'
+    '. matt matt matt .'
+    '. contact contact contact .'
+    '. contact contact contact .'
+}
+
+p {
+  font-size: 25px;
+}
+
+/* .ameliainfo {
+  
+  font-size: 25px;
+}
+
+#ameliapic {
+  border-radius: 50%;
+} */
+
+#missiondiv {
+  grid-area: mission;
+  display: block;
+  margin-top: 25px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* .liondogimg {
+  height: 200px;
+  width: 200px;
+  border: groove rgb(98, 172, 117) 15px;
+  margin-left: 200px;
+}
+
+.trainstationimg {
+  height: 200px;
+  width: 200px;
+  border: groove rgb(98, 172, 117) 15px;
+}
+
+.maskimg {
+  height: 200px;
+  width: 200px;
+  border: groove rgb(98, 172, 117) 15px;
+}
+
+.ramenimg {
+  height: 200px;
+  width: 200px;
+  border: groove rgb(98, 172, 117) 15px;
+} 
+
+#aboutmepic{
+  margin: 25px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#aboutme{
+  width: 900px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: none;
+} */
+
+#contact-us{
+  grid-area: contact;
+  margin-top: 30px;
+  margin-left: 30px;
+  background-color: rgb(126, 213, 197);
+}
+
+/* #center{
+  text-align: center;
+  font-size: 45px;
+}
+
+#form{
+  background-color: rgb(126, 213, 197);
+} */
+
+/* ==================== End of Aboutus.ejs ==================== */
 
 /* ==================== Base Rules ==================== */
 
@@ -365,15 +535,42 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  background-color: rgb(126, 213, 197);
+  color: rgb(40, 99, 98);
+  font-family: 'Ma Shan Zheng', cursive;
+  /* Link for the custom google font: <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet"> */
 }
 
 /* ==================== Beginning of Footer ==================== */
 
 footer {
+  text-align: center;
   background-color: rgb(40, 99, 98);
-  height: 200px;
+  height: 235px;
   margin-top: 50px;
+  color: rgb(126, 213, 197);
 }
+
+#footerT {
+  font-size: 40px;
+  padding-top: 10px;
+  margin-bottom: 20px;
+}
+
+footer > img {
+  border: groove rgb(126, 213, 197) 10px;
+  margin-bottom: 8px;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -407,7 +604,6 @@ footer {
     text-align: center;
     display: block;
     margin: auto;
-    margin-bottom: 30px;
     border: outset rgb(40, 99, 98) 10px;
     background-color: rgb(40, 99, 98);
     font-family: 'Ma Shan Zheng', cursive;
@@ -421,29 +617,21 @@ footer {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin-top: 300px;
+    margin-top: 150px;
   }
   
   #templeimg {
-    height: 300px;
-    width: 300px;
-    border: groove rgb(98, 172, 117) 15px;
-    margin-bottom: 30px;
+    width: 10px;
   }
   
   #mascotimg {
-    height: 300px;
-    width: 300px;
-    border: groove rgb(98, 172, 117) 15px;
-    margin-bottom: 30px;
+    width: 10px;
   }
   
   #tokyotowerimg {
-    height: 300px;
-    width: 300px;
-    border: groove rgb(98, 172, 117) 15px;
-    margin-bottom: 30px;
+    width: 10px;
   }
+
 
 /* ==================== End of Login.ejs ==================== */
 
@@ -468,7 +656,7 @@ footer {
     width: 90%;
     height: 75%;
     margin: auto;
-    border: groove rgb(228, 38, 25) 10px;
+    border: groove rgb(40, 99, 98) 10px;
   }
 
   /* ==================== Beginning of Index2.ejs ==================== */
@@ -562,7 +750,138 @@ footer {
     justify-content: space-evenly;
   }
 
+  .collectiondiv {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+  
+  #kinkakujiimg {
+   height: 150px;
+   width: 150px;
+   border: groove rgb(40, 99, 98) 15px;
+   border-radius: 30px;
+   margin-top: 150px;
+  
+  }
+  
+  #foodimg {
+   height: 150px;
+   width: 150px;
+   border: groove rgb(40, 99, 98) 15px;
+   border-radius: 30px;
+   margin-top: 150px;
+  
+  }
+  
+  #uenoimg {
+    height: 150px;
+    width: 150px;
+    border: groove rgb(40, 99, 98) 15px;
+    border-radius: 30px;
+    margin-top: 150px;
+  
+  }
+  
+  #landscapeimg {
+    height: 150px;
+    width: 150px;
+    border: groove rgb(40, 99, 98) 15px;
+    border-radius: 30px;
+    margin-top: 150px;
+  
+  }
+  
+  #tokyoimg {
+    height: 150px;
+    width: 150px;
+    border: groove rgb(40, 99, 98) 15px;
+    border-radius: 30px;
+    margin-top: 150px;
+  
+  }
+
   /* ==================== End of Collection.ejs ==================== */
+
+  /* ==================== Beginning of Aboutus.ejs ==================== */
+
+  p {
+    font-size: 25px;
+  }
+
+  .ameliainfo {
+    
+    font-size: 25px;
+  }
+
+  #ameliapic {
+    border-radius: 50%;
+  }
+
+  #aboutdiv {
+    display: block;
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .liondogimg {
+    height: 200px;
+    width: 200px;
+    border: groove rgb(98, 172, 117) 15px;
+    margin-left: 200px;
+  }
+
+  .trainstationimg {
+    height: 200px;
+    width: 200px;
+    border: groove rgb(98, 172, 117) 15px;
+  }
+
+  .maskimg {
+    height: 200px;
+    width: 200px;
+    border: groove rgb(98, 172, 117) 15px;
+  }
+
+  .ramenimg {
+    height: 200px;
+    width: 200px;
+    border: groove rgb(98, 172, 117) 15px;
+  } 
+
+  #aboutmepic{
+    margin: 25px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #aboutme{
+    width: 900px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: none;
+  }
+
+  #contact-us{
+    margin-top: 30px;
+    margin-left: 30px;
+    background-color: rgb(126, 213, 197);
+  }
+
+  #center{
+    text-align: center;
+    font-size: 45px;
+  }
+
+  #form{
+    background-color: rgb(126, 213, 197);
+  }
+
+  /* ==================== End of Aboutus.ejs ==================== */
 
   /* ==================== Base Rules ==================== */
 
@@ -582,8 +901,22 @@ footer {
   /* ==================== Beginning of Footer ==================== */
 
   footer {
+    text-align: center;
     background-color: rgb(40, 99, 98);
-    height: 200px;
+    height: 235px;
     margin-top: 50px;
+    color: rgb(126, 213, 197);
   }
+
+  #footerT {
+    font-size: 60px;
+    padding-top: 10px;
+    margin-bottom: 20px;
+  }
+
+  footer > img {
+    border: groove rgb(126, 213, 197) 10px;
+    margin-bottom: 8px;
+  }
+
 }
