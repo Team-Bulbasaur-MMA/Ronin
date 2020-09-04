@@ -719,6 +719,14 @@ footer > img {
 
   /* ==================== End of Index2.ejs ==================== */
 
+  /* ==================== Beginning of Anime.ejs ==================== */
+
+  #heroes {
+    margin-top: 50px;
+  }
+
+  /* ==================== End of Anime.ejs ==================== */
+
   /* ==================== Beginning of Index3.ejs ==================== */
 
   #animeUL {
@@ -831,17 +839,19 @@ footer > img {
   }
 
   #aboutdiv {
-    display: block;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    /* display: block;
     margin-top: 25px;
     margin-left: auto;
-    margin-right: auto;
+    margin-right: auto; */
   }
 
   .liondogimg {
     height: 200px;
     width: 200px;
     border: groove rgb(98, 172, 117) 15px;
-    margin-left: 200px;
   }
 
   .trainstationimg {
