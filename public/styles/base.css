@@ -6,7 +6,7 @@
  */
 
 * {
-  outline: dashed red 2px;
+  /* outline: dashed red 2px; */
   box-sizing: border-box;
 }
 
@@ -507,8 +507,6 @@ p {
 #contact-us{
   grid-area: contact;
   margin-top: 30px;
-  margin-left: 30px;
-  background-color: rgb(126, 213, 197);
 }
 
 /* #center{
@@ -695,6 +693,12 @@ footer > img {
     text-align: center;
   }
 
+  .weatherList > .icon {
+    font-size: .5em; /* control icon size here */
+    margin-top: 15px;
+    margin-right: 15px;
+  }
+
   #foodUl {
     display: flex;
     flex-direction: row;
@@ -806,6 +810,13 @@ footer > img {
 
   /* ==================== Beginning of Aboutus.ejs ==================== */
 
+  #missiondiv > p {
+    background-color: white;
+    border: groove rgb(40, 99, 98) 8px;
+    margin-top: 20px;
+    padding: 10px;
+  }
+
   p {
     font-size: 25px;
   }
@@ -858,18 +869,20 @@ footer > img {
     margin-right: auto;
   }
 
-  #aboutme{
-    width: 900px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: none;
+  #aboutme > p:nth-child(2) {
+    background-color: white;
+    border: groove rgb(40, 99, 98) 8px;
+    margin-top: 20px;
+    padding: 10px;
   }
 
   #contact-us{
-    margin-top: 30px;
-    margin-left: 30px;
-    background-color: rgb(126, 213, 197);
+    display: flex;
+    flex-direction: column;
+  }
+
+  #aboutUsButton {
+    margin: auto;
   }
 
   #center{
