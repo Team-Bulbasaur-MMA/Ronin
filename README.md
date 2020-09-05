@@ -9,19 +9,13 @@
 
 - Japan travel app that provides a map of the city with points of interest that a user can click on, and get information on food/ restaurants, anime locations/ stores, and buddhist temples/ shinto shrines. Cities: Tokyo, Kyoto, Osaka, Sapporo, and Hiroshima.
 
-## Getting Started
-
-<!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
-
 ## Architecture
 
-<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
+- Technologies & languages used: **HTML, JavaScript, CSS, jQuery, SQL, EJS**
 
-## Change Log
+- Packages: **Express, EJS, SuperAgent, PG, MethodOverride, dotenv**
 
-<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples:
-
-01-01-2001 4:59pm - Application now has a fully-functional express server, with GET and POST routes for the book resource.-->
+- APIs used: **Google Maps, Yelp, Weather, Anime Jikan**
 
 ## Team Agreement
 
@@ -74,4 +68,10 @@
 - Shoutout to Skyler for helping with rendering Google Maps on to your homepage.
 - Shoutout to Skyler for helping with sending info from front end to server to use in APIs.
 - Shoutout to Chance for helping with rendering multiple data from APIs through single route.
--[Making the star for Yelp ratings](https://www.alt-codes.net/star_alt_code.php#:~:text=Press%20and%20hold%20the%20ALT,or%20copy%20paste%20the%20character.)
+- [Making the star for Yelp ratings](https://www.alt-codes.net/star_alt_code.php#:~:text=Press%20and%20hold%20the%20ALT,or%20copy%20paste%20the%20character.)
+
+- [Animated Weather Icons](https://codepen.io/joshbader/pen/EjXgqr)
+
+- [Samurai Animation](https://www.codeseek.co/2xsamurai/css-samurai-animation-GvQpOj)
+
+-[Link for the custom google font]("https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap)

@@ -1,8 +1,7 @@
-//global var
+'use strict';
+
 const users = document.getElementById('users')
 let string = users.textContent;
-
-// use jquery
 
 function initMap() {
   const latLng = { lat: 38.9048, lng: 137.2529 };
@@ -47,11 +46,6 @@ function initMap() {
     const title = marker.title;
     const lat = marker.getPosition().lat();
     const lng = marker.getPosition().lng();
-    //If we have time and decide to go the DOM manipulation route to make transition look cleaner
-    // $.get(`/location/${title}/${lat}/${lng}`)
-    //   .then(data => {
-    //     console.log(data);
-    //   });
     // let url = `http://localhost:3000/location/${title}/${lat}/${lng}?user_name=${string}`;
     let url = `http://www.ronin-travelez.xyz/location/${title}/${lat}/${lng}?user_name=${string}`;
     window.location=url;
