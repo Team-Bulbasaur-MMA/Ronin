@@ -1,6 +1,5 @@
 'use strict';
 
-//===================================================== Packages ===================================================================
 require('dotenv').config();
 const express = require('express');
 const pg = require('pg');
@@ -8,39 +7,34 @@ const superagent = require('superagent');
 const methodOverride = require('method-override');
 const app = express();
 
-//===================================================== Global Vars =================================================================
+
 const PORT = process.env.PORT || 3001;
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 
+
 const client = new pg.Client(process.env.DATABASE_URL);
 client.on('error', console.error);
-
 const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
 const mapKey = process.env.MAP_API_KEY;
 
-//===================================================== Routes =====================================================================
+
 app.get('/', getUserName);
 app.post('/user', insertUserFromSQL);
-
 app.post('/show', getMapData);
-
 app.get('/location/:title/:lat/:lng', renderIndex2);
 app.get('/index', renderHomePage);
 app.get('/collection', renderCollectionPage);
 app.get('/aboutUs', renderAboutUsPage);
 app.get('/anime', renderAnime);
 app.post('/animeForm', renderIndex3);
-
 app.post('/anime', saveAnime);
 app.delete('/anime/:id', deleteAnime);
-
 app.post('/restaurants', saveRestuarants);
 app.delete('/restaurants/:id', deleteRestaurants);
 
-//===================================================== Functions ==================================================================
 function deleteAnime (req, res){
   const id = req.params.id;
   const sql = 'DELETE FROM anime_table WHERE id=$1';
@@ -218,7 +212,6 @@ function renderIndex3(req, res){
     .catch(error => console.error(error));
 }
 
-//===================================================== Constructor ================================================================
 function Weather(weatherObj){
   this.forecast = weatherObj.weather.description;
   this.time = weatherObj.valid_date;
@@ -242,7 +235,6 @@ function Anime(animeObj){
   this.anime = animeObj.anime;
 }
 
-//===================================================== Start Server ===============================================================
 client.connect()
   .then(() => {
     app.listen(PORT, () => console.log(`This is running the server on PORT : ${PORT} working`));

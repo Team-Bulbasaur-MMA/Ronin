@@ -1,12 +1,571 @@
+.link {
+  background-color: rgb(126, 213, 197);
+  border: outset rgb(126, 213, 197) 10px;
+}
+
+#logo > h1 {
+  margin-left: 25px;
+  font-size: 50px;
+  margin: auto; 
+}
+
+#logo > img {
+  width: 85px;
+  margin: auto;
+}
+
+.mainSearchButton {
+  width: 300px;
+  text-align: center;
+  display: block;
+  margin: auto;
+  margin-bottom: 15px;
+  border: inset rgb(40, 99, 98) 5px;
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: 25px;
+}
+
+.mainButton {
+  width: 300px;
+  text-align: center;
+  display: block;
+  margin: auto;
+  margin-bottom: 30px;
+  border: outset rgb(40, 99, 98) 10px;
+  background-color: rgb(40, 99, 98);
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: 25px;
+  color:  rgb(166, 247, 186);
+}
+
+#templeimg {
+  height: 300px;
+  width: 300px;
+  border: groove rgb(98, 172, 117) 15px;
+  margin-bottom: 30px;
+}
+ 
+#mascotimg {
+  height: 300px;
+  width: 400px;
+  border: groove rgb(98, 172, 117) 15px;
+  margin-bottom: 30px;
+}
+ 
+#tokyotowerimg {
+  height: 300px;
+  width: 300px;
+  border: groove rgb(98, 172, 117) 15px;
+}
+
+#users {
+  visibility: hidden;
+}
+
+.title {
+  text-align: center;
+  margin: 30px 0px 30px 0px;
+  font-size: 50px;
+  text-decoration: underline;
+  color: rgb(228, 38, 25);
+}
+
+.weatherList {
+  margin: 20px;
+  color:  rgb(166, 247, 186);
+  font-size: 50px;
+  text-align: center;
+}
+
+.weatherList > h2:first-child {
+  margin-bottom: 20px;
+}
+
+.foodList {
+  margin: 20px;
+  color:  rgb(166, 247, 186);
+  text-align: center;
+  width: 500px;
+}
+
+.foodList > h2 {
+  font-size: 40px;
+}
+
+.foodList > h3 {
+  font-size: 30px;
+  margin: 10px;
+}
+
+.foodList > img {
+  width: 275px;
+  margin: 10px 0px 10px 0px;
+  border: groove rgb(228, 38, 25) 10px;
+}
+
+.button {
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: 25px;
+  color:  rgb(166, 247, 186);
+  background-color: rgb(40, 99, 98);
+  border: outset rgb(40, 99, 98) 10px;
+}
+
+.mainSearchButton {
+  width: 300px;
+  text-align: center;
+  display: block;
+  margin: auto;
+  margin-bottom: 15px;
+  border: inset rgb(40, 99, 98) 5px;
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: 25px;
+}
+
+.mainButton {
+  width: 300px;
+  text-align: center;
+  display: block;
+  margin: auto;
+  margin-bottom: 30px;
+  border: outset rgb(40, 99, 98) 10px;
+  background-color: rgb(40, 99, 98);
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: 25px;
+  color:  rgb(166, 247, 186);
+}
+
+#heroes > img {
+  width: 175px;
+  height: 375px;
+  border: groove rgb(228, 38, 25) 10px;
+  margin: auto;
+}
+
+.dataBody {
+  background-image: url("../img/mi-min-YGctel-oqYY-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.title2 {
+  text-align: center;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 50px;
+  text-decoration: underline;
+  color: rgb(40, 99, 98);
+  background-color: rgb(166, 247, 186);
+  width: 300px;
+  border: groove rgb(228, 38, 25) 10px;
+  display: block;
+}
+
+.animeList {
+  margin-bottom: 30px;
+}
+
+#animeForm > h2 {
+  text-align: center;
+  font-size: 45px;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  border: groove rgb(228, 38, 25) 10px;
+  background-color: rgb(166, 247, 186);
+  width: 250px;
+  display: block;
+}
+
+#animeForm >  img {
+  margin: auto;
+  border: groove rgb(228, 38, 25) 10px;
+  margin-bottom: 15px;
+}
+
+.button2 {
+  display: block;
+  margin: auto;
+  width: 250px;
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: 25px;
+  color:  rgb(166, 247, 186);
+  background-color: rgb(40, 99, 98);
+  border: outset rgb(40, 99, 98) 10px;
+}
+
+.favAnimeList > h2 {
+  text-align: center;
+  font-size: 45px;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  border: groove rgb(228, 38, 25) 10px;
+  background-color: rgb(166, 247, 186);
+  width: 250px;
+  display: block;
+}
+
+.favAnimeList >  img {
+  margin: auto;
+  border: groove rgb(228, 38, 25) 10px;
+  margin-bottom: 15px;
+}
+
+#kinkakujiimg {
+  width: 150px;
+  height: 150px;
+  border: groove rgb(40, 99, 98) 10px;
+  border-radius: 30px;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+ 
+#foodimg {
+width: 150px;
+height: 150px;
+border: groove rgb(40, 99, 98) 10px;
+border-radius: 30px;
+margin-top: 25px;
+margin-bottom: 15px;
+}
+
+#uenoimg {
+  width: 150px;
+  height: 150px;
+  border: groove rgb(40, 99, 98) 10px;
+  border-radius: 30px;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+#landscapeimg {
+  width: 150px;
+  height: 150px;
+  border: groove rgb(40, 99, 98) 10px;
+  border-radius: 30px;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+#tokyoimg {
+  width: 150px;
+  height: 150px;
+  border: groove rgb(40, 99, 98) 10px;
+  border-radius: 30px;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+p {
+  font-size: 25px;
+}
+
+.ameliainfo {
+  font-size: 25px;
+}
+
+#ameliapic {
+  border-radius: 50%;
+}
+
+.liondogimg {
+  height: 100px;
+  width: 100px;
+  border: groove rgb(98, 172, 117) 8px;
+}
+
+.trainstationimg {
+  height: 100px;
+  width: 100px;
+  border: groove rgb(98, 172, 117) 8px;
+}
+
+.maskimg {
+  height: 100px;
+  width: 100px;
+  border: groove rgb(98, 172, 117) 8px;
+}
+
+.ramenimg {
+  height: 100px;
+  width: 100px;
+  border: groove rgb(98, 172, 117) 8px;
+} 
+
+#aboutmepic{
+  margin: 25px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#aboutme > p:nth-child(2) {
+  background-color: white;
+  border: groove rgb(40, 99, 98) 8px;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+#contact-us{
+  display: flex;
+  flex-direction: column;
+}
+
+#aboutUsButton {
+  margin: auto;
+}
+
+#center{
+  text-align: center;
+  font-size: 45px;
+}
+
+#form{
+  background-color: rgb(126, 213, 197);
+}
+
+#footerT {
+  font-size: 40px;
+  padding-top: 10px;
+  margin-bottom: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
 @media only screen and (min-width: 515px) {
 
-  /* Animated Weather Icons - https://codepen.io/joshbader/pen/EjXgqr */
+  .mainSearchButton {
+    width: 300px;
+    text-align: center;
+    display: block;
+    margin: auto;
+    margin-bottom: 15px;
+    border: inset rgb(40, 99, 98) 5px;
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 25px;
+  }
+
+  .mainButton {
+    width: 300px;
+    text-align: center;
+    display: block;
+    margin: auto;
+    border: outset rgb(40, 99, 98) 10px;
+    background-color: rgb(40, 99, 98);
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 25px;
+    color:  rgb(166, 247, 186);
+  }
+
+  #templeimg {
+    width: 10px;
+  }
+  
+  #mascotimg {
+    width: 10px;
+  }
+  
+  #tokyotowerimg {
+    width: 10px;
+  }
+
+  #users {
+    visibility: hidden; 
+  }
+
+  .title {
+    text-align: center;
+    margin: 30px 0px 50px 0px;
+    font-size: 60px;
+    text-decoration: underline;
+    color: rgb(228, 38, 25);
+    text-align: center;
+  }
+
+  #map {
+    width: 90%;
+    height: 75%;
+    margin: auto;
+    border: groove rgb(40, 99, 98) 10px;
+  }
+
+  .weatherList {
+    margin: 20px;
+    color:  rgb(166, 247, 186);
+    text-align: center;
+  }
+
+  .weatherList > .icon {
+    font-size: .5em; /* control icon size here */
+    margin-top: 15px;
+    margin-right: 15px;
+  }
+
+  .foodList {
+    margin: 20px;
+    color:  rgb(166, 247, 186);
+    text-align: center;
+    width: 500px;
+  }
+
+  .foodList > img {
+    width: 250px;
+  }
+
+  #heroes {
+    margin-top: 50px;
+  }
+
+  .animeListDiv {
+    margin: auto;
+  }
+
+  .animeList {
+    margin: 30px;
+  }
+  
+  #kinkakujiimg {
+    height: 150px;
+    width: 150px;
+    border: groove rgb(40, 99, 98) 15px;
+    border-radius: 30px;
+    margin-top: 150px;
+  }
+   
+  #foodimg {
+    height: 150px;
+    width: 150px;
+    border: groove rgb(40, 99, 98) 15px;
+    border-radius: 30px;
+    margin-top: 150px;
+  }
+   
+  #uenoimg {
+    height: 150px;
+    width: 150px;
+    border: groove rgb(40, 99, 98) 15px;
+    border-radius: 30px;
+    margin-top: 150px;
+  }
+   
+  #landscapeimg {
+    height: 150px;
+    width: 150px;
+    border: groove rgb(40, 99, 98) 15px;
+    border-radius: 30px;
+    margin-top: 150px;
+  }
+   
+  #tokyoimg {
+    height: 150px;
+    width: 150px;
+    border: groove rgb(40, 99, 98) 15px;
+    border-radius: 30px;
+    margin-top: 150px;
+  }
+
+  #missiondiv > p {
+    background-color: white;
+    border: groove rgb(40, 99, 98) 8px;
+    margin-top: 20px;
+    padding: 10px;
+  }
+
+  p {
+    font-size: 25px;
+  }
+
+  .ameliainfo {
+    
+    font-size: 25px;
+  }
+
+  #ameliapic {
+    border-radius: 50%;
+  }
+
+  .liondogimg {
+    height: 200px;
+    width: 200px;
+    border: groove rgb(98, 172, 117) 15px;
+  }
+
+  .trainstationimg {
+    height: 200px;
+    width: 200px;
+    border: groove rgb(98, 172, 117) 15px;
+  }
+
+  .maskimg {
+    height: 200px;
+    width: 200px;
+    border: groove rgb(98, 172, 117) 15px;
+  }
+
+  .ramenimg {
+    height: 200px;
+    width: 200px;
+    border: groove rgb(98, 172, 117) 15px;
+  } 
+
+  #aboutmepic{
+    margin: 25px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #aboutme > p:nth-child(2) {
+    background-color: white;
+    border: groove rgb(40, 99, 98) 8px;
+    margin-top: 20px;
+    padding: 10px;
+  }
+
+  #aboutUsButton {
+    margin: auto;
+  }
+
+  #center{
+    text-align: center;
+    font-size: 45px;
+  }
+
+  #form{
+    background-color: rgb(126, 213, 197);
+  }
+
+  #footerT {
+    font-size: 60px;
+    padding-top: 10px;
+    margin-bottom: 20px;
+  }
+
+
+
+
+
+
+
+
+  
+
   .icon {
     position: relative;
     display: inline-block;
     width: 7em;
     height: 7em;
-    font-size: 1em; /* control icon size here */
+    font-size: 1em;
     max-width: 42em;
     padding: 2em;
     margin: 0 auto;
@@ -233,9 +792,6 @@
     animation: spin 16s linear infinite reverse;
   }
 
-
-  /* Animations */ 
-
   @keyframes spin {
     100% { transform: rotate(360deg); }
   }
@@ -305,19 +861,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-  
-  /* Samurai Animation code that I used for our site https://www.codeseek.co/2xsamurai/css-samurai-animation-GvQpOj */
-
   #wrapper {
     color: #555;
     font-size: 100%;
@@ -360,7 +903,6 @@
   border: 1px solid transparent;
   transform-origin: bottom;
   z-index: 2;
-  /* margin-bottom: -2px; */
 
   animation-name: samuraiMove, samuraiReturn;
     animation-duration: 1.1s, 1.1s;
@@ -568,7 +1110,7 @@
   31% { transform: scaleY(0.8) translateX(0em); opacity: 1; }
   50% { transform: scaleY(0.8) translateX(0em); opacity: 1; }
   100% { transform: scaleY(0.8) translateX(7em) scaleX(0.8); opacity: 0; }
-  /*100% { transform: scaleY(1);}*/
+
   }
   @keyframes samuraiReturn {
   0% { transform: scaleY(0.8) scaleX(-0.8) translateX(-7em); opacity: 0; }

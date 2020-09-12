@@ -1,0 +1,230 @@
+#logo {
+  width: 250px;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.loginimgdiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#map {
+  grid-area: map;
+  width: 420px;
+  height: 420px;
+  margin: auto;
+  margin-bottom: 30px;
+  border: groove rgb(40, 99, 98) 10px;
+}
+
+#bigWeatherDiv {
+  grid-area: weather;
+}
+
+#bigFoodDiv {
+  grid-area: food;
+}
+
+#bigKahunaDiv {
+  display: grid;
+  grid-template-columns: 6.25% 87.5% 6.25%;
+  grid-template-rows: auto;
+  grid-template-areas:
+    '. map .'
+    '. map .'
+    '. map .'
+    '. weather .'
+    '. weather .'
+    '. food .'
+    '. food .'
+    '. food .';
+}
+
+.weatherDiv {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(98, 172, 117);
+  width: 300px;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  border: groove  rgb(228, 38, 25) 10px;
+}
+
+.foodDiv {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(98, 172, 117);
+  width: 420px;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border: groove  rgb(228, 38, 25) 10px;
+}
+
+#heroes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap-reverse
+}
+
+#animeUL {
+  display: flex;
+  flex-direction: column;
+}
+
+#animeForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.favAnimeList {
+  display: flex;
+  flex-direction: column;
+}
+
+.collectiondiv {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+#marc {
+  grid-area: marc;
+}
+
+#amelia {
+  grid-area: amelia;
+}
+
+#matt {
+  grid-area: matt;
+}
+
+#kahunaAboutMe {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-auto-rows: auto;
+  grid-template-areas:
+    '. mission mission mission .'
+    '. mission mission mission .'
+    '. marc marc marc .'
+    '. marc marc marc .'
+    '. amelia amelia amelia .'
+    '. amelia amelia amelia .'
+    '. matt matt matt .'
+    '. matt matt matt .'
+    '. contact contact contact .'
+    '. contact contact contact .'
+}
+
+#aboutdiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#missiondiv {
+  margin: auto;
+  grid-area: mission;
+}
+
+#contact-us{
+  grid-area: contact;
+  margin-top: 30px;
+}
+
+@media only screen and (min-width: 515px) {
+
+  .loginimgdiv {
+    visibility: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 150px;
+  }
+
+  #bigWeatherDiv {
+    grid-area: weather;
+  }
+
+  #bigFoodDiv {
+    grid-area: food;
+  }
+
+  #bigKahunaDiv {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: auto;
+    grid-template-areas:
+      'weather weather weather weather weather'
+      'weather weather weather weather weather'
+      'weather weather weather weather weather'
+      'food food food food food'
+      'food food food food food'
+      'food food food food food';
+  }
+
+  #weatherUl {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  #foodUl {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  #animeUL {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  #favFoodUl {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  #favAnimeUl {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  .collectiondiv {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  #missiondiv {
+    text-align: center;
+    grid-area: mission;
+  }
+  
+  #aboutdiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  #contact-us{
+    display: flex;
+    flex-direction: column;
+  }
+  
+}
