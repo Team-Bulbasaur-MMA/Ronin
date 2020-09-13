@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include('../layout/head', {users : users}) %>
+
+<body class='dataBody'>
+
+  <%- include('../layout/header', {users : users}) %>
+
+  <h1 class='title2'>List of Characters</h1>
+  <ul id='animeUL'>
+    <% animeList.forEach(baka => { %>
+      <div class='animeListDiv'>
+        <li class='animeList'>
+        <form id ='animeForm' action="/anime" method="POST">
+            <h2><%= baka.name %></h2>
+            <img src='<%= baka.image_url %>' alt=''>
+            <input name='name' type='hidden' value='<%= baka.name %>'>
+            <input name='image_url' type='hidden' value='<%= baka.image_url %>'>
+            <input name='user_name' type='hidden' value='<%= users %>'>
+            <button class='button2' type='submit' value='Add to Collections'>Add to Collection</button>
+        </form>
+        </li>
+      </div>
+      <% }) %>
+  </ul>
+
+  <%- include('../layout/footer', {users : users}) %>
+
+</body>
+</html>

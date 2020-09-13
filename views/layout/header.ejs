@@ -1,0 +1,22 @@
+<header>
+  <nav>
+    <div id='logo'>
+      <h1>Ronin</h1>
+      <img src='/img/roninLogo.png'>
+    </div>
+    <ul>
+
+      <% if(!users){ %>
+      <li class='link'><a href='/'>Login</a></li>
+      <% } %>
+      
+      <% if(users){ %>
+      <li class='link'><a href='/index?user_name=<%= users %>'>Home</a></li>
+      <li class='link'><a href='/anime?user_name=<%= users %>'>Anime</a></li>
+      <li class='link'><a href='/collection?user_name=<%= users %>'>My Collection</a></li>
+      <li class='link'><a href='/aboutUs?user_name=<%= users %>'>About Us</a></li>
+      <li class='link'><a href='/'>Logout</a></li>
+      <% } %>
+    </ul>
+  </nav>
+</header>

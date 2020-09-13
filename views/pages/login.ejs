@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include('../layout/head', {users : users}) %>
+  
+<body>
+  <header>
+    <nav>
+      <div id='logo'>
+        <h1>Ronin</h1>
+        <h1>浪人</h1>
+        <img src='/img/roninLogo.png'>
+      </div>
+    </nav>
+  </header>
+
+  <h1 class='title'>Please Login</h1>
+
+  <form action="/user" method="POST">
+    <fieldset>
+      <input class='mainSearchButton' type="text" name="username" value="Type Here">
+      <input class='mainButton' type="submit" value="Submit">
+    </fieldset>
+  </form>
+
+  <div id="wrapper">
+    <div class="stage stage--full stage--first">
+        <div class="stage-wrapper">
+        <div class="samurai">
+            <div class="hat">
+            </div>
+            <div class="head">
+            </div>
+            <div class="body">
+            </div>
+            <div class="sword">
+            </div>
+        </div>
+        <div class="slash">
+        </div>
+        <div class="peices">
+            <div class="peice-one">
+            </div>
+            <div class="peice-two">
+            </div>
+            <div class="peice-three">
+            </div>
+            <div class="peice-four">
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="loginimgdiv">
+    <img id="templeimg" src="img/temple.jpeg" alt="Sensoji Temple, Asakusa, Tokyo, Japan" title="Senjoji Temple by Amelia Waggoner">
+    <img id="mascotimg" src="img/mascot.jpeg" alt="Japanese Daruma Mascot" title="Japanese Daruma Mascot by Amelia Waggoner">
+    <img id="tokyotowerimg" src="img/tokyotower.jpeg" alt="Tokyo Tower, Tokyo, Japan" title="Tokyo Tower by Amelia Waggoner">
+  </div>
+
+  <%- include('../layout/footer') %>
+
+</body>
+</html>

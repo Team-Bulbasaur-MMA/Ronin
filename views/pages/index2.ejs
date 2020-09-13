@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include('../layout/head', {users : users}) %>
+
+<body class='dataBody'>
+
+  <%- include('../layout/header', {users : users}) %>
+
+  <h1 class='title2'>You chose <%= data.city %>!</h1>
+
+  <div id='bigKahunaDiv'>
+    <div id='bigWeatherDiv'>
+        <h2 class='title2'>The weather for the week:</h2>
+      <ul id='weatherUl'>
+        <% data.weatherData.forEach(weather => { %>
+        <div class='weatherDiv'>
+          <li class='weatherList'>
+            <h2><%= weather.time %></h2>
+            <h2><%= weather.forecast %></h2>
+            <% const broken = 'Broken'; %>
+            <% const few = 'Few'; %>
+            <% const scattered = 'Scattered'; %>
+            <% const moderate = 'Moderate'; %>
+            <% const thunderstorm = 'Thunderstorm'; %>
+            <% const lightRain = 'Light'; %>
+            <% const heavyRain = 'Heavy'; %>
+            <% const overcast = 'Overcast'; %>
+            <% const clear = 'Clear'; %>
+            <% if (weather.forecast.includes(broken) || weather.forecast.includes(few) || weather.forecast.includes(scattered)) { %>
+              <div class="icon cloudy">
+                <div class="cloud"></div>
+                <div class="cloud"></div>
+              </div>
+            <% } else if (weather.forecast.includes(thunderstorm)) { %>
+              <div class="icon thunder-storm">
+                <div class="cloud"></div>
+                <div class="lightning">
+                  <div class="bolt"></div>
+                  <div class="bolt"></div>
+                </div>
+              </div>
+            <% } else if (weather.forecast.includes(lightRain) || weather.forecast.includes(heavyRain) || weather.forecast.includes(moderate)) { %>
+              <div class="icon rainy">
+                <div class="cloud"></div>
+                <div class="rain"></div>
+              </div>
+            <% } else if (weather.forecast.includes(clear)) { %>
+              <div class="icon rainy">
+                <div class="cloud"></div>
+                <div class="rain"></div>
+              </div>
+            <% } else if (weather.forecast.includes(overcast)) { %>
+              <div class="icon sun-shower">
+                <div class="cloud"></div>
+                <div class="sun">
+                  <div class="rays"></div>
+                </div>
+                <div class="rain"></div>
+              </div>
+            <% } %>
+          </li>
+        </div>
+      <% }) %>
+      </ul>
+    </div>
+  
+    <div id='bigFoodDiv'>
+      <h2 class='title2'>Restaurants in the area:</h2>
+      <ul id='foodUl'>
+        <% data.yelpData.forEach(food => { %>
+        <div class='foodDiv'>
+          <li class='foodList'>
+            <h2> <%= food.name %> </h2>
+            <img src='<%= food.image_url %>' alt=''>
+            <h3>Price: <%= food.price %></h3>
+            <h3><%= food.rating %> &#11088;</h3>
+            <h3>Address: <%= food.address %></h3>
+            <h3>Phone Number: <%= food.phone %></h3>
+            <form action="/restaurants" method="POST">
+             <fieldset>
+              <input type="hidden" name="name" value="<%= food.name %>"></input>
+              <input type="hidden" name="image_url" value="<%= food.image_url %>"></input>
+              <input type="hidden" name="price" value="<%= food.price %>"></input>
+              <input type="hidden" name="rating" value="<%= food.rating %>"></input>
+              <input type="hidden" name="address" value="<%= food.address %>"></input>
+              <input type="hidden" name="phone" value="<%= food.phone %>"></input>
+              <input type="hidden" name="user_name" value="<%= users %>"></input>
+              <input class='button' type="submit" value="Save this restaurant">
+             </fieldset>
+            </form>
+          </li>
+
+        </div>
+      <% }) %>
+      </ul>
+    </div>
+  </div>
+
+  <%- include('../layout/footer', {users : users}) %>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <script src='https://maps.googleapis.com/maps/api/js?key=<%= key %>&callback=initMap&libraries=&v=weekly' defer></script>
+  <script src='js/app.js'></script>
+
+</body>
+</html>
